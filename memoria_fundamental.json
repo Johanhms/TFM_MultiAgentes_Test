@@ -1,0 +1,10 @@
+{
+    "fecha": "2026-05-20",
+    "sentimientos": {
+        "BTC-USD": "BULLISH",
+        "EURUSD=X": "NEUTRAL",
+        "GBPUSD=X": "NEUTRAL",
+        "GC=F": "NEUTRAL",
+        "^GSPC": "NEUTRAL"
+    }
+}

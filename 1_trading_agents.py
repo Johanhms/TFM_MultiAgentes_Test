@@ -1,5 +1,10 @@
 import yfinance as yf
 import pandas as pd
+import time
+import requests
+import xml.etree.ElementTree as ET
+import json
+from datetime import datetime
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 import os
@@ -9,6 +14,7 @@ import pandas_ta as ta
 import numpy as np
 from scipy.stats import norm
 import joblib
+from pathlib import Path
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -21,9 +27,39 @@ load_dotenv()
 ASSET_MAPPING = {
     "BTC-USD": "BTCUSD",       # Cripto (sin sufijo en tu Oanda)
     "EURUSD=X": "EURUSD.sml",  # Forex (con sufijo en tu Oanda)
+    "GBPUSD=X": "GBPUSD.sml",  # Forex (con sufijo en tu Oanda)
     "GC=F": "XAUUSD.sml",      # Ejemplo futuro: Oro
     "^GSPC": "spx500.sml"      # Ejemplo futuro: S&P 500
 }
+
+CURRENCY_MAP = {
+    "BTC-USD": ["USD"],
+    "EURUSD=X": ["EUR", "USD"],
+    "GBPUSD=X": ["GBP", "USD"],
+    "GC=F": ["USD"],
+    "^GSPC": ["USD"]
+}
+
+def get_macro_calendar(currencies: list) -> list:
+    url = "https://nfs.faireconomy.media/ff_calendar_thisweek.xml"
+    eventos = []
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code != 200: return []
+        tree = ET.fromstring(response.content)
+        for item in tree.findall('event'):
+            country = item.find('country').text
+            impact = item.find('impact').text
+            if country in currencies and impact in ['High', 'Medium']:
+                title = item.find('title').text
+                date_str = item.find('date').text
+                time_str = item.find('time').text
+                evento_txt = f"- [{impact}] {country}: {title} ({date_str} {time_str})"
+                eventos.append(evento_txt)
+        return eventos[:5]
+    except:
+        return []
 
 # 1. Definimos el "Estado" que los agentes se irán pasando
 # Aquí es donde la estructura es escalable. Luego puedes agregar más campos.
@@ -74,12 +110,17 @@ def technical_analyst_agent(state: TradingState):
 def quant_ml_agent(state: TradingState):
     print("🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial...")
     
-    # 1. Cargamos el modelo pre-entrenado y las features que espera recibir
+    safe_name = state["asset"].replace("=X", "").replace("=F", "").replace("^", "")
+    
+    BASE_DIR = Path(__file__).resolve().parent if '__file__' in globals() else Path.cwd()
+    model_path = BASE_DIR / f'quant_model_1h_{safe_name}.joblib'
+    features_path = BASE_DIR / f'model_features_1h_{safe_name}.joblib'
+    
     try:
-        model = joblib.load('quant_model_1h.joblib')
-        features = joblib.load('model_features_1h.joblib')
+        model = joblib.load(model_path)
+        features = joblib.load(features_path)
     except FileNotFoundError:
-        print("❌ ERROR: No se encontró el modelo. Ejecuta train_model.py primero.")
+        print(f"❌ ERROR: No se encontró el modelo para {safe_name}. Ejecuta train_model.py primero.")
         return {"ml_prediction": "HOLD"}
     
     # 2. Reconstruimos los indicadores del estado actual para igualar el formato del modelo
@@ -127,59 +168,85 @@ def quant_ml_agent(state: TradingState):
 
 # 5. Agente 4: Analista Fundamental (NLP & LLMs)
 def fundamental_analyst_agent(state: TradingState):
-    print("📰 [Fundamental Agent] Leyendo noticias financieras en tiempo real...")
-    ticker = yf.Ticker(state["asset"])
-    news_list = ticker.news
+    asset = state["asset"]
+    print(f"📰 [Fundamental Agent] Evaluando {asset}...")
     
+    # 1. SISTEMA DE CACHÉ: Revisar si ya hicimos este trabajo hoy
+    hoy = datetime.now().strftime("%Y-%m-%d")
+    archivo_cache = "memoria_fundamental.json"
+    memoria = {}
+    
+    if os.path.exists(archivo_cache):
+        try:
+            with open(archivo_cache, "r") as f:
+                memoria = json.load(f)
+        except Exception:
+            pass
+            
+    # Si la memoria es de hoy y ya tenemos el sentimiento de este activo, lo usamos instantáneamente
+    if memoria.get("fecha") == hoy and asset in memoria.get("sentimientos", {}):
+        sentimiento_guardado = memoria["sentimientos"][asset]
+        print(f"   ⚡ Usando memoria rápida del día: {sentimiento_guardado} (Evitando API)")
+        return {"fundamental_sentiment": sentimiento_guardado}
+
+    # =====================================================================
+    # 2. SI NO ESTÁ EN CACHÉ: Hacemos el trabajo pesado (1 vez al día)
+    # =====================================================================
+    print(f"   📥 Descargando Macro y Noticias frescas para hoy...")
+    
+    # Extraer Noticias
+    ticker = yf.Ticker(asset)
+    news_list = ticker.news
     headlines = []
     if news_list:
-        for n in news_list[:5]:
+        for n in news_list[:3]:
             if isinstance(n, dict):
-                # Búsqueda exhaustiva del título de la noticia
-                title = n.get('title')
-                if not title and 'content' in n and isinstance(n['content'], dict):
-                    title = n['content'].get('title')
+                title = n.get('title') or (n.get('content', {}).get('title') if 'content' in n else None)
+                if title: headlines.append(f"- {title}")
                 
-                if title:
-                    headlines.append(f"- {title}")
-                    
-    if not headlines:
-        print("   ⚠️ No se encontraron noticias recientes. Asumiendo NEUTRAL.")
-        return {"fundamental_sentiment": "NEUTRAL"}
-        
-    news_text = "\n".join(headlines)
+    news_text = "\n".join(headlines) if headlines else "Sin noticias."
     
+    # Extraer Calendario Macro
+    divisas = CURRENCY_MAP.get(asset, ["USD"])
+    eventos_macro = get_macro_calendar(divisas)
+    macro_text = "\n".join(eventos_macro) if eventos_macro else "Sin eventos macro."
+    
+    # Consultar a Gemini
     try:
-        # AQUÍ ESTÁ EL CEREBRO DEFINITIVO QUE VALIDAMOS
         llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.0)
-        
         prompt = f"""
-        Eres un analista financiero experto. Revisa los siguientes titulares recientes sobre {state["asset"]}:
-        {news_text}
-        
-        Determina el sentimiento general del mercado para este activo.
-        Responde ÚNICAMENTE con una de estas tres palabras: BULLISH, BEARISH o NEUTRAL.
-        No incluyas explicaciones.
+        Activo: {asset}.
+        Noticias: {news_text}
+        Macro: {macro_text}
+        Sintetiza y responde ÚNICAMENTE con una palabra: BULLISH, BEARISH o NEUTRAL.
         """
         
         response = llm.invoke([HumanMessage(content=prompt)])
         sentiment = response.content.strip().upper()
         
-        # Filtro de seguridad por si el LLM añade algún punto final invisible
-        if "BULLISH" in sentiment: 
-            sentiment = "BULLISH"
-        elif "BEARISH" in sentiment: 
-            sentiment = "BEARISH"
-        else: 
-            sentiment = "NEUTRAL"
+        if "BULLISH" in sentiment: sentiment = "BULLISH"
+        elif "BEARISH" in sentiment: sentiment = "BEARISH"
+        else: sentiment = "NEUTRAL"
             
-        print(f"   Sentimiento detectado: {sentiment}")
-        return {"fundamental_sentiment": sentiment}
-        
     except Exception as e:
-        print(f"❌ Error en el LLM: {e}")
-        print("   Sentimiento por defecto: NEUTRAL")
-        return {"fundamental_sentiment": "NEUTRAL"}
+        print(f"   ❌ Error en LLM: {e}")
+        sentiment = "NEUTRAL"
+        
+    print(f"   ✅ Nuevo sentimiento analizado: {sentiment}")
+    
+    # 3. ACTUALIZAR CACHÉ PARA EL RESTO DEL DÍA
+    if memoria.get("fecha") != hoy:
+        memoria = {"fecha": hoy, "sentimientos": {}}
+        
+    memoria["sentimientos"][asset] = sentiment
+    
+    with open(archivo_cache, "w") as f:
+        json.dump(memoria, f, indent=4)
+        
+    # Pausa de seguridad solo si usamos la API para no saturar al pasar al siguiente activo
+    time.sleep(3) 
+    
+    return {"fundamental_sentiment": sentiment}
 
 # 6. Agente 5: Gestor de Portafolio (El Consenso)
 def portfolio_manager_agent(state: TradingState):
@@ -249,7 +316,7 @@ def execution_agent(state: TradingState):
     signal =  state["final_signal"]
     
     if signal == "HOLD":
-        return {"final_execution": "⏸️ SIN OPERACIÓN: El modelo determinó HOLD (Condiciones de riesgo no favorables)."}    
+        return {"final_execution": "⏸️ SIN OPERACIÓN: El modelo determinó HOLD."}    
     
     print(f"🚀 [Execution Agent] Conectando con MT5 para operar {state['asset']}...")
     
@@ -268,36 +335,50 @@ def execution_agent(state: TradingState):
 
     # --- TRADUCCIÓN FLEXIBLE DE SÍMBOLOS ---
     asset_yahoo = state['asset']
-    
-    # Busca el símbolo en nuestro diccionario de mapeo
     if asset_yahoo in ASSET_MAPPING:
         symbol_mt5 = ASSET_MAPPING[asset_yahoo]
     else:
-        # Fallback de seguridad si olvidas agregarlo al diccionario
         symbol_mt5 = asset_yahoo.replace("-", "").replace("=X", "").lower()
     
     print(f"🔍 Buscando símbolo en MT5: {symbol_mt5}")
 
-    # Asegurarnos de que el símbolo esté visible
     if not mt5.symbol_select(symbol_mt5, True):
         mt5.shutdown()
-        return {"final_execution": f"❌ ERROR: Símbolo '{symbol_mt5}' no encontrado. Revisa si está en el Market Watch de MT5."}
+        return {"final_execution": f"❌ ERROR: Símbolo '{symbol_mt5}' no encontrado."}
 
-    # Obtener precios del símbolo
+    # Extraemos las propiedades estructurales del activo en el bróker
+    symbol_info = mt5.symbol_info(symbol_mt5)
+    if symbol_info is None:
+        mt5.shutdown()
+        return {"final_execution": f"❌ ERROR: No hay información para '{symbol_mt5}'."}
+        
+    # =====================================================================
+    # NUEVO: DETECCIÓN DINÁMICA DE FILLING MODE (Soporte Multiactivo)
+    # =====================================================================
+    tipo_relleno_broker = symbol_info.filling_mode
+    
+    if tipo_relleno_broker == 1:
+        filling_mode = mt5.ORDER_FILLING_FOK
+    elif tipo_relleno_broker == 2:
+        filling_mode = mt5.ORDER_FILLING_IOC
+    else:
+        # Si el bróker devuelve 3 (soporta ambos), priorizamos FOK por seguridad en Oanda
+        filling_mode = mt5.ORDER_FILLING_FOK
+
     tick = mt5.symbol_info_tick(symbol_mt5)
     if tick is None:
         mt5.shutdown()
-        return {"final_execution": f"❌ ERROR: No hay cotización para '{symbol_mt5}'."}
+        return {"final_execution": f"❌ ERROR: No hay cotización actual para '{symbol_mt5}'."}
         
     signal = state["ml_prediction"]
     price = tick.ask if signal == "BUY" else tick.bid
     order_type = mt5.ORDER_TYPE_BUY if signal == "BUY" else mt5.ORDER_TYPE_SELL
     
-    # Construir petición
+    # Construir petición con el modo correcto
     request = {
         "action": mt5.TRADE_ACTION_DEAL,
         "symbol": symbol_mt5,
-        "volume": 0.01, # Lote mínimo para BTC en MT5 suele ser 0.01, ajusta si Oanda te pide más
+        "volume": 0.01, # Lote mínimo (Ajustar si Forex en Oanda pide 1000, 10000, etc.)
         "type": order_type,
         "price": price,
         "sl": float(state['risk_params']['stop_loss']),
@@ -306,7 +387,7 @@ def execution_agent(state: TradingState):
         "magic": 202601,
         "comment": "TFM Agent",
         "type_time": mt5.ORDER_TIME_GTC,
-        "type_filling": mt5.ORDER_FILLING_IOC, 
+        "type_filling": filling_mode, # <--- La variable inteligente
     }
 
     result = mt5.order_send(request)
@@ -355,7 +436,7 @@ workflow.set_entry_point("market_data")
 # Compilamos la aplicación
 app = workflow.compile()
 
-# --- EJECUCIÓN ---
+
 # --- EJECUCIÓN MULTIACTIVO ---
 if __name__ == "__main__":
     print("\n" + "="*50)
