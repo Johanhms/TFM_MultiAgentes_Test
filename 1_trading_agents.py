@@ -356,14 +356,30 @@ workflow.set_entry_point("market_data")
 app = workflow.compile()
 
 # --- EJECUCIÓN ---
+# --- EJECUCIÓN MULTIACTIVO ---
 if __name__ == "__main__":
-    print("\n--- INICIANDO ECOSISTEMA DE AGENTES ---")
+    print("\n" + "="*50)
+    print("🚀 INICIANDO ECOSISTEMA DE AGENTES MULTIACTIVO")
+    print("="*50)
     
-    # Estado inicial: Solo le pasamos el activo que queremos operar
-    initial_state = {"asset": "BTC-USD"}
-    
-    # Ejecutamos el flujo
-    result = app.invoke(initial_state)
-    
-    print("\n--- RESULTADO FINAL ---")
-    print(result["final_execution"])
+    # Iteramos sobre cada activo definido en la configuración
+    for asset_yahoo, asset_mt5 in ASSET_MAPPING.items():
+        print(f"\n{'='*40}")
+        print(f"🌟 INICIANDO ANÁLISIS PARA: {asset_yahoo} -> {asset_mt5}")
+        print(f"{'='*40}")
+        
+        # Estado inicial para el activo en turno
+        initial_state = {"asset": asset_yahoo}
+        
+        try:
+            # Ejecutamos el flujo completo para este activo
+            result = app.invoke(initial_state)
+            
+            print(f"\n--- RESULTADO FINAL PARA {asset_yahoo} ---")
+            print(result["final_execution"])
+            
+        except Exception as e:
+            # Si un activo falla (ej. error de datos), el ciclo continúa con el siguiente
+            print(f"\n❌ ERROR CRÍTICO procesando {asset_yahoo}: {e}")
+            
+    print("\n✅ ANÁLISIS DEL PORTAFOLIO FINALIZADO.")
