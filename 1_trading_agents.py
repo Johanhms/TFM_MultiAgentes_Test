@@ -159,6 +159,7 @@ def technical_analyst_agent(state: TradingState):
 def quant_ml_agent(state: TradingState):
     print("🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial...")
     
+    asset = state["asset"]
     safe_name = state["asset"].replace("=X", "").replace("=F", "").replace("^", "")
     
     BASE_DIR = Path(__file__).resolve().parent if '__file__' in globals() else Path.cwd()
@@ -201,10 +202,11 @@ def quant_ml_agent(state: TradingState):
     # 5. Lógica de Decisión con Umbrales (Thresholds)
     # Exigimos un 60% de seguridad matemática para arriesgar capital.
     # Si el modelo está indeciso (ej. 52% vs 48%), forzamos un HOLD.
-    if prob_subida > 0.50:
+    UMBRAL = 0.53
+    if prob_subida >= UMBRAL:
         prediction = "BUY"
         confianza = prob_subida
-    elif prob_bajada > 0.50:
+    elif prob_bajada > UMBRAL:
         prediction = "SELL"
         confianza = prob_bajada
     else:
@@ -213,7 +215,7 @@ def quant_ml_agent(state: TradingState):
         
     print(f"   Predicción: {prediction} (Confianza del modelo: {confianza*100:.1f}%)")
         
-    return {"ml_prediction": prediction}
+    return {"ml_prediction": prediction, "ml_confidence": confianza}
 
 # 5. Agente 4: Analista Fundamental (NLP & LLMs)
 def fundamental_analyst_agent(state: TradingState):
