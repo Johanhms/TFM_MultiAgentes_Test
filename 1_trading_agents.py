@@ -48,6 +48,22 @@ CURRENCY_MAP = {
     "NVDA": ["USD"]
 }
 
+# --- MATRIZ DE RIESGO Y DIRECCIÓN DE PORTAFOLIO ---
+# Ponderación inversa a la volatilidad del activo (Capacidad de asignación presupuestaria)
+ASSET_VOLATILITY_WEIGHTS = {
+    "BTC-USD": 0.10,       # Cripto: Mínima asignación por volatilidad extrema
+    "NVDA": 0.15,          # Acciones: Baja-Media asignación
+    "GC=F": 0.20,          # Materias Primas (Oro): Asignación Media
+    "CL=F": 0.20,          # Materias Primas (Petróleo): Asignación Media
+    "^GSPC": 0.25,         # Índices (S&P 500): Asignación Media-Alta
+    "^DJI": 0.25,          # Índices (Dow Jones): Asignación Media-Alta
+    "EURUSD=X": 0.30,      # Forex: Máxima asignación por estabilidad y liquidez
+    "GBPUSD=X": 0.30       # Forex: Máxima asignación
+}
+
+# Límites estrictos para evitar sobreexposición total del fondo de inversión
+MAX_GLOBAL_PORTFOLIO_RISK_PCT = 0.10  # El riesgo sumado jamás superará el 10% del capital
+
 def is_market_open(asset: str) -> bool:
     """
     Reloj interno que verifica la disponibilidad del mercado basándose 
@@ -203,7 +219,7 @@ def quant_ml_agent(state: TradingState):
     # 5. Lógica de Decisión con Umbrales (Thresholds)
     # Exigimos un 60% de seguridad matemática para arriesgar capital.
     # Si el modelo está indeciso (ej. 52% vs 48%), forzamos un HOLD.
-    UMBRAL = 0.53
+    UMBRAL = 0.52
     if prob_subida >= UMBRAL:
         prediction = "BUY"
         confianza = prob_subida
@@ -320,6 +336,7 @@ def portfolio_manager_agent(state: TradingState):
     
     asset = state.get("asset", "UNKNOWN")
     ml_signal = state.get("ml_prediction", "HOLD")
+    ml_confidence = state.get("ml_confidence", 0.0)
     sentiment = state.get("fundamental_sentiment", "NEUTRAL")
     current_price = state.get("current_price")
     
@@ -335,94 +352,105 @@ def portfolio_manager_agent(state: TradingState):
     
     # Lógica de Análisis técnico:
     if ml_signal == "BUY":
-        # Ley 1: RSI (Sobrecompra)
-        if rsi >= 75:
-            print(f"   🛑 VETO: RSI en {rsi:.1f} (Sobrecompra extrema). Compra abortada.")
-            return {"final_signal": "HOLD"}
-        # Ley 2: Reversión a la Media (Bollinger)
-        if current_price >= bb_upper:
-            print(f"   🛑 VETO: Precio perforando Banda de Bollinger Superior. Riesgo de reversión.")
-            return {"final_signal": "HOLD"}
-        # Ley 3: Tendencia Mayor (EMA)
-        if ema > 0 and current_price < ema:
-            print(f"   🛑 VETO: Prohibido comprar contra la tendencia institucional (Precio < EMA 50).")
-            return {"final_signal": "HOLD"}
-        # Ley 4: Momentum (MACD)
-        if macd < macd_signal:
-            print(f"   🛑 VETO: Momentum bajista detectado en MACD. Compra prematura abortada.")
-            return {"final_signal": "HOLD"}
-
+        if rsi >= 75 or current_price >= bb_upper or (ema > 0 and current_price < ema) or macd < macd_signal:
+            registrar_veto_csv(asset, ml_signal, "Veto Técnico Alcista", current_price, rsi, ema)
+            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
     elif ml_signal == "SELL":
-        # Ley 1: RSI (Sobreventa)
-        if rsi <= 25:
-            print(f"   🛑 VETO: RSI en {rsi:.1f} (Sobreventa extrema). Venta abortada.")
-            return {"final_signal": "HOLD"}
-        # Ley 2: Reversión a la Media (Bollinger)
-        if current_price <= bb_lower:
-            print(f"   🛑 VETO: Precio perforando Banda de Bollinger Inferior. Riesgo de rebote.")
-            return {"final_signal": "HOLD"}
-        # Ley 3: Tendencia Mayor (EMA)
-        if ema > 0 and current_price > ema:
-            print(f"   🛑 VETO: Prohibido vender contra la tendencia institucional (Precio > EMA 50).")
-            return {"final_signal": "HOLD"}
-        # Ley 4: Momentum (MACD)
-        if macd > macd_signal:
-            print(f"   🛑 VETO: Momentum alcista detectado en MACD. Venta prematura abortada.")
-            return {"final_signal": "HOLD"}
-    
-    # Lógica de Consenso Estricto Institucional:
-    # Solo operamos si los números (ML) y las noticias (Fundamental) están de acuerdo.
+        if rsi <= 25 or current_price <= bb_lower or (ema > 0 and current_price > ema) or macd > macd_signal:
+            registrar_veto_csv(asset, ml_signal, "Veto Técnico Bajista", current_price, rsi, ema)
+            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
+
+    # Lógica de Consenso Estricta
     if ml_signal == "BUY" and sentiment in ["BULLISH", "NEUTRAL"]:
         final_signal = "BUY"
     elif ml_signal == "SELL" and sentiment in ["BEARISH", "NEUTRAL"]:
         final_signal = "SELL"
     else:
-        # Si el ML dice BUY pero las noticias son BEARISH, abortamos.
-        print(f"   ⚠️ Conflicto detectado (Quant: {ml_signal} | Noticias: {sentiment}). Abortando operación.")
+        if ml_signal != "HOLD":
+            registrar_veto_csv(asset, ml_signal, f"Conflicto Macro ({sentiment})", current_price, rsi, ema)
         final_signal = "HOLD"
         
-    print(f"   Decisión Final: {final_signal}")
-    return {"final_signal": final_signal}
+    print(f"   Decisión Final: {final_signal} | Confianza Asociada: {ml_confidence*100:.1f}%")
+    return {"final_signal": final_signal, "ml_confidence": ml_confidence}
 
 # 7. Agente 6: Gestor de Riesgo (Market Risk)
 def risk_manager_agent(state: TradingState):
-    print("🛡️ [Risk Manager] Calculando Riesgo Dinámico (ATR y VaR)...")
-    price = state["current_price"]
-    signal = state["ml_prediction"]
+    print("🛡️ [Risk Manager] Calculando dimensionamiento de posición y límites de cuenta...")
     
-    if signal == "HOLD":
-         return {"risk_params": {"stop_loss": 0.0, "take_profit": 0.0, "VaR_95": 0.0}}
-         
-    df = state["historical_data"].copy()
-    atr = state["technical_indicators"]["ATR_14"]
+    final_signal = state.get("final_signal", "HOLD")
+    asset = state.get("asset")
+    confianza = state.get("ml_confidence", 0.0)
+    tech = state.get("technical_indicators", {})
+    atr = tech.get("ATR_14", 0.0)
     
-    # 1. Cálculo del Value at Risk (VaR) Histórico-Paramétrico (95% de confianza)
-    df['Returns'] = df['Close'].pct_change()
-    volatility = df['Returns'].std()
-    var_95_pct = norm.ppf(0.95) * volatility  # ~1.645 desviaciones estándar
-    var_price_impact = price * var_95_pct
-    
-    # 2. SL Dinámico: Elegimos el mayor riesgo entre el ATR y el VaR para protegernos
-    atr_multiplier = 1.5 
-    rr_ratio = 2.0 
-    
-    risk_distance = max(atr * atr_multiplier, var_price_impact)
-    
-    if signal == "BUY":
-        sl = price - risk_distance
-        tp = price + (risk_distance * rr_ratio)
-    elif signal == "SELL":
-        sl = price + risk_distance
-        tp = price - (risk_distance * rr_ratio)
+    if final_signal == "HOLD" or atr <= 0:
+        return {"lot_size": 0.0, "stop_loss": 0.0, "take_profit": 0.0}
         
-    return {
-        "risk_params": {
-            "stop_loss": sl, 
-            "take_profit": tp,
-            "VaR_95_perc": round(var_95_pct * 100, 2),
-            "ATR_Value": round(atr, 2)
-        }
-    }
+    # 1. Conexión en tiempo real al balance del bróker (Oanda vía MT5)
+    account_info = mt5.account_info()
+    if account_info is None:
+        print("   ⚠️ No se pudo acceder al balance de MT5. Usando capital simulado de seguridad.")
+        balance = 10000.0
+    else:
+        balance = account_info.balance
+        
+    # 2. Determinación del Presupuesto Máximo Global de Riesgo (10%)
+    capital_en_riesgo_maximo = balance * MAX_GLOBAL_PORTFOLIO_RISK_PCT
+    
+    # Asignamos una porción base del riesgo según la volatilidad inversa del activo
+    peso_activo = ASSET_VOLATILITY_WEIGHTS.get(asset, 0.15)
+    riesgo_base_monetario = capital_en_riesgo_maximo * peso_activo
+    
+    # 3. Clasificación por Tiers de Confianza (Tu matriz solicitada)
+    if 0.50 <= confianza <= 0.529:
+        multiplicador_lote = 0.5   # Lote Mínimo
+        tier_text = "LOTE MÍNIMO (Confianza Baja)"
+    elif 0.53 <= confianza <= 0.539:
+        multiplicador_lote = 1.0   # Lote Medio
+        tier_text = "LOTE MEDIO (Confianza Estándar)"
+    elif confianza >= 0.54:
+        multiplicador_lote = 1.5   # Lote Máximo / Mayor
+        tier_text = "LOTE MAYOR (Alta Confianza)"
+    else:
+        multiplicador_lote = 0.5
+        tier_text = "LOTE DE MITIGACIÓN"
+
+    # Riesgo final ponderado para esta operación específica en USD
+    riesgo_operacion_usd = riesgo_base_monetario * multiplicador_lote
+    
+    # 4. Cálculo de distancias operativas usando el ATR
+    current_price = state["current_price"]
+    atr_multiplier = 1.5
+    distance = atr * atr_multiplier
+    
+    if final_signal == "BUY":
+        sl = current_price - distance
+        tp = current_price + (distance * 2.0) # Ratio Riesgo/Beneficio 1:2
+    else:
+        sl = current_price + distance
+        tp = current_price - (distance * 2.0)
+
+    # 5. Ecuación de Sizing Institucional: Transformar riesgo monetario en lotaje real
+    # Nota: Ajusta los valores de tick_value según las especificaciones de Oanda para Forex/Índices
+    tick_size = 0.00001 if "USD.sml" in asset or asset in ["EURUSD=X", "GBPUSD=X"] else 0.01
+    tick_value = 1.0  # Ajuste base para cuentas denominadas en USD
+    
+    points_at_risk = distance / tick_size
+    if points_at_risk <= 0:
+        return {"lot_size": 0.0, "stop_loss": 0.0, "take_profit": 0.0}
+        
+    # Fórmula estándar: Lotes = Riesgo_USD / (Puntos_en_Riesgo * Valor_del_Tick)
+    raw_lot_size = riesgo_operacion_usd / (points_at_risk * tick_value)
+    
+    # Normalización de lotaje según límites del bróker (Mínimo 0.01 lotes)
+    lot_size = round(max(0.01, min(raw_lot_size, 10.0)), 2)
+    
+    print(f"   💰 Balance de Cuenta: ${balance:,.2f} USD")
+    print(f"   ⚖️ Clasificación: {tier_text} | Peso Asignado al Activo: {peso_activo*100}%")
+    print(f"   🛡️ Riesgo Monetario Destinado a la Operación: ${riesgo_operacion_usd:.2f} USD")
+    print(f"   📊 Tamaño de Lote Final Calculado: {lot_size} lotes")
+    
+    return {"lot_size": lot_size, "stop_loss": sl, "take_profit": tp}
 
 # 8. Agente 7: Ejecutor
 def execution_agent(state: TradingState):
