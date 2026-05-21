@@ -1,10 +1,13 @@
 {
-    "fecha": "2026-05-20",
+    "fecha": "2026-05-21",
     "sentimientos": {
         "BTC-USD": "BULLISH",
-        "EURUSD=X": "NEUTRAL",
-        "GBPUSD=X": "NEUTRAL",
-        "GC=F": "NEUTRAL",
-        "^GSPC": "NEUTRAL"
+        "EURUSD=X": "BEARISH",
+        "GBPUSD=X": "BEARISH",
+        "GC=F": "BULLISH",
+        "^GSPC": "BEARISH",
+        "CL=F": "NEUTRAL",
+        "^DJI": "BEARISH",
+        "NVDA": "BULLISH"
     }
 }

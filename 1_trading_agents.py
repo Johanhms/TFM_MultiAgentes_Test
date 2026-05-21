@@ -4,6 +4,7 @@ import time
 import requests
 import xml.etree.ElementTree as ET
 import json
+import pytz
 from datetime import datetime
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
@@ -29,7 +30,10 @@ ASSET_MAPPING = {
     "EURUSD=X": "EURUSD.sml",  # Forex (con sufijo en tu Oanda)
     "GBPUSD=X": "GBPUSD.sml",  # Forex (con sufijo en tu Oanda)
     "GC=F": "XAUUSD.sml",      # Ejemplo futuro: Oro
-    "^GSPC": "spx500.sml"      # Ejemplo futuro: S&P 500
+    "^GSPC": "US500",      # Ejemplo futuro: S&P 500
+    "CL=F": "USOIL.sml",       # NUEVO - Materia Prima: Petróleo WTI (Crude Oil)
+    "^DJI": "US30",            # NUEVO - Índice: Dow Jones Industrial Average
+    "NVDA": "NVDA_CFD.US"      # NUEVO - Acción: Nvidia Corporation
 }
 
 CURRENCY_MAP = {
@@ -37,8 +41,47 @@ CURRENCY_MAP = {
     "EURUSD=X": ["EUR", "USD"],
     "GBPUSD=X": ["GBP", "USD"],
     "GC=F": ["USD"],
-    "^GSPC": ["USD"]
+    "^GSPC": ["USD"],
+    "CL=F": ["USD"],
+    "^DJI": ["USD"],
+    "NVDA": ["USD"]
 }
+
+def is_market_open(asset: str) -> bool:
+    """
+    Reloj interno que verifica la disponibilidad del mercado basándose 
+    en el horario oficial de Nueva York (EST/EDT).
+    """
+    ny_tz = pytz.timezone('America/New_York')
+    ny_time = datetime.now(ny_tz)
+    
+    # 1. Criptomonedas (Nunca duermen)
+    if asset == "BTC-USD":
+        return True
+        
+    # Bloqueo General de Fines de Semana para mercados tradicionales
+    # Sábado completo, y Domingo antes de las 17:00 NY
+    if ny_time.weekday() == 5: 
+        return False
+    if ny_time.weekday() == 6 and ny_time.hour < 17: 
+        return False
+        
+    # 2. Acciones e Índices Americanos (09:30 a 16:00 NY)
+    if asset in ["NVDA", "^DJI", "^GSPC"]:
+        if ny_time.hour < 9 or ny_time.hour >= 16:
+            return False
+        if ny_time.hour == 9 and ny_time.minute < 30:
+            return False
+        return True
+        
+    # 3. Forex y Materias Primas (Oro, Petróleo)
+    # Operan 24 horas de lunes a viernes, excepto el "Rollover" diario a las 17:00 NY
+    if asset in ["EURUSD=X", "GBPUSD=X", "GC=F", "CL=F"]:
+        if ny_time.hour == 17: 
+            return False
+        return True
+        
+    return True
 
 def get_macro_calendar(currencies: list) -> list:
     url = "https://nfs.faireconomy.media/ff_calendar_thisweek.xml"
@@ -96,11 +139,17 @@ def technical_analyst_agent(state: TradingState):
     atr = df.ta.atr(length=14)
     roc = df.ta.roc(length=10)
     
+    bbands = df.ta.bbands(length=20, std=2) # Bandas de Bollinger (2 Desviaciones Estándar)
+    ema_50 = df.ta.ema(length=50)           # Tendencia principal de mediano plazo
+    
     technical_indicators = {
         "RSI_14": float(rsi.iloc[-1]),
         "MACD": float(macd.iloc[-1, 0]),          
         "MACD_Signal": float(macd.iloc[-1, 1]),   
-        "ATR_14": float(atr.iloc[-1])             
+        "ATR_14": float(atr.iloc[-1]),
+        "BB_Upper": float(bbands.iloc[-1, 2]),    # Banda Superior
+        "BB_Lower": float(bbands.iloc[-1, 0]),    # Banda Inferior
+        "EMA_50": float(ema_50.iloc[-1]) if pd.notna(ema_50.iloc[-1]) else 0.0             
     }
     
     # Actualizamos el estado con los indicadores
@@ -255,7 +304,54 @@ def portfolio_manager_agent(state: TradingState):
     ml_signal = state.get("ml_prediction", "HOLD")
     sentiment = state.get("fundamental_sentiment", "NEUTRAL")
     
+    tech = state.get("technical_indicators", {})
+    rsi = tech.get("RSI_14", 50.0)
+    macd = tech.get("MACD", 0.0)
+    macd_signal = tech.get("MACD_Signal", 0.0)
+    bb_upper = tech.get("BB_Upper", 0.0)
+    bb_lower = tech.get("BB_Lower", 0.0)
+    ema = tech.get("EMA_50", 0.0)  
+    
+    current_price = state.get("current_price")
+    
     final_signal = "HOLD"
+    
+    # Lógica de Análisis técnico:
+    if ml_signal == "BUY":
+        # Ley 1: RSI (Sobrecompra)
+        if rsi >= 75:
+            print(f"   🛑 VETO: RSI en {rsi:.1f} (Sobrecompra extrema). Compra abortada.")
+            return {"final_signal": "HOLD"}
+        # Ley 2: Reversión a la Media (Bollinger)
+        if current_price >= bb_upper:
+            print(f"   🛑 VETO: Precio perforando Banda de Bollinger Superior. Riesgo de reversión.")
+            return {"final_signal": "HOLD"}
+        # Ley 3: Tendencia Mayor (EMA)
+        if ema > 0 and current_price < ema:
+            print(f"   🛑 VETO: Prohibido comprar contra la tendencia institucional (Precio < EMA 50).")
+            return {"final_signal": "HOLD"}
+        # Ley 4: Momentum (MACD)
+        if macd < macd_signal:
+            print(f"   🛑 VETO: Momentum bajista detectado en MACD. Compra prematura abortada.")
+            return {"final_signal": "HOLD"}
+
+    elif ml_signal == "SELL":
+        # Ley 1: RSI (Sobreventa)
+        if rsi <= 25:
+            print(f"   🛑 VETO: RSI en {rsi:.1f} (Sobreventa extrema). Venta abortada.")
+            return {"final_signal": "HOLD"}
+        # Ley 2: Reversión a la Media (Bollinger)
+        if current_price <= bb_lower:
+            print(f"   🛑 VETO: Precio perforando Banda de Bollinger Inferior. Riesgo de rebote.")
+            return {"final_signal": "HOLD"}
+        # Ley 3: Tendencia Mayor (EMA)
+        if ema > 0 and current_price > ema:
+            print(f"   🛑 VETO: Prohibido vender contra la tendencia institucional (Precio > EMA 50).")
+            return {"final_signal": "HOLD"}
+        # Ley 4: Momentum (MACD)
+        if macd > macd_signal:
+            print(f"   🛑 VETO: Momentum alcista detectado en MACD. Venta prematura abortada.")
+            return {"final_signal": "HOLD"}
     
     # Lógica de Consenso Estricto Institucional:
     # Solo operamos si los números (ML) y las noticias (Fundamental) están de acuerdo.
@@ -448,6 +544,10 @@ if __name__ == "__main__":
         print(f"\n{'='*40}")
         print(f"🌟 INICIANDO ANÁLISIS PARA: {asset_yahoo} -> {asset_mt5}")
         print(f"{'='*40}")
+        
+        if not is_market_open(asset_yahoo):
+            print(f"   💤 MERCADO CERRADO para {asset_yahoo}. Ahorrando poder computacional.")
+            continue  # Salta al siguiente activo inmediatamente
         
         # Estado inicial para el activo en turno
         initial_state = {"asset": asset_yahoo}

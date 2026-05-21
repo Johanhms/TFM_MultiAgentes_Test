@@ -13,7 +13,10 @@ ASSETS_TO_TRAIN = [
     "EURUSD=X", 
     "GBPUSD=X", 
     "GC=F", 
-    "^GSPC"
+    "^GSPC", 
+    "CL=F", 
+    "^DJI", 
+    "NVDA"
 ]
 
 # 2. Configuración de rutas dinámicas para asegurar compatibilidad en cualquier PC

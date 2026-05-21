@@ -2,6 +2,8 @@ import os
 import MetaTrader5 as mt5
 import yfinance as yf
 import pandas as pd
+import pytz
+from datetime import datetime   
 import pandas_ta as ta
 from dotenv import load_dotenv
 
@@ -11,8 +13,45 @@ ASSET_MAPPING = {
     "EURUSD=X": "EURUSD.sml",
     "GBPUSD=X": "GBPUSD.sml",
     "GC=F": "XAUUSD.sml",
-    "^GSPC": "spx500.sml"
+    "^GSPC": "US500",      # Ejemplo futuro: S&P 500
+    "CL=F": "USOIL.sml",       # NUEVO - Materia Prima: Petróleo WTI (Crude Oil)
+    "^DJI": "US30",            # NUEVO - Índice: Dow Jones Industrial Average
+    "NVDA": "NVDA_CFD.US"      # NUEVO - Acción: Nvidia Corporation
 }
+
+def is_market_open(asset: str) -> bool:
+    """
+    Reloj interno que verifica la disponibilidad del mercado basándose 
+    en el horario oficial de Nueva York (EST/EDT).
+    """
+    ny_tz = pytz.timezone('America/New_York')
+    ny_time = datetime.now(ny_tz)
+    
+    # 1. Criptomonedas (Nunca duermen)
+    if asset == "BTC-USD":
+        return True
+        
+    # Bloqueo General de Fines de Semana
+    if ny_time.weekday() == 5: 
+        return False
+    if ny_time.weekday() == 6 and ny_time.hour < 17: 
+        return False
+        
+    # 2. Acciones e Índices Americanos (09:30 a 16:00 NY)
+    if asset in ["NVDA", "^DJI", "^GSPC"]:
+        if ny_time.hour < 9 or ny_time.hour >= 16:
+            return False
+        if ny_time.hour == 9 and ny_time.minute < 30:
+            return False
+        return True
+        
+    # 3. Forex y Materias Primas (Oro, Petróleo)
+    if asset in ["EURUSD=X", "GBPUSD=X", "GC=F", "CL=F"]:
+        if ny_time.hour == 17: 
+            return False
+        return True
+        
+    return True
 
 def get_dynamic_atr(symbol_yahoo: str, interval: str = "1h", length: int = 14) -> float:
     """
