@@ -1,6 +1,7 @@
 import yfinance as yf
 import pandas as pd
 import time
+import csv
 import requests
 import xml.etree.ElementTree as ET
 import json
@@ -299,12 +300,28 @@ def fundamental_analyst_agent(state: TradingState):
     
     return {"fundamental_sentiment": sentiment}
 
+def registrar_veto_csv(asset: str, ml_signal: str, motivo: str, precio: float, rsi: float, ema: float):
+    """Guarda un registro tabular de cada vez que el Gestor de Portafolio bloquea a la IA."""
+    archivo = "tfm_auditoria_vetos.csv"
+    file_exists = os.path.isfile(archivo)
+    
+    with open(archivo, mode='a', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        if not file_exists:
+            # Creamos las columnas estructurales para tu posterior análisis
+            writer.writerow(["Fecha", "Activo", "Señal_ML_Bloqueada", "Motivo_Veto", "Precio_Evitado", "Nivel_RSI", "Nivel_EMA50"])
+        
+        fecha_actual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        writer.writerow([fecha_actual, asset, ml_signal, motivo, round(precio, 5), round(rsi, 2), round(ema, 5)])
+
 # 6. Agente 5: Gestor de Portafolio (El Consenso)
 def portfolio_manager_agent(state: TradingState):
     print("👔 [Portfolio Manager] Debatiendo señales para tomar la decisión final...")
     
+    asset = state.get("asset", "UNKNOWN")
     ml_signal = state.get("ml_prediction", "HOLD")
     sentiment = state.get("fundamental_sentiment", "NEUTRAL")
+    current_price = state.get("current_price")
     
     tech = state.get("technical_indicators", {})
     rsi = tech.get("RSI_14", 50.0)
@@ -312,9 +329,7 @@ def portfolio_manager_agent(state: TradingState):
     macd_signal = tech.get("MACD_Signal", 0.0)
     bb_upper = tech.get("BB_Upper", 0.0)
     bb_lower = tech.get("BB_Lower", 0.0)
-    ema = tech.get("EMA_50", 0.0)  
-    
-    current_price = state.get("current_price")
+    ema = tech.get("EMA_50", 0.0)    
     
     final_signal = "HOLD"
     
