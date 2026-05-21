@@ -157,13 +157,19 @@ def technical_analyst_agent(state: TradingState):
     roc = df.ta.roc(length=10)
     
     bbands = df.ta.bbands(length=20, std=2) # Bandas de Bollinger (2 Desviaciones Estándar)
-    ema_50 = df.ta.ema(length=50)           # Tendencia principal de mediano plazo
+    ema_50 = df.ta.ema(length=50)            # Tendencia principal de mediano plazo
+    df['EMA_50'] = df.ta.ema(length=50)         # Tendencia principal de mediano plazo
+    
+    # NUEVO: Calculamos la pendiente (momentum) de la EMA comparando con 3 horas atrás
+    df['EMA_50_Slope'] = df['EMA_50'].diff(periods=3)
     
     technical_indicators = {
         "RSI_14": float(rsi.iloc[-1]),
         "MACD": float(macd.iloc[-1, 0]),          
         "MACD_Signal": float(macd.iloc[-1, 1]),   
         "ATR_14": float(atr.iloc[-1]),
+        "EMA_50": df['EMA_50'].iloc[-1],
+        "EMA_50_Slope": df['EMA_50_Slope'].iloc[-1], # Pasamos el dato al gestor
         "BB_Upper": float(bbands.iloc[-1, 2]),    # Banda Superior
         "BB_Lower": float(bbands.iloc[-1, 0]),    # Banda Inferior
         "EMA_50": float(ema_50.iloc[-1]) if pd.notna(ema_50.iloc[-1]) else 0.0             
@@ -347,17 +353,31 @@ def portfolio_manager_agent(state: TradingState):
     bb_upper = tech.get("BB_Upper", 0.0)
     bb_lower = tech.get("BB_Lower", 0.0)
     ema = tech.get("EMA_50", 0.0)    
+    ema_slope = tech.get("EMA_50_Slope", 0.0)
     
     final_signal = "HOLD"
     
     # Lógica de Análisis técnico:
     if ml_signal == "BUY":
-        if rsi >= 75 or current_price >= bb_upper or (ema > 0 and current_price < ema) or macd < macd_signal:
+        # CORRECCIÓN: Ya no evaluamos la EMA aquí, solo el RSI, Bollinger y MACD
+        if rsi >= 75 or current_price >= bb_upper or macd < macd_signal:
             registrar_veto_csv(asset, ml_signal, "Veto Técnico Alcista", current_price, rsi, ema)
             return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
+            
+        # LEY DE TENDENCIA: Ahora la EMA se evalúa exclusivamente aquí considerando la pendiente
+        if ema > 0 and current_price < ema and ema_slope < 0:
+            registrar_veto_csv(asset, ml_signal, "Precio bajo EMA y Pendiente Bajista", current_price, rsi, ema)
+            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
+    
     elif ml_signal == "SELL":
-        if rsi <= 25 or current_price <= bb_lower or (ema > 0 and current_price > ema) or macd > macd_signal:
+        # CORRECCIÓN: Ya no evaluamos la EMA aquí
+        if rsi <= 25 or current_price <= bb_lower or macd > macd_signal:
             registrar_veto_csv(asset, ml_signal, "Veto Técnico Bajista", current_price, rsi, ema)
+            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
+            
+        # LEY DE TENDENCIA: Evaluando con la pendiente
+        if ema > 0 and current_price > ema and ema_slope > 0:
+            registrar_veto_csv(asset, ml_signal, "Precio sobre EMA y Pendiente Alcista", current_price, rsi, ema)
             return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
 
     # Lógica de Consenso Estricta

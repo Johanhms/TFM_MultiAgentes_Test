@@ -1,2 +1,3 @@
 Fecha,Activo,Señal_ML_Bloqueada,Motivo_Veto,Precio_Evitado,Nivel_RSI,Nivel_EMA50
 2026-05-21 18:34:26,EURUSD=X,SELL,Veto Técnico Bajista,1.16212,52.67,1.16183
+2026-05-21 19:07:54,EURUSD=X,SELL,Precio sobre EMA y Pendiente Alcista,1.16212,53.06,1.1618
