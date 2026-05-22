@@ -143,6 +143,7 @@ class TradingState(TypedDict):
     historical_data: pd.DataFrame
     technical_indicators: dict
     ml_prediction: str  
+    ml_confidence: float
     fundamental_sentiment: str # NUEVO: Lo que opina el LLM
     final_signal: str          # NUEVO: La decisión final consensuada
     risk_params: dict   
@@ -457,80 +458,98 @@ def risk_manager_agent(state: TradingState):
     symbol_mt5 = ASSET_MAPPING.get(asset, asset)
         
     # 1. Conexión en tiempo real al balance del bróker (Oanda vía MT5)
+    if not mt5.initialize():
+        print("   ❌ Error crítico: MT5 no responde. Abortando cálculo de riesgo.")
+        vacio = {"lot_size": 0.0, "stop_loss": 0.0, "take_profit": 0.0}
+        return {**vacio, "risk_params": vacio}
+    
     account_info = mt5.account_info()
     balance = account_info.balance if account_info is not None else 10000.0
         
-    # 2. Determinación del Presupuesto Máximo Global de Riesgo (10%)
-    capital_en_riesgo_maximo = balance * MAX_GLOBAL_PORTFOLIO_RISK_PCT
-    
-    # Asignamos una porción base del riesgo según la volatilidad inversa del activo
-    peso_activo = ASSET_VOLATILITY_WEIGHTS.get(asset, 0.15)
-    riesgo_base_monetario = capital_en_riesgo_maximo * peso_activo
-    
-    # 3. Clasificación por Tiers de Confianza (Tu matriz solicitada)
-    if 0.50 <= confianza <= 0.529:
-        multiplicador_lote = 0.5   # Lote Mínimo
-        tier_text = "LOTE MÍNIMO (Confianza Baja)"
-    elif 0.53 <= confianza <= 0.539:
-        multiplicador_lote = 1.0   # Lote Medio
-        tier_text = "LOTE MEDIO (Confianza Estándar)"
-    elif confianza >= 0.54:
-        multiplicador_lote = 1.5   # Lote Máximo / Mayor
-        tier_text = "LOTE MAYOR (Alta Confianza)"
-    else:
-        multiplicador_lote = 0.5
-        tier_text = "LOTE DE MITIGACIÓN"
-
-    # Riesgo final ponderado para esta operación específica en USD
-    riesgo_operacion_usd = riesgo_base_monetario * multiplicador_lote
-    
-    # 4. Cálculo de distancias operativas usando el ATR
+    # 2. Parámetros Operativos Base (SL y TP)
     current_price = state["current_price"]
-    atr_multiplier = 1.5
-    distance = atr * atr_multiplier
+    distance = atr * 1.5
     
     if final_signal == "BUY":
         sl = current_price - distance
-        tp = current_price + (distance * 2.0) # Ratio Riesgo/Beneficio 1:2
+        tp = current_price + (distance * 2.0)
     else:
         sl = current_price + distance
         tp = current_price - (distance * 2.0)
 
-    # 5. Ecuación de Sizing Institucional: Transformar riesgo monetario en lotaje real
-    # Nota: Ajusta los valores de tick_value según las especificaciones de Oanda para Forex/Índices
-    tick_size = 0.00001 if "USD.sml" in asset or asset in ["EURUSD=X", "GBPUSD=X"] else 0.01
-    tick_value = 1.0  # Ajuste base para cuentas denominadas en USD
-    
-    points_at_risk = distance / tick_size
-    if points_at_risk <= 0:
-        return {"lot_size": 0.0, "stop_loss": 0.0, "take_profit": 0.0}
-        
-    # Fórmula estándar: Lotes = Riesgo_USD / (Puntos_en_Riesgo * Valor_del_Tick)
-    raw_lot_size = riesgo_operacion_usd / (points_at_risk * tick_value)
-    
-    # =====================================================================
-    # 🧠 BLINDAJE DINÁMICO CONTRA ERROR 10014 (Especificaciones MT5)
-    # =====================================================================
+    # 3. Extraer especificaciones del bróker para normalizar
     symbol_info = mt5.symbol_info(symbol_mt5)
-    if symbol_info is not None:
-        volume_step = symbol_info.volume_step  # El paso mínimo (ej. 1.0 para acciones, 0.01 para Forex)
-        min_volume = symbol_info.volume_min    # Volumen mínimo permitido
-        max_volume = symbol_info.volume_max    # Volumen máximo permitido
+    if symbol_info is None:
+        print(f"   ⚠️ Símbolo {symbol_mt5} no detectado. Abortando.")
+        vacio = {"lot_size": 0.0, "stop_loss": 0.0, "take_profit": 0.0}
+        return {**vacio, "risk_params": vacio}
         
-        # Ajustamos el lote calculado matemáticamente al paso exacto que exige el bróker
+    volume_step = symbol_info.volume_step
+    min_volume = symbol_info.volume_min
+    max_volume = symbol_info.volume_max
+    tick_size = symbol_info.trade_tick_size
+    tick_value = symbol_info.trade_tick_value 
+
+    # =====================================================================
+    # 🧠 LÓGICA DE BIFURCACIÓN DE RIESGO (La regla solicitada)
+    # =====================================================================
+    posiciones_activo = mt5.positions_get(symbol=symbol_mt5)
+    
+    if posiciones_activo and len(posiciones_activo) > 0:
+        # CAMINO A: Ya hay operaciones abiertas. Aplicamos reducción física estricta a la mitad.
+        # Ordenamos por tiempo para asegurar que tomamos la más reciente
+        ultima_posicion = sorted(posiciones_activo, key=lambda p: p.time)[-1]
+        volumen_anterior = ultima_posicion.volume
+        
+        # Reducción estricta solicitada: 50% del lote anterior
+        raw_lot_size = volumen_anterior * 0.5
+        
+        print(f"   📉 Posiciones Activas ({asset}): {len(posiciones_activo)}")
+        print(f"   🔪 Lote Anterior: {volumen_anterior} | Mitigando al 50% por Regla de Riesgo Secuencial.")
+        
+    else:
+        # CAMINO B: Es la primera operación. Calculamos desde cero en base al Capital y la IA.
+        capital_en_riesgo_maximo = balance * MAX_GLOBAL_PORTFOLIO_RISK_PCT
+        peso_activo = ASSET_VOLATILITY_WEIGHTS.get(asset, 0.15)
+        riesgo_base_monetario = capital_en_riesgo_maximo * peso_activo
+        
+        if 0.50 <= confianza <= 0.529:
+            multiplicador_lote = 0.5
+            tier_text = "LOTE MÍNIMO"
+        elif 0.53 <= confianza <= 0.539:
+            multiplicador_lote = 1.0
+            tier_text = "LOTE MEDIO"
+        elif confianza >= 0.54:
+            multiplicador_lote = 1.5
+            tier_text = "LOTE MAYOR"
+        else:
+            multiplicador_lote = 0.5
+            tier_text = "LOTE DE MITIGACIÓN"
+
+        riesgo_operacion_usd = riesgo_base_monetario * multiplicador_lote
+        ticks_at_risk = distance / tick_size
+        
+        if ticks_at_risk > 0 and tick_value > 0:
+            raw_lot_size = riesgo_operacion_usd / (ticks_at_risk * tick_value)
+        else:
+            raw_lot_size = 0.0
+            
+        print(f"   💰 Balance de Cuenta: ${balance:,.2f} USD")
+        print(f"   ⚖️ Primera Operación | Clasificación IA: {tier_text} | Peso Asignado: {peso_activo*100}%")
+        print(f"   🛡️ Riesgo Monetario Autorizado: ${riesgo_operacion_usd:.2f} USD")
+
+    # =====================================================================
+    # 4. NORMALIZACIÓN ESTRICTA DE MT5
+    # =====================================================================
+    # Ajustamos al salto del bróker (ej. de 0.18 a 0.18 o 0.19)
+    if raw_lot_size > 0:
         raw_lot_size = round(raw_lot_size / volume_step) * volume_step
         lot_size = max(min_volume, min(raw_lot_size, max_volume))
-        
-        # Determinamos cuántos decimales usar para el redondeo final según el paso del lote
         step_decimals = len(str(volume_step).split('.')[1]) if '.' in str(volume_step) else 0
         lot_size = round(lot_size, step_decimals)
     else:
-        # Caída de seguridad si no lee el símbolo
-        lot_size = round(max(0.01, min(raw_lot_size, 10.0)), 2)
-    
-    print(f"   💰 Balance de Cuenta: ${balance:,.2f} USD")
-    print(f"   ⚖️ Clasificación: {tier_text} | Peso Asignado: {peso_activo*100}%")
-    print(f"   🛡️ Riesgo Monetario: ${riesgo_operacion_usd:.2f} USD")
+        lot_size = 0.0
+
     print(f"   📊 Tamaño de Lote Corregido para MT5: {lot_size} lotes")
     
     parametros_calculados = {
