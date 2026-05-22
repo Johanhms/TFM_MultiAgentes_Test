@@ -61,8 +61,22 @@ ASSET_VOLATILITY_WEIGHTS = {
     "GBPUSD=X": 0.30       # Forex: Máxima asignación
 }
 
+# --- MATRIZ DE SENSIBILIDAD FUNDAMENTAL ---
+ASSET_FUNDAMENTAL_SENSITIVITY = {
+    "EURUSD=X": "HIGH",    # Forex: Dependencia total de macro
+    "GBPUSD=X": "HIGH",    # Forex: Dependencia total de macro
+    "GC=F": "HIGH",        # Oro: Muy sensible a noticias de inflación
+    "CL=F": "HIGH",        # Petróleo: Sensible a geopolítica
+    "^GSPC": "MEDIUM",     # S&P 500: Sensibilidad media
+    "^DJI": "MEDIUM",      # Dow Jones: Sensibilidad media
+    "BTC-USD": "LOW",      # Cripto: Domina el análisis técnico/quant
+    "NVDA": "LOW"          # Acciones: Domina el modelo predictivo quant
+}
+
 # Límites estrictos para evitar sobreexposición total del fondo de inversión
 MAX_GLOBAL_PORTFOLIO_RISK_PCT = 0.10  # El riesgo sumado jamás superará el 10% del capital
+
+mt5.initialize()
 
 def is_market_open(asset: str) -> bool:
     """
@@ -357,38 +371,60 @@ def portfolio_manager_agent(state: TradingState):
     
     final_signal = "HOLD"
     
-    # Lógica de Análisis técnico:
+    # 1. LEYES DE VETO TÉCNICO INQUEBRANTABLES (Ahora con Prints Visibles)
     if ml_signal == "BUY":
-        # CORRECCIÓN: Ya no evaluamos la EMA aquí, solo el RSI, Bollinger y MACD
         if rsi >= 75 or current_price >= bb_upper or macd < macd_signal:
-            registrar_veto_csv(asset, ml_signal, "Veto Técnico Alcista", current_price, rsi, ema)
+            motivo = "Veto Técnico Alcista (RSI/BB/MACD)"
+            print(f"   🛑 VETO: {motivo}")
+            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
             return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
             
-        # LEY DE TENDENCIA: Ahora la EMA se evalúa exclusivamente aquí considerando la pendiente
         if ema > 0 and current_price < ema and ema_slope < 0:
-            registrar_veto_csv(asset, ml_signal, "Precio bajo EMA y Pendiente Bajista", current_price, rsi, ema)
-            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
-    
-    elif ml_signal == "SELL":
-        # CORRECCIÓN: Ya no evaluamos la EMA aquí
-        if rsi <= 25 or current_price <= bb_lower or macd > macd_signal:
-            registrar_veto_csv(asset, ml_signal, "Veto Técnico Bajista", current_price, rsi, ema)
-            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
-            
-        # LEY DE TENDENCIA: Evaluando con la pendiente
-        if ema > 0 and current_price > ema and ema_slope > 0:
-            registrar_veto_csv(asset, ml_signal, "Precio sobre EMA y Pendiente Alcista", current_price, rsi, ema)
+            motivo = "Precio bajo EMA y Pendiente Bajista"
+            print(f"   🛑 VETO: {motivo}")
+            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
             return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
 
-    # Lógica de Consenso Estricta
-    if ml_signal == "BUY" and sentiment in ["BULLISH", "NEUTRAL"]:
-        final_signal = "BUY"
-    elif ml_signal == "SELL" and sentiment in ["BEARISH", "NEUTRAL"]:
-        final_signal = "SELL"
-    else:
+    elif ml_signal == "SELL":
+        if rsi <= 25 or current_price <= bb_lower or macd > macd_signal:
+            motivo = "Veto Técnico Bajista (RSI/BB/MACD)"
+            print(f"   🛑 VETO: {motivo}")
+            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
+            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
+            
+        if ema > 0 and current_price > ema and ema_slope > 0:
+            motivo = "Precio sobre EMA y Pendiente Alcista"
+            print(f"   🛑 VETO: {motivo}")
+            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
+            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
+
+    # 2. LÓGICA DE CONSENSO FUNDAMENTAL POR SENSIBILIDAD
+    sensitivity = ASSET_FUNDAMENTAL_SENSITIVITY.get(asset, "HIGH")
+    final_signal = ml_signal
+
+    if sensitivity == "HIGH":
+        # Forex y Materias Primas: Exige consenso estricto
+        if ml_signal == "BUY" and sentiment == "BEARISH":
+            final_signal = "HOLD"
+            print(f"   ⚠️ Conflicto Macro (Sensibilidad ALTA): Quant dice BUY, Noticias dicen BEARISH. Abortando.")
+        elif ml_signal == "SELL" and sentiment == "BULLISH":
+            final_signal = "HOLD"
+            print(f"   ⚠️ Conflicto Macro (Sensibilidad ALTA): Quant dice SELL, Noticias dicen BULLISH. Abortando.")
+            
+    elif sensitivity == "MEDIUM":
+        # Índices: Tolera neutralidad, pero veta conflictos directos severos
+        if (ml_signal == "BUY" and sentiment == "BEARISH") or (ml_signal == "SELL" and sentiment == "BULLISH"):
+            final_signal = "HOLD"
+            print(f"   ⚠️ Conflicto Macro (Sensibilidad MEDIA): Divergencia severa detectada. Abortando.")
+            
+    elif sensitivity == "LOW":
+        # Acciones y Criptos: El modelo Quant domina. Las noticias se ignoran direccionalmente.
         if ml_signal != "HOLD":
-            registrar_veto_csv(asset, ml_signal, f"Conflicto Macro ({sentiment})", current_price, rsi, ema)
-        final_signal = "HOLD"
+            print(f"   🛡️ Sensibilidad Fundamental BAJA: Priorizando predicción Quant ({ml_signal}).")
+            final_signal = ml_signal
+
+    if final_signal != "HOLD":
+        print(f"   ✅ Ecosistema Alineado. Permiso de ejecución concedido.")
         
     print(f"   Decisión Final: {final_signal} | Confianza Asociada: {ml_confidence*100:.1f}%")
     return {"final_signal": final_signal, "ml_confidence": ml_confidence}
@@ -404,15 +440,25 @@ def risk_manager_agent(state: TradingState):
     atr = tech.get("ATR_14", 0.0)
     
     if final_signal == "HOLD" or atr <= 0:
-        return {"lot_size": 0.0, "stop_loss": 0.0, "take_profit": 0.0}
+        vacio = {"lot_size": 0.0, "stop_loss": 0.0, "take_profit": 0.0}
+        return {**vacio, "risk_params": vacio}
+    
+    # Mapeo local para identificar el símbolo exacto en tu MetaTrader 5
+    ASSET_MAPPING = {
+        "BTC-USD": "BTCUSD",
+        "EURUSD=X": "EURUSD.sml",
+        "GBPUSD=X": "GBPUSD.sml",
+        "GC=F": "XAUUSD.sml",
+        "^GSPC": "US500",
+        "CL=F": "USOIL.sml",
+        "^DJI": "US30",
+        "NVDA": "NVDA_CFD.US"
+    }
+    symbol_mt5 = ASSET_MAPPING.get(asset, asset)
         
     # 1. Conexión en tiempo real al balance del bróker (Oanda vía MT5)
     account_info = mt5.account_info()
-    if account_info is None:
-        print("   ⚠️ No se pudo acceder al balance de MT5. Usando capital simulado de seguridad.")
-        balance = 10000.0
-    else:
-        balance = account_info.balance
+    balance = account_info.balance if account_info is not None else 10000.0
         
     # 2. Determinación del Presupuesto Máximo Global de Riesgo (10%)
     capital_en_riesgo_maximo = balance * MAX_GLOBAL_PORTFOLIO_RISK_PCT
@@ -462,15 +508,41 @@ def risk_manager_agent(state: TradingState):
     # Fórmula estándar: Lotes = Riesgo_USD / (Puntos_en_Riesgo * Valor_del_Tick)
     raw_lot_size = riesgo_operacion_usd / (points_at_risk * tick_value)
     
-    # Normalización de lotaje según límites del bróker (Mínimo 0.01 lotes)
-    lot_size = round(max(0.01, min(raw_lot_size, 10.0)), 2)
+    # =====================================================================
+    # 🧠 BLINDAJE DINÁMICO CONTRA ERROR 10014 (Especificaciones MT5)
+    # =====================================================================
+    symbol_info = mt5.symbol_info(symbol_mt5)
+    if symbol_info is not None:
+        volume_step = symbol_info.volume_step  # El paso mínimo (ej. 1.0 para acciones, 0.01 para Forex)
+        min_volume = symbol_info.volume_min    # Volumen mínimo permitido
+        max_volume = symbol_info.volume_max    # Volumen máximo permitido
+        
+        # Ajustamos el lote calculado matemáticamente al paso exacto que exige el bróker
+        raw_lot_size = round(raw_lot_size / volume_step) * volume_step
+        lot_size = max(min_volume, min(raw_lot_size, max_volume))
+        
+        # Determinamos cuántos decimales usar para el redondeo final según el paso del lote
+        step_decimals = len(str(volume_step).split('.')[1]) if '.' in str(volume_step) else 0
+        lot_size = round(lot_size, step_decimals)
+    else:
+        # Caída de seguridad si no lee el símbolo
+        lot_size = round(max(0.01, min(raw_lot_size, 10.0)), 2)
     
     print(f"   💰 Balance de Cuenta: ${balance:,.2f} USD")
-    print(f"   ⚖️ Clasificación: {tier_text} | Peso Asignado al Activo: {peso_activo*100}%")
-    print(f"   🛡️ Riesgo Monetario Destinado a la Operación: ${riesgo_operacion_usd:.2f} USD")
-    print(f"   📊 Tamaño de Lote Final Calculado: {lot_size} lotes")
+    print(f"   ⚖️ Clasificación: {tier_text} | Peso Asignado: {peso_activo*100}%")
+    print(f"   🛡️ Riesgo Monetario: ${riesgo_operacion_usd:.2f} USD")
+    print(f"   📊 Tamaño de Lote Corregido para MT5: {lot_size} lotes")
     
-    return {"lot_size": lot_size, "stop_loss": sl, "take_profit": tp}
+    parametros_calculados = {
+        "lot_size": lot_size,
+        "stop_loss": float(sl),
+        "take_profit": float(tp)
+    }
+    
+    return {
+        **parametros_calculados,
+        "risk_params": parametros_calculados
+    }
 
 # 8. Agente 7: Ejecutor
 def execution_agent(state: TradingState):
@@ -539,7 +611,7 @@ def execution_agent(state: TradingState):
     request = {
         "action": mt5.TRADE_ACTION_DEAL,
         "symbol": symbol_mt5,
-        "volume": 0.01, # Lote mínimo (Ajustar si Forex en Oanda pide 1000, 10000, etc.)
+        "volume": float(state["risk_params"]["lot_size"]),
         "type": order_type,
         "price": price,
         "sl": float(state['risk_params']['stop_loss']),
