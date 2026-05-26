@@ -170,7 +170,7 @@ def market_data_agent(state: TradingState):
 
     # 2. Descargar las últimas 100 velas de 1 Hora directamente del bróker
     # Esto garantiza que el RSI, MACD y EMA se calculen con la gráfica real que tú estás viendo
-    velas_mt5 = mt5.copy_rates_from_pos(symbol_mt5, mt5.TIMEFRAME_H1, 0, 100)
+    velas_mt5 = mt5.copy_rates_from_pos(symbol_mt5, mt5.TIMEFRAME_H1, 0, 200)
     
     if velas_mt5 is None or len(velas_mt5) == 0:
         print(f"   ⚠️ No se pudieron obtener datos de MT5 para {symbol_mt5}.")
@@ -189,6 +189,7 @@ def market_data_agent(state: TradingState):
     
     # Establecer el tiempo como índice temporal
     df.set_index('time', inplace=True)
+    df = df[['Open', 'High', 'Low', 'Close', 'Volume']]
     
     # 4. Obtener el precio exacto de cierre (o Ask/Bid en vivo)
     current_price = float(df['Close'].iloc[-1])
