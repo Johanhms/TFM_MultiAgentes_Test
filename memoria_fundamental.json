@@ -1,12 +1,12 @@
 {
-    "fecha": "2026-05-25",
+    "fecha": "2026-05-26",
     "sentimientos": {
         "BTC-USD": "BEARISH",
-        "EURUSD=X": "BEARISH",
+        "EURUSD=X": "BULLISH",
         "GBPUSD=X": "BEARISH",
-        "GC=F": "BULLISH",
+        "GC=F": "NEUTRAL",
         "^GSPC": "BULLISH",
-        "CL=F": "BEARISH",
+        "CL=F": "BULLISH",
         "^DJI": "BULLISH",
         "NVDA": "BULLISH"
     }

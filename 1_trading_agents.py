@@ -151,14 +151,52 @@ class TradingState(TypedDict):
 
 # 2. Agente 1: Extractor de Datos (El Data Engineer)
 def market_data_agent(state: TradingState):
-    print(f"📡 [Market Data Agent] Obteniendo datos para {state['asset']}...")
-    ticker = yf.Ticker(state["asset"])
-    hist = ticker.history(period="3mo", interval="1h")
+    print(f"📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para {state['asset']}...")
     
-    current_price = float(hist['Close'].iloc[-1])
+    asset = state["asset"]
     
-    # Actualizamos el estado con los datos crudos
-    return {"current_price": current_price, "historical_data": hist}
+    # Usamos el mapeo para saber cómo se llama el activo en tu bróker
+    ASSET_MAPPING = {
+        "BTC-USD": "BTCUSD", "EURUSD=X": "EURUSD.sml", "GBPUSD=X": "GBPUSD.sml",
+        "GC=F": "XAUUSD.sml", "^GSPC": "US500", "CL=F": "USOIL.sml", 
+        "^DJI": "US30", "NVDA": "NVDA_CFD.US"
+    }
+    symbol_mt5 = ASSET_MAPPING.get(asset, asset)
+    
+    # 1. Asegurar conexión a MT5
+    if not mt5.initialize():
+        print("   ❌ Error: No se pudo conectar a MT5 para descargar velas históricas.")
+        return {"historical_data": pd.DataFrame(), "current_price": 0.0}
+
+    # 2. Descargar las últimas 100 velas de 1 Hora directamente del bróker
+    # Esto garantiza que el RSI, MACD y EMA se calculen con la gráfica real que tú estás viendo
+    velas_mt5 = mt5.copy_rates_from_pos(symbol_mt5, mt5.TIMEFRAME_H1, 0, 100)
+    
+    if velas_mt5 is None or len(velas_mt5) == 0:
+        print(f"   ⚠️ No se pudieron obtener datos de MT5 para {symbol_mt5}.")
+        return {"historical_data": pd.DataFrame(), "current_price": 0.0}
+        
+    # 3. Transformar los datos de MT5 al formato que Pandas (y tu IA) entienden
+    df = pd.DataFrame(velas_mt5)
+    df['time'] = pd.to_datetime(df['time'], unit='s')
+    df.rename(columns={
+        'open': 'Open', 
+        'high': 'High', 
+        'low': 'Low', 
+        'close': 'Close', 
+        'tick_volume': 'Volume'
+    }, inplace=True)
+    
+    # Establecer el tiempo como índice temporal
+    df.set_index('time', inplace=True)
+    
+    # 4. Obtener el precio exacto de cierre (o Ask/Bid en vivo)
+    current_price = float(df['Close'].iloc[-1])
+    
+    return {
+        "historical_data": df,
+        "current_price": current_price
+    }
 
 # 3. Agente 2: Analista Técnico Basado en Robustp
 def technical_analyst_agent(state: TradingState):
@@ -466,17 +504,29 @@ def risk_manager_agent(state: TradingState):
     account_info = mt5.account_info()
     balance = account_info.balance if account_info is not None else 10000.0
         
-    # 2. Parámetros Operativos Base (SL y TP)
-    current_price = state["current_price"]
+    # =====================================================================
+    # 2. PARÁMETROS OPERATIVOS BASE (Anclados al precio en vivo de MT5)
+    # =====================================================================
     distance = atr * 1.5
     
-    if final_signal == "BUY":
-        sl = current_price - distance
-        tp = current_price + (distance * 2.0)
-    else:
-        sl = current_price + distance
-        tp = current_price - (distance * 2.0)
+    # Extraemos el tick en vivo (milisegundo actual) directamente del bróker
+    tick = mt5.symbol_info_tick(symbol_mt5)
+    
+    if tick is None:
+        print(f"   ⚠️ No se pudo obtener el precio en vivo de MT5 para {symbol_mt5}. Abortando.")
+        vacio = {"lot_size": 0.0, "stop_loss": 0.0, "take_profit": 0.0}
+        return {**vacio, "risk_params": vacio}
 
+    # Calculamos SL y TP desde el precio real al que se ejecutará la orden
+    if final_signal == "BUY":
+        precio_ejecucion_real = tick.ask
+        sl = precio_ejecucion_real - distance
+        tp = precio_ejecucion_real + (distance * 2.0)
+    else:
+        precio_ejecucion_real = tick.bid
+        sl = precio_ejecucion_real + distance
+        tp = precio_ejecucion_real - (distance * 2.0)
+        
     # 3. Extraer especificaciones del bróker para normalizar
     symbol_info = mt5.symbol_info(symbol_mt5)
     if symbol_info is None:
