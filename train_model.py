@@ -143,19 +143,31 @@ def train_xgboost_for_asset(asset: str):
     print("   📋 Reporte de Clasificación:")
     print(report)
 
-    # Solo guardamos el modelo si supera el umbral del 51% (evitar guardar modelos basura)
+# Definimos las rutas de los archivos ANTES del if, para poder usarlas en ambos escenarios
+    safe_name = asset.replace("=X", "").replace("=F", "").replace("^", "")
+    model_path = BASE_DIR / f'quant_model_1h_{safe_name}.joblib'
+    features_path = BASE_DIR / f'model_features_1h_{safe_name}.joblib'
+
+    # Solo guardamos el modelo si supera el umbral del 51%
     if acc > 51.0:
         print("💾 5. Modelo aprobado. Guardando en .joblib...")
-        safe_name = asset.replace("=X", "").replace("=F", "").replace("^", "")
-        
-        model_path = BASE_DIR / f'quant_model_1h_{safe_name}.joblib'
-        features_path = BASE_DIR / f'model_features_1h_{safe_name}.joblib'
-        
         joblib.dump(best_model, model_path)
         joblib.dump(features, features_path)
         print(f"   ✅ Guardado: {model_path.name}")
     else:
-        print("   ⚠️ EL MODELO ES DEFICIENTE (<51%). No se guardará para proteger el capital.")
+        print("   ⚠️ EL MODELO ES DEFICIENTE (<51%). No se guardará nuevo modelo.")
+        
+        # --- EL ESCUDO ANTI-FANTASMAS ---
+        # Si el modelo actual es deficiente, destruimos las versiones antiguas para que el bot no opere
+        eliminado = False
+        if model_path.exists():
+            model_path.unlink()  # Borra el archivo del disco
+            eliminado = True
+        if features_path.exists():
+            features_path.unlink()
+            
+        if eliminado:
+            print(f"   🗑️ Modelos antiguos de {asset} ELIMINADOS de producción por seguridad.")
 
 if __name__ == "__main__":
     # Inicializamos la conexión global a MT5 al arrancar el script
