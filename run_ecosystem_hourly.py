@@ -8,7 +8,7 @@ def ejecutar_bot():
     try:
         # Ejecuta tu archivo principal de agentes en un subproceso aislado
         # Esto evita que un error de conexión en MT5 tire abajo el orquestador principal
-        resultado = subprocess.run([sys.executable, "1_trading_agents.py"], capture_output=False, text=True)
+        resultado = subprocess.run([sys.executable, "trading_agents_V2.py"], capture_output=False, text=True)
         if resultado.returncode == 0:
             print("✅ Ciclo horario completado con éxito.")
         else:

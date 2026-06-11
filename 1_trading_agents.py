@@ -76,6 +76,43 @@ ASSET_FUNDAMENTAL_SENSITIVITY = {
 # Límites estrictos para evitar sobreexposición total del fondo de inversión
 MAX_GLOBAL_PORTFOLIO_RISK_PCT = 0.10  # El riesgo sumado jamás superará el 10% del capital
 
+def log_trade_execution(asset: str, ml_signal: str, ml_confidence: float, accion_final: str, ticket: int, precio_ejecucion: float, lot_size: float):
+    """
+    Genera la base de datos histórica (Backtest en vivo) para el futuro modelo de Meta-Labeling.
+    """
+    filename = "trading_history_log.csv"
+    file_exists = os.path.isfile(filename)
+    
+    with open(filename, mode='a', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        
+        # Si el archivo no existe, creamos los encabezados matemáticos
+        if not file_exists:
+            writer.writerow([
+                'Timestamp', 
+                'Asset', 
+                'ML_Prediction', 
+                'ML_Confidence', 
+                'Executed_Action', 
+                'MT5_Ticket', 
+                'Execution_Price', 
+                'Lot_Size'
+            ])
+        
+        # Inyectamos la fila con la operación actual
+        writer.writerow([
+            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            asset,
+            ml_signal,
+            round(ml_confidence, 4),
+            accion_final,
+            ticket,
+            precio_ejecucion,
+            lot_size
+        ])
+    print(f"   📝 Registro guardado en {filename} para evaluación del Feedback Loop.")
+
+
 mt5.initialize()
 
 def is_market_open(asset: str) -> bool:
@@ -168,7 +205,7 @@ def market_data_agent(state: TradingState):
         print("   ❌ Error: No se pudo conectar a MT5 para descargar velas históricas.")
         return {"historical_data": pd.DataFrame(), "current_price": 0.0}
 
-    # 2. Descargar las últimas 100 velas de 1 Hora directamente del bróker
+    # 2. Descargar las últimas 200 velas de 1 Hora directamente del bróker
     # Esto garantiza que el RSI, MACD y EMA se calculen con la gráfica real que tú estás viendo
     velas_mt5 = mt5.copy_rates_from_pos(symbol_mt5, mt5.TIMEFRAME_H1, 0, 200)
     
@@ -343,10 +380,13 @@ def fundamental_analyst_agent(state: TradingState):
     try:
         llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.0)
         prompt = f"""
-        Activo: {asset}.
-        Noticias: {news_text}
-        Macro: {macro_text}
-        Sintetiza y responde ÚNICAMENTE con una palabra: BULLISH, BEARISH o NEUTRAL.
+        Eres un analista cuantitativo experto de un fondo de inversión. Estás evaluando el activo: {asset}.
+        Noticias financieras de última hora:
+        {news_text}
+        Calendario macroeconómico reciente y próximo para sus divisas base:
+        {macro_text}
+        Sintetiza ambos datos. ¿Cuál es el sentimiento general del mercado e impacto macroeconómico para {asset}?
+        Responde ÚNICAMENTE con una de estas tres palabras: BULLISH, BEARISH o NEUTRAL. No incluyas explicaciones.
         """
         
         response = llm.invoke([HumanMessage(content=prompt)])
@@ -613,6 +653,8 @@ def risk_manager_agent(state: TradingState):
         **parametros_calculados,
         "risk_params": parametros_calculados
     }
+    
+    
 
 # 8. Agente 7: Ejecutor
 def execution_agent(state: TradingState):
