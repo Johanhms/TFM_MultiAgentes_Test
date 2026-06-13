@@ -6,7 +6,7 @@ import requests
 import xml.etree.ElementTree as ET
 import json
 import pytz
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 import os
@@ -143,7 +143,7 @@ def market_data_agent(state: TradingState):
     symbol_mt5 = ASSET_MAPPING.get(asset, asset)
     
     # Dependemos de la inicialización global en __main__
-    velas_mt5 = mt5.copy_rates_from_pos(symbol_mt5, mt5.TIMEFRAME_H1, 0, 200)
+    velas_mt5 = mt5.copy_rates_from_pos(symbol_mt5, mt5.TIMEFRAME_H1, 0, 300)
     
     if velas_mt5 is None or len(velas_mt5) == 0:
         print(f"   ⚠️ No se pudieron obtener datos de MT5 para {symbol_mt5}.")
@@ -160,70 +160,139 @@ def market_data_agent(state: TradingState):
 
 # 2. Agente 2: Technical Analyst
 def technical_analyst_agent(state: TradingState):
-    print("📊 [Technical Analyst] Calculando osciladores y Régimen de Mercado (ADX)...")
+    print("📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...")
     df = state["historical_data"].copy()
     
+    # =====================================================================
+    # 1. CÁLCULO CENTRALIZADO DE INDICADORES (Para TA y para ML)
+    # =====================================================================
+    # Osciladores y Momentum
     macd = df.ta.macd(fast=12, slow=26, signal=9)
     rsi = df.ta.rsi(length=14)
+    roc = df.ta.roc(length=10)
+    
+    # Volatilidad
     atr = df.ta.atr(length=14)
     bbands = df.ta.bbands(length=20, std=2)
-    df['EMA_50'] = df.ta.ema(length=50) 
+    
+    # Tendencia y Régimen (Nuevas incorporaciones Quant)
+    adx_df = df.ta.adx(length=14)
+    df['EMA_20'] = df.ta.ema(length=20) # Tendencia Corta
+    df['EMA_50'] = df.ta.ema(length=50) # Tendencia Media
     df['EMA_50_Slope'] = df['EMA_50'].diff(periods=3)
     
-    # NUEVO: ADX (Average Directional Index) para medir fuerza de tendencia
-    adx_df = df.ta.adx(length=14)
-    adx_value = float(adx_df['ADX_14'].iloc[-1]) if adx_df is not None else 0.0
+    # Flujo de Dinero Institucional (Volume Dimension)
+    obv = df.ta.obv() 
+    df['OBV'] = obv
+    df['OBV_Slope'] = df['OBV'].diff(periods=3)
     
+    # Features exclusivas para el modelo XGBoost (Centralizadas aquí)
+    df['Retorno_1H'] = df['Close'].pct_change()
+    df['Volatilidad_10H'] = df['Retorno_1H'].rolling(window=10).std()
+    df['Distancia_SMA20'] = (df['Close'] / df.ta.sma(length=20)) - 1
+        
+    # Unimos todo el DataFrame limpio para que XGBoost lo consuma después
+    df_completo = pd.concat([df, macd, rsi, atr, roc, adx_df], axis=1)
+    
+    # =====================================================================
+    # 2. LÓGICA DE DECISIÓN DEL ANALISTA TÉCNICO (Confluencia Quant)
+    # =====================================================================
+    # Extraemos los valores exactos del momento presente (última vela cerrada)
+    current_adx = float(adx_df['ADX_14'].iloc[-1]) if adx_df is not None else 0.0
+    current_ema20 = float(df['EMA_20'].iloc[-1])
+    current_ema50 = float(df['EMA_50'].iloc[-1])
+    macd_hist = float(macd.iloc[-1, 2]) # Histograma del MACD
+    
+    tech_signal = "NEUTRAL"
+    
+    # Regla Institucional de Confluencia:
+    # 1. ¿Hay fuerza en el mercado? (ADX > 20)
+    # 2. ¿Quién domina la tendencia? (Cruce de EMAs)
+    # 3. ¿El momentum apoya el movimiento? (MACD Histograma a favor)
+    
+    if current_adx > 20.0:
+        if current_ema20 > current_ema50 and macd_hist > 0:
+            tech_signal = "BULLISH"
+            print("   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).")
+        elif current_ema20 < current_ema50 and macd_hist < 0:
+            tech_signal = "BEARISH"
+            print("   📉 Análisis Técnico: Confluencia BAJISTA detectada (Death Cross H1 + Momentum).")
+        else:
+            print(f"   ⚖️ Análisis Técnico: Tendencia detectada pero sin momentum claro (ADX: {current_adx:.1f}).")
+    else:
+        print(f"   💤 Análisis Técnico: Régimen LATERAL (ADX: {current_adx:.1f} < 20). Riesgo de falsos rompimientos.")
+
+    # Guardamos los indicadores clave para el Gestor de Portafolio
     technical_indicators = {
         "RSI_14": float(rsi.iloc[-1]),
         "MACD": float(macd.iloc[-1, 0]),          
         "MACD_Signal": float(macd.iloc[-1, 1]),   
         "ATR_14": float(atr.iloc[-1]),
-        "ADX_14": adx_value, # Añadido al diccionario
+        "ADX_14": current_adx, 
+        "EMA_20": current_ema20,
+        "EMA_50": current_ema50,
         "EMA_50_Slope": df['EMA_50_Slope'].iloc[-1],
         "BB_Upper": float(bbands.iloc[-1, 2]),    
-        "BB_Lower": float(bbands.iloc[-1, 0]),    
-        "EMA_50": float(df['EMA_50'].iloc[-1]) if pd.notna(df['EMA_50'].iloc[-1]) else 0.0             
+        "BB_Lower": float(bbands.iloc[-1, 0]),
+        "Tech_Signal": tech_signal # <--- El Agente ahora tiene opinión propia
     }
-    return {"technical_indicators": technical_indicators}
+    
+    # Actualizamos el estado. Sobrescribimos historical_data con el DF ya enriquecido.
+    return {
+        "technical_indicators": technical_indicators,
+        "historical_data": df_completo 
+    }
 
 # 3. Agente 3: Quant ML Agent
 def quant_ml_agent(state: TradingState):
-    print("🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial...")
+    print("🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...")
+    
     asset = state["asset"]
-    safe_name = state["asset"].replace("=X", "").replace("=F", "").replace("^", "")
+    safe_name = asset.replace("=X", "").replace("=F", "").replace("^", "")
     
     BASE_DIR = Path(__file__).resolve().parent if '__file__' in globals() else Path.cwd()
     model_path = BASE_DIR / f'quant_model_1h_{safe_name}.joblib'
     features_path = BASE_DIR / f'model_features_1h_{safe_name}.joblib'
     
+    # =====================================================================
+    # 1. CARGA DEL MODELO Y AUDITORÍA DE SEGURIDAD
+    # =====================================================================
     try:
         model = joblib.load(model_path)
-        features = joblib.load(features_path)
+        features_requeridas = joblib.load(features_path)
     except FileNotFoundError:
-        print(f"   ❌ ERROR: Modelo descartado o no encontrado para {safe_name}.")
+        print(f"   ❌ ERROR: Modelo descartado o no encontrado para {safe_name}. Forzando HOLD.")
         return {"ml_prediction": "HOLD", "ml_confidence": 0.0}
     
-    df = state["historical_data"].copy()
-    macd = df.ta.macd(fast=12, slow=26, signal=9)
-    rsi = df.ta.rsi(length=14)
-    atr = df.ta.atr(length=14)
-    roc = df.ta.roc(length=10)
+    # =====================================================================
+    # 2. EXTRACCIÓN DIRECTA DE DATOS (Cero Latencia de Cálculo)
+    # =====================================================================
+    # El DataFrame ya viene enriquecido al 100% desde el Agente Técnico
+    df_live = state["historical_data"]
     
-    df['Retorno_1H'] = df['Close'].pct_change()
-    df['Volatilidad_10H'] = df['Retorno_1H'].rolling(window=10).std()
-    df['Distancia_SMA20'] = (df['Close'] / df.ta.sma(length=20)) - 1
+    # Escudo protector: Verificamos que el Agente Técnico no haya olvidado ninguna columna 
+    # que el modelo XGBoost necesite para pensar.
+    columnas_faltantes = [f for f in features_requeridas if f not in df_live.columns]
+    if columnas_faltantes:
+        print(f"   ❌ ERROR CRÍTICO: Faltan variables en el dataset en vivo: {columnas_faltantes}")
+        return {"ml_prediction": "HOLD", "ml_confidence": 0.0}
     
-    df_live = pd.concat([df, macd, rsi, atr, roc], axis=1)
-    latest_data = df_live[features].iloc[-1:]
+    # Aislamos exclusivamente la vela del momento presente (última fila)
+    latest_data = df_live[features_requeridas].iloc[-1:]
     
+    # Verificamos NaNs (Ocurre si MT5 acaba de abrir y las EMAs de 50 aún no tienen historial)
     if latest_data.isnull().values.any():
+        print("   ⚠️ Datos incompletos (NaNs detectados en la última vela). Esperando maduración del mercado.")
         return {"ml_prediction": "HOLD", "ml_confidence": 0.0}
         
+    # =====================================================================
+    # 3. PREDICCIÓN PROBABILÍSTICA ESTOCÁSTICA
+    # =====================================================================
     probabilities = model.predict_proba(latest_data)[0]
-    prob_bajada = probabilities[0] 
-    prob_subida = probabilities[1] 
+    prob_bajada = probabilities[0] # Probabilidad matemática de que caiga
+    prob_subida = probabilities[1] # Probabilidad matemática de que suba
     
+    # Umbral de disparo asimétrico
     UMBRAL = 0.52
     if prob_subida >= UMBRAL:
         prediction, confianza = "BUY", prob_subida
@@ -232,7 +301,8 @@ def quant_ml_agent(state: TradingState):
     else:
         prediction, confianza = "HOLD", max(prob_subida, prob_bajada)
         
-    print(f"   Predicción: {prediction} (Confianza del modelo: {confianza*100:.1f}%)")
+    print(f"   🤖 Predicción XGBoost: {prediction} (Confianza Matemática: {confianza*100:.1f}%)")
+    
     return {"ml_prediction": prediction, "ml_confidence": confianza}
 
 # 4. Agente 4: Fundamental Agent
@@ -240,21 +310,40 @@ def fundamental_analyst_agent(state: TradingState):
     asset = state["asset"]
     print(f"📰 [Fundamental Agent] Evaluando {asset}...")
     
-    hoy = datetime.now().strftime("%Y-%m-%d")
+    # =====================================================================
+    # 1. SISTEMA DE CACHÉ INTRADÍA (TTL: Time-To-Live)
+    # =====================================================================
+    TTL_HOURS = 4  # El sentimiento expira y se recalcula cada 4 horas
+    ahora = datetime.now()
     archivo_cache = "memoria_fundamental.json"
     memoria = {}
     
     if os.path.exists(archivo_cache):
         try:
             with open(archivo_cache, "r") as f: memoria = json.load(f)
-        except: pass
+        except Exception: pass
             
-    if memoria.get("fecha") == hoy and asset in memoria.get("sentimientos", {}):
-        sentimiento_guardado = memoria["sentimientos"][asset]
-        print(f"   ⚡ Usando memoria rápida del día: {sentimiento_guardado} (Evitando API)")
-        return {"fundamental_sentiment": sentimiento_guardado}
+    # Verificar si el activo está en memoria y si la memoria aún es "fresca"
+    if asset in memoria:
+        datos_activo = memoria[asset]
+        ultima_actualizacion_str = datos_activo.get("last_updated")
+        
+        if ultima_actualizacion_str:
+            ultima_actualizacion = datetime.strptime(ultima_actualizacion_str, "%Y-%m-%d %H:%M:%S")
+            diferencia_tiempo = ahora - ultima_actualizacion
+            
+            # Si la diferencia de tiempo es menor a 4 horas, usamos la caché para ahorrar Tokens
+            if diferencia_tiempo < timedelta(hours=TTL_HOURS):
+                sentimiento_guardado = datos_activo.get("sentiment", "NEUTRAL")
+                tiempo_restante = TTL_HOURS - (diferencia_tiempo.total_seconds() / 3600)
+                print(f"   ⚡ Usando memoria rápida intradía (Expira en {tiempo_restante:.1f}h): {sentimiento_guardado}")
+                return {"fundamental_sentiment": sentimiento_guardado}
 
-    print(f"   📥 Descargando Macro y Noticias frescas para hoy...")
+    # =====================================================================
+    # 2. SI LA CACHÉ EXPIRÓ O NO EXISTE: Consultamos APIs y LLM
+    # =====================================================================
+    print(f"   📥 Caché expirada o vacía. Descargando datos macro frescos...")
+
     ticker = yf.Ticker(asset)
     news_list = ticker.news
     headlines = []
@@ -288,16 +377,25 @@ def fundamental_analyst_agent(state: TradingState):
         
     print(f"   ✅ Nuevo sentimiento analizado: {sentiment}")
     
-    if memoria.get("fecha") != hoy: memoria = {"fecha": hoy, "sentimientos": {}}
-    memoria["sentimientos"][asset] = sentiment
-    with open(archivo_cache, "w") as f: json.dump(memoria, f, indent=4)
+    # =====================================================================
+    # 3. ACTUALIZAR CACHÉ CON EL NUEVO TIMESTAMP
+    # =====================================================================
+    memoria[asset] = {
+        "sentiment": sentiment,
+        "last_updated": ahora.strftime("%Y-%m-%d %H:%M:%S")
+    }
+    
+    with open(archivo_cache, "w") as f:
+        json.dump(memoria, f, indent=4)
         
+    # Pausa de seguridad para no asfixiar el rate-limit de la API de Gemini/Yahoo
     time.sleep(3) 
+    
     return {"fundamental_sentiment": sentiment}
 
 # 5. Agente 5: Portfolio Manager Agent
 def portfolio_manager_agent(state: TradingState):
-    print("👔 [Portfolio Manager] Debatiendo señales e inyectando lógica heurística...")
+    print("👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...")
     
     asset = state.get("asset", "UNKNOWN")
     ml_signal = state.get("ml_prediction", "HOLD")
@@ -307,81 +405,96 @@ def portfolio_manager_agent(state: TradingState):
     
     tech = state.get("technical_indicators", {})
     rsi = tech.get("RSI_14", 50.0)
-    macd = tech.get("MACD", 0.0)
-    macd_signal = tech.get("MACD_Signal", 0.0)
-    adx = tech.get("ADX_14", 0.0) # Extracción de ADX
-    bb_upper = tech.get("BB_Upper", 0.0)
+    bb_upper = tech.get("BB_Upper", float('inf'))
     bb_lower = tech.get("BB_Lower", 0.0)
-    ema = tech.get("EMA_50", 0.0)    
-    ema_slope = tech.get("EMA_50_Slope", 0.0)
+    adx = tech.get("ADX_14", 0.0)
+    tech_signal = tech.get("Tech_Signal", "NEUTRAL") # La nueva opinión del Analista Técnico
     
     if ml_signal == "HOLD":
         return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
         
-    # NUEVO FILTRO CUANTITATIVO: Veto de Régimen de Mercado
+    # =====================================================================
+    # 1. VETO CUANTITATIVO: Régimen de Mercado (Filtro ADX)
+    # =====================================================================
     if adx < 20:
-        motivo = f"Régimen Lateral Detectado (ADX: {adx:.1f} < 20)"
-        print(f"   🛑 VETO CUANTITATIVO: {motivo}. Evitando falsos rompimientos.")
-        registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
+        motivo = f"Régimen Lateral Detectado (ADX: {adx:.1f} < 20). Mercado sin tendencia."
+        print(f"   🛑 VETO: {motivo}")
+        registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, tech.get("EMA_50", 0))
         return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
 
-    # LEYES DE VETO TÉCNICO INQUEBRANTABLES
+    # =====================================================================
+    # 2. VETO TÉCNICO ASIMÉTRICO (Umbrales Dinámicos de Sobre-extensión)
+    # =====================================================================
+    # Cada activo tiene su propia "personalidad" de volatilidad
+    RSI_THRESHOLDS = {
+        "BTC-USD": {"overbought": 85, "oversold": 15}, # Cripto: Tolera extremos
+        "NVDA": {"overbought": 82, "oversold": 18},    # Acciones Tech: Alta inercia
+        "DEFAULT": {"overbought": 72, "oversold": 28}  # Forex/Índices: Revierten rápido
+    }
+    limites = RSI_THRESHOLDS.get(asset, RSI_THRESHOLDS["DEFAULT"])
+    
     if ml_signal == "BUY":
-        if rsi >= 75 or current_price >= bb_upper or macd < macd_signal:
-            motivo = "Veto Técnico Alcista (RSI/BB/MACD)"
+        if rsi >= limites["overbought"] or current_price >= bb_upper:
+            motivo = f"Sobrecompra Extrema para su clase (RSI: {rsi:.1f} > {limites['overbought']} o Toca BB)"
             print(f"   🛑 VETO: {motivo}")
-            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
+            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, tech.get("EMA_50", 0))
             return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
             
-        if ema > 0 and current_price < ema and ema_slope < 0:
-            motivo = "Precio bajo EMA y Pendiente Bajista"
-            print(f"   🛑 VETO: {motivo}")
-            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
-            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
-
     elif ml_signal == "SELL":
-        if rsi <= 25 or current_price <= bb_lower or macd > macd_signal:
-            motivo = "Veto Técnico Bajista (RSI/BB/MACD)"
+        if rsi <= limites["oversold"] or current_price <= bb_lower:
+            motivo = f"Sobreventa Extrema para su clase (RSI: {rsi:.1f} < {limites['oversold']} o Toca BB)"
             print(f"   🛑 VETO: {motivo}")
-            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
-            return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
-            
-        if ema > 0 and current_price > ema and ema_slope > 0:
-            motivo = "Precio sobre EMA y Pendiente Alcista"
-            print(f"   🛑 VETO: {motivo}")
-            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, ema)
+            registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, tech.get("EMA_50", 0))
             return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
 
-    # LÓGICA DE CONSENSO FUNDAMENTAL POR SENSIBILIDAD
+    # =====================================================================
+    # 3. COMITÉ DE CONSENSO (Machine Learning vs. Macro vs. Technical)
+    # =====================================================================
     sensitivity = ASSET_FUNDAMENTAL_SENSITIVITY.get(asset, "HIGH")
     final_signal = ml_signal
+    
+    print(f"   ⚖️ Votación: ML=[{ml_signal}] | Técnico=[{tech_signal}] | Macro=[{sentiment}]")
 
-    if sensitivity == "HIGH":
-        if ml_signal == "BUY" and sentiment == "BEARISH":
-            final_signal = "HOLD"
-            print("   ⚠️ Conflicto Macro (Sensibilidad ALTA): Quant BUY vs News BEARISH. Abortando.")
-        elif ml_signal == "SELL" and sentiment == "BULLISH":
-            final_signal = "HOLD"
-            print("   ⚠️ Conflicto Macro (Sensibilidad ALTA): Quant SELL vs News BULLISH. Abortando.")
-            
-    elif sensitivity == "MEDIUM":
-        if (ml_signal == "BUY" and sentiment == "BEARISH") or (ml_signal == "SELL" and sentiment == "BULLISH"):
-            final_signal = "HOLD"
-            print("   ⚠️ Conflicto Macro (Sensibilidad MEDIA): Divergencia severa detectada. Abortando.")
-            
-    elif sensitivity == "LOW":
-        print(f"   🛡️ Sensibilidad Fundamental BAJA: Priorizando predicción Quant ({ml_signal}).")
-        final_signal = ml_signal
+    # Regla de Oro: Si la IA predice algo, pero AMBOS agentes humanos simulados 
+    # (Técnico y Fundamental) opinan lo contrario, se tumba la operación.
+    if ml_signal == "BUY" and tech_signal == "BEARISH" and sentiment == "BEARISH":
+        print("   ⚠️ RECHAZO UNÁNIME: La Inteligencia Artificial alucina. Técnico y Macro son Bajistas. Abortando.")
+        final_signal = "HOLD"
+        
+    elif ml_signal == "SELL" and tech_signal == "BULLISH" and sentiment == "BULLISH":
+        print("   ⚠️ RECHAZO UNÁNIME: La Inteligencia Artificial alucina. Técnico y Macro son Alcistas. Abortando.")
+        final_signal = "HOLD"
+        
+    else:
+        # Si no hay rechazo unánime, aplicamos las reglas de sensibilidad del activo
+        if sensitivity == "HIGH":
+            # Para Forex y Oro: La macroeconomía manda. Un choque frontal aborta.
+            if (ml_signal == "BUY" and sentiment == "BEARISH") or (ml_signal == "SELL" and sentiment == "BULLISH"):
+                final_signal = "HOLD"
+                print("   ⚠️ Conflicto Macro (Sensibilidad ALTA). Protegiendo capital.")
+                
+        elif sensitivity == "MEDIUM":
+            # Para Índices (S&P500): Necesitamos que al menos la parte técnica valide a la IA si la Macro está en contra
+            if (ml_signal == "BUY" and sentiment == "BEARISH" and tech_signal != "BULLISH"):
+                final_signal = "HOLD"
+                print("   ⚠️ Conflicto Mixto (Sensibilidad MEDIA). Sin apoyo técnico para contradecir Macro. Abortando.")
+            elif (ml_signal == "SELL" and sentiment == "BULLISH" and tech_signal != "BEARISH"):
+                final_signal = "HOLD"
+                print("   ⚠️ Conflicto Mixto (Sensibilidad MEDIA). Sin apoyo técnico para contradecir Macro. Abortando.")
+                
+        elif sensitivity == "LOW":
+            # Para Cripto/Acciones Tech: El modelo Quant es el rey, ignoramos ruido Macro.
+            print(f"   🛡️ Sensibilidad Fundamental BAJA: Priorizando poder predictivo de IA ({ml_signal}).")
 
     if final_signal != "HOLD":
-        print(f"   ✅ Ecosistema Alineado. Permiso de ejecución concedido.")
+        print(f"   ✅ Ecosistema Alineado. Triangulación exitosa. Permiso de ejecución concedido.")
         
-    print(f"   Decisión Final: {final_signal} | Confianza Asociada: {ml_confidence*100:.1f}%")
+    print(f"   📋 Decisión Final: {final_signal} | Confianza Asociada: {ml_confidence*100:.1f}%")
     return {"final_signal": final_signal, "ml_confidence": ml_confidence}
 
 # 6. Agente 6: Risk Manager Agent
 def risk_manager_agent(state: TradingState):
-    print("🛡️ [Risk Manager] Calculando dimensionamiento de posición (Anti-Martingala)...")
+    print("🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...")
     
     final_signal = state.get("final_signal", "HOLD")
     asset = state.get("asset")
@@ -395,24 +508,47 @@ def risk_manager_agent(state: TradingState):
     symbol_mt5 = ASSET_MAPPING.get(asset, asset)
     account_info = mt5.account_info()
     if account_info is None: return {**vacio, "risk_params": vacio}
+    
     balance = account_info.balance 
-        
-    distance = atr * 1.5
+    margen_libre = account_info.margin_free
+    
+    # =====================================================================
+    # 1. ESCUDO DE LIQUIDEZ Y MARGEN INSTITUCIONAL
+    # =====================================================================
+    limite_liquidez = balance * 0.10
+    if margen_libre < limite_liquidez:
+        print(f"   🛑 RIESGO SISTÉMICO: Margen libre crítico (${margen_libre:,.2f}). Bloqueando nuevas operaciones.")
+        return {**vacio, "risk_params": vacio}
+
     tick = mt5.symbol_info_tick(symbol_mt5)
-    if tick is None: return {**vacio, "risk_params": vacio}
+    symbol_info = mt5.symbol_info(symbol_mt5)
+    if tick is None or symbol_info is None: return {**vacio, "risk_params": vacio}
+
+    # =====================================================================
+    # 2. EVALUACIÓN DE CONFIANZA Y EXPECTATIVA DINÁMICA
+    # =====================================================================
+    # Ajustamos la agresividad volumétrica y el Take Profit según la IA
+    if 0.50 <= confianza <= 0.529:
+        multiplicador_lote, tp_mult, tier_text = 0.5, 1.5, "LOTE MÍNIMO (Scalp Corto)"
+    elif 0.53 <= confianza <= 0.539:
+        multiplicador_lote, tp_mult, tier_text = 1.0, 2.0, "LOTE MEDIO (Tendencia Estándar)"
+    elif confianza >= 0.54:
+        multiplicador_lote, tp_mult, tier_text = 1.5, 3.0, "LOTE MAYOR (Alta Convicción)"
+    else:
+        multiplicador_lote, tp_mult, tier_text = 0.5, 1.5, "LOTE DE MITIGACIÓN"
+
+    sl_distance = atr * 1.5
+    tp_distance = atr * tp_mult
 
     if final_signal == "BUY":
         precio_ejecucion_real = tick.ask
-        sl = precio_ejecucion_real - distance
-        tp = precio_ejecucion_real + (distance * 2.0)
+        sl = precio_ejecucion_real - sl_distance
+        tp = precio_ejecucion_real + tp_distance
     else:
         precio_ejecucion_real = tick.bid
-        sl = precio_ejecucion_real + distance
-        tp = precio_ejecucion_real - (distance * 2.0)
-        
-    symbol_info = mt5.symbol_info(symbol_mt5)
-    if symbol_info is None: return {**vacio, "risk_params": vacio}
-        
+        sl = precio_ejecucion_real + sl_distance
+        tp = precio_ejecucion_real - tp_distance
+
     volume_step = symbol_info.volume_step
     min_volume = symbol_info.volume_min
     max_volume = symbol_info.volume_max
@@ -422,35 +558,46 @@ def risk_manager_agent(state: TradingState):
     posiciones_activo = mt5.positions_get(symbol=symbol_mt5)
     num_posiciones = len(posiciones_activo) if posiciones_activo else 0
     
-    # NUEVO: Bloqueo Estricto de Piramidación
+    # Bloqueo Estricto de Piramidación
     if num_posiciones >= MAX_PYRAMIDING_PER_ASSET:
-        print(f"   🛑 LÍMITE DE RIESGO: Se alcanzó el máximo de {MAX_PYRAMIDING_PER_ASSET} operaciones abiertas para {asset}.")
+        print(f"   🛑 LÍMITE DE RIESGO: Se alcanzó el máximo de {MAX_PYRAMIDING_PER_ASSET} operaciones en {asset}.")
         return {**vacio, "risk_params": vacio}
     
+    # =====================================================================
+    # 3. LÓGICA DE ESCALADO FRACCIONAL BASADO EN PnL (Piramidación Segura)
+    # =====================================================================
     if num_posiciones > 0:
         ultima_posicion = sorted(posiciones_activo, key=lambda p: p.time)[-1]
         volumen_anterior = ultima_posicion.volume
-        raw_lot_size = volumen_anterior * 0.5
-        print(f"   📉 Posiciones Activas ({asset}): {num_posiciones}")
-        print(f"   🔪 Lote Anterior: {volumen_anterior} | Mitigando al 50%.")
+        profit_actual = ultima_posicion.profit
+        
+        print(f"   📉 Posiciones Activas ({asset}): {num_posiciones} | PnL Latente orden previa: ${profit_actual:.2f} USD")
+        
+        if profit_actual < 0:
+            # Escudo de Drawdown: Cortamos exposición al 50%
+            raw_lot_size = volumen_anterior * 0.5
+            print(f"   🔪 Estado: DRAWDOWN. Mitigando riesgo estricto (Anti-Martingala al 50%).")
+        else:
+            # Scaling-In Fraccional: Añadimos 75% del lote anterior para proteger Precio Promedio
+            raw_lot_size = volumen_anterior * 0.75 
+            print(f"   📈 Estado: PROFIT. Piramidación Fraccional de seguridad (75%).")
+            
     else:
+        # Primera Operación (Risk-based Allocation)
         capital_en_riesgo_maximo = balance * MAX_GLOBAL_PORTFOLIO_RISK_PCT
         peso_activo = ASSET_VOLATILITY_WEIGHTS.get(asset, 0.15)
         riesgo_base_monetario = capital_en_riesgo_maximo * peso_activo
-        
-        if 0.50 <= confianza <= 0.529: multiplicador_lote, tier_text = 0.5, "LOTE MÍNIMO"
-        elif 0.53 <= confianza <= 0.539: multiplicador_lote, tier_text = 1.0, "LOTE MEDIO"
-        elif confianza >= 0.54: multiplicador_lote, tier_text = 1.5, "LOTE MAYOR"
-        else: multiplicador_lote, tier_text = 0.5, "LOTE DE MITIGACIÓN"
-
         riesgo_operacion_usd = riesgo_base_monetario * multiplicador_lote
-        ticks_at_risk = distance / tick_size
         
+        ticks_at_risk = sl_distance / tick_size
         raw_lot_size = riesgo_operacion_usd / (ticks_at_risk * tick_value) if (ticks_at_risk > 0 and tick_value > 0) else 0.0
             
-        print(f"   💰 Balance de Cuenta: ${balance:,.2f} USD")
-        print(f"   ⚖️ Primera Operación | IA: {tier_text} | Riesgo Aut: ${riesgo_operacion_usd:.2f}")
+        print(f"   💰 Balance: ${balance:,.2f} | Margen Libre: ${margen_libre:,.2f}")
+        print(f"   ⚖️ Nueva Operación | IA: {tier_text} | Riesgo Aut: ${riesgo_operacion_usd:.2f} USD")
 
+    # =====================================================================
+    # 4. NORMALIZACIÓN AL CONTRATO DEL BRÓKER
+    # =====================================================================
     if raw_lot_size > 0:
         raw_lot_size = round(raw_lot_size / volume_step) * volume_step
         lot_size = max(min_volume, min(raw_lot_size, max_volume))
@@ -459,7 +606,7 @@ def risk_manager_agent(state: TradingState):
     else:
         lot_size = 0.0
 
-    print(f"   📊 Tamaño de Lote Corregido para MT5: {lot_size} lotes")
+    print(f"   📊 Lote Final Normalizado (MT5): {lot_size} | TP Asignado: {tp_mult}x ATR")
     
     parametros_calculados = {"lot_size": lot_size, "stop_loss": float(sl), "take_profit": float(tp)}
     return {**parametros_calculados, "risk_params": parametros_calculados}
