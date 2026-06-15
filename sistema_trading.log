@@ -1,0 +1,358 @@
+
+--- INICIO DE CICLO OPERATIVO: 2026-06-15 09:07:18 ---
+
+==================================================
+Traceback (most recent call last):
+  File "C:\Escritorio\Nuevo_Agente_Gemini\trading_agents_V2.py", line 716, in <module>
+    print("\U0001f680 INICIANDO ECOSISTEMA DE AGENTES MULTIACTIVO")
+  File "C:\Users\johan\AppData\Local\spyder-6\envs\agentes_tfm_v2\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+--- INICIO DE CICLO OPERATIVO: 2026-06-15 10:00:02 ---
+
+==================================================
+Traceback (most recent call last):
+  File "C:\Escritorio\Nuevo_Agente_Gemini\trading_agents_V2.py", line 716, in <module>
+    print("\U0001f680 INICIANDO ECOSISTEMA DE AGENTES MULTIACTIVO")
+  File "C:\Users\johan\AppData\Local\spyder-6\envs\agentes_tfm_v2\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+--- INICIO DE CICLO OPERATIVO: 2026-06-15 10:17:26 ---
+
+==================================================
+Traceback (most recent call last):
+  File "C:\Escritorio\Nuevo_Agente_Gemini\trading_agents_V2.py", line 716, in <module>
+    print("\U0001f680 INICIANDO ECOSISTEMA DE AGENTES MULTIACTIVO")
+  File "C:\Users\johan\AppData\Local\spyder-6\envs\agentes_tfm_v2\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+--- INICIO DE CICLO OPERATIVO: 2026-06-15 10:22:03 ---
+
+==================================================
+🚀 INICIANDO ECOSISTEMA DE AGENTES MULTIACTIVO
+==================================================
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: BTC-USD -> BTCUSD
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para BTC-USD...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando BTC-USD...
+   ⚡ Usando memoria rápida intradía (Expira en 2.6h): NEUTRAL
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   ❌ ERROR: Modelo descartado o no encontrado para BTC-USD. Forzando HOLD.
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA BTC-USD ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: EURUSD=X -> EURUSD.sml
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para EURUSD=X...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando EURUSD=X...
+   ⚡ Usando memoria rápida intradía (Expira en 2.7h): BEARISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   ❌ ERROR: Modelo descartado o no encontrado para EURUSD. Forzando HOLD.
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA EURUSD=X ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: GBPUSD=X -> GBPUSD.sml
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para GBPUSD=X...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   💤 Análisis Técnico: Régimen LATERAL (ADX: 13.4 < 20). Riesgo de falsos rompimientos.
+📰 [Fundamental Agent] Evaluando GBPUSD=X...
+   ⚡ Usando memoria rápida intradía (Expira en 2.7h): BULLISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   🤖 Predicción XGBoost: HOLD (Confianza Matemática: 51.2%)
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA GBPUSD=X ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: GC=F -> XAUUSD.sml
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para GC=F...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando GC=F...
+   ⚡ Usando memoria rápida intradía (Expira en 2.7h): NEUTRAL
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   ❌ ERROR: Modelo descartado o no encontrado para GC. Forzando HOLD.
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA GC=F ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: ^GSPC -> US500
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para ^GSPC...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando ^GSPC...
+   ⚡ Usando memoria rápida intradía (Expira en 3.9h): BULLISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   ❌ ERROR: Modelo descartado o no encontrado para GSPC. Forzando HOLD.
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA ^GSPC ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: CL=F -> USOIL.sml
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para CL=F...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📉 Análisis Técnico: Confluencia BAJISTA detectada (Death Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando CL=F...
+   ⚡ Usando memoria rápida intradía (Expira en 2.7h): BEARISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   🤖 Predicción XGBoost: BUY (Confianza Matemática: 53.3%)
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+   ⚖️ Votación: ML=[BUY] | Técnico=[BEARISH] | Macro=[BEARISH]
+   ⚠️ RECHAZO UNÁNIME: La Inteligencia Artificial alucina. Técnico y Macro son Bajistas. Abortando.
+   📋 Decisión Final: HOLD | Confianza Asociada: 53.3%
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA CL=F ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: ^DJI -> US30
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para ^DJI...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando ^DJI...
+   ⚡ Usando memoria rápida intradía (Expira en 3.9h): NEUTRAL
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   🤖 Predicción XGBoost: SELL (Confianza Matemática: 53.3%)
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+   ⚖️ Votación: ML=[SELL] | Técnico=[BULLISH] | Macro=[NEUTRAL]
+   ✅ Ecosistema Alineado. Triangulación exitosa. Permiso de ejecución concedido.
+   📋 Decisión Final: SELL | Confianza Asociada: 53.3%
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+   📉 Posiciones Activas (^DJI): 1 | PnL Latente orden previa: $-53.46 USD
+   🔪 Estado: DRAWDOWN. Mitigando riesgo estricto (Anti-Martingala al 50%).
+   📊 Lote Final Normalizado (MT5): 0.54 | TP Asignado: 2.0x ATR
+🚀 [Execution Agent] Conectando con MT5 para operar ^DJI...
+   📝 Registro guardado en trading_history_log.csv para evaluación del Feedback Loop.
+
+--- RESULTADO FINAL PARA ^DJI ---
+✅ ÉXITO | ORDEN EJECUTADA EN MT5
+   Ticket: 38352457
+   Activo: US30 | Tipo: SELL
+   Precio Ejecución: 51778.6
+   Stop Loss: 51969.96622 | Take Profit: 51523.44504
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: NVDA -> NVDA_CFD.US
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para NVDA...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📉 Análisis Técnico: Confluencia BAJISTA detectada (Death Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando NVDA...
+   ⚡ Usando memoria rápida intradía (Expira en 3.9h): BULLISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   🤖 Predicción XGBoost: SELL (Confianza Matemática: 59.6%)
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+   ⚖️ Votación: ML=[SELL] | Técnico=[BEARISH] | Macro=[BULLISH]
+   🛡️ Sensibilidad Fundamental BAJA: Priorizando poder predictivo de IA (SELL).
+   ✅ Ecosistema Alineado. Triangulación exitosa. Permiso de ejecución concedido.
+   📋 Decisión Final: SELL | Confianza Asociada: 59.6%
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+   📉 Posiciones Activas (NVDA): 1 | PnL Latente orden previa: $13.63 USD
+   📈 Estado: PROFIT. Piramidación Fraccional de seguridad (75%).
+   📊 Lote Final Normalizado (MT5): 35.0 | TP Asignado: 3.0x ATR
+🚀 [Execution Agent] Conectando con MT5 para operar NVDA...
+   📝 Registro guardado en trading_history_log.csv para evaluación del Feedback Loop.
+
+--- RESULTADO FINAL PARA NVDA ---
+✅ ÉXITO | ORDEN EJECUTADA EN MT5
+   Ticket: 38352458
+   Activo: NVDA_CFD.US | Tipo: SELL
+   Precio Ejecución: 208.51
+   Stop Loss: 212.52073 | Take Profit: 200.48855
+
+✅ ANÁLISIS DEL PORTAFOLIO FINALIZADO.
+
+--- INICIO DE CICLO OPERATIVO: 2026-06-15 11:00:02 ---
+
+==================================================
+🚀 INICIANDO ECOSISTEMA DE AGENTES MULTIACTIVO
+==================================================
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: BTC-USD -> BTCUSD
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para BTC-USD...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando BTC-USD...
+   ⚡ Usando memoria rápida intradía (Expira en 2.0h): NEUTRAL
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   ❌ ERROR: Modelo descartado o no encontrado para BTC-USD. Forzando HOLD.
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA BTC-USD ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: EURUSD=X -> EURUSD.sml
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para EURUSD=X...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando EURUSD=X...
+   ⚡ Usando memoria rápida intradía (Expira en 2.0h): BEARISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   ❌ ERROR: Modelo descartado o no encontrado para EURUSD. Forzando HOLD.
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA EURUSD=X ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: GBPUSD=X -> GBPUSD.sml
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para GBPUSD=X...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   💤 Análisis Técnico: Régimen LATERAL (ADX: 13.3 < 20). Riesgo de falsos rompimientos.
+📰 [Fundamental Agent] Evaluando GBPUSD=X...
+   ⚡ Usando memoria rápida intradía (Expira en 2.0h): BULLISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   🤖 Predicción XGBoost: HOLD (Confianza Matemática: 51.3%)
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA GBPUSD=X ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: GC=F -> XAUUSD.sml
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para GC=F...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando GC=F...
+   ⚡ Usando memoria rápida intradía (Expira en 2.0h): NEUTRAL
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   ❌ ERROR: Modelo descartado o no encontrado para GC. Forzando HOLD.
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA GC=F ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: ^GSPC -> US500
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para ^GSPC...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando ^GSPC...
+   ⚡ Usando memoria rápida intradía (Expira en 3.2h): BULLISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   ❌ ERROR: Modelo descartado o no encontrado para GSPC. Forzando HOLD.
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA ^GSPC ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: CL=F -> USOIL.sml
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para CL=F...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📉 Análisis Técnico: Confluencia BAJISTA detectada (Death Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando CL=F...
+   ⚡ Usando memoria rápida intradía (Expira en 2.0h): BEARISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   🤖 Predicción XGBoost: HOLD (Confianza Matemática: 50.6%)
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+
+--- RESULTADO FINAL PARA CL=F ---
+⏸️ SIN OPERACIÓN: El modelo determinó HOLD o límite de riesgo alcanzado.
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: ^DJI -> US30
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para ^DJI...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📈 Análisis Técnico: Confluencia ALCISTA detectada (Golden Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando ^DJI...
+   ⚡ Usando memoria rápida intradía (Expira en 3.2h): NEUTRAL
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   🤖 Predicción XGBoost: SELL (Confianza Matemática: 55.8%)
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+   ⚖️ Votación: ML=[SELL] | Técnico=[BULLISH] | Macro=[NEUTRAL]
+   ✅ Ecosistema Alineado. Triangulación exitosa. Permiso de ejecución concedido.
+   📋 Decisión Final: SELL | Confianza Asociada: 55.8%
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+   📉 Posiciones Activas (^DJI): 2 | PnL Latente orden previa: $-47.25 USD
+   🔪 Estado: DRAWDOWN. Mitigando riesgo estricto (Anti-Martingala al 50%).
+   📊 Lote Final Normalizado (MT5): 0.27 | TP Asignado: 3.0x ATR
+🚀 [Execution Agent] Conectando con MT5 para operar ^DJI...
+   📝 Registro guardado en trading_history_log.csv para evaluación del Feedback Loop.
+
+--- RESULTADO FINAL PARA ^DJI ---
+✅ ÉXITO | ORDEN EJECUTADA EN MT5
+   Ticket: 38354659
+   Activo: US30 | Tipo: SELL
+   Precio Ejecución: 51857.6
+   Stop Loss: 52039.74746 | Take Profit: 51493.30508
+
+========================================
+🌟 INICIANDO ANÁLISIS PARA: NVDA -> NVDA_CFD.US
+========================================
+📡 [Market Data Agent] Obteniendo datos en vivo desde MT5 para NVDA...
+📊 [Technical Analyst] Ejecutando Feature Engineering y Análisis Direccional...
+   📉 Análisis Técnico: Confluencia BAJISTA detectada (Death Cross H1 + Momentum).
+📰 [Fundamental Agent] Evaluando NVDA...
+   ⚡ Usando memoria rápida intradía (Expira en 3.2h): BULLISH
+🧠 [Quant ML Agent] Consultando modelo de Inteligencia Artificial (Inferencia Rápida)...
+   🤖 Predicción XGBoost: SELL (Confianza Matemática: 55.4%)
+👔 [Portfolio Manager] Inciando Comité de Consenso y Auditoría de Riesgo...
+   ⚖️ Votación: ML=[SELL] | Técnico=[BEARISH] | Macro=[BULLISH]
+   🛡️ Sensibilidad Fundamental BAJA: Priorizando poder predictivo de IA (SELL).
+   ✅ Ecosistema Alineado. Triangulación exitosa. Permiso de ejecución concedido.
+   📋 Decisión Final: SELL | Confianza Asociada: 55.4%
+🛡️ [Risk Manager] Calculando dimensionamiento volumétrico y asimetría de riesgo...
+   📉 Posiciones Activas (NVDA): 2 | PnL Latente orden previa: $-37.80 USD
+   🔪 Estado: DRAWDOWN. Mitigando riesgo estricto (Anti-Martingala al 50%).
+   📊 Lote Final Normalizado (MT5): 18.0 | TP Asignado: 3.0x ATR
+🚀 [Execution Agent] Conectando con MT5 para operar NVDA...
+   📝 Registro guardado en trading_history_log.csv para evaluación del Feedback Loop.
+
+--- RESULTADO FINAL PARA NVDA ---
+✅ ÉXITO | ORDEN EJECUTADA EN MT5
+   Ticket: 38354660
+   Activo: NVDA_CFD.US | Tipo: SELL
+   Precio Ejecución: 209.56
+   Stop Loss: 213.31731 | Take Profit: 202.04538
+
+✅ ANÁLISIS DEL PORTAFOLIO FINALIZADO.

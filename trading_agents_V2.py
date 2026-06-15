@@ -1,3 +1,5 @@
+import sys
+import io
 import yfinance as yf
 import pandas as pd
 import time
@@ -18,6 +20,9 @@ import joblib
 from pathlib import Path
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='ignore')
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='ignore')
 
 load_dotenv()
 
@@ -567,23 +572,23 @@ def risk_manager_agent(state: TradingState):
     # 3. LÓGICA DE ESCALADO FRACCIONAL BASADO EN PnL (Piramidación Segura)
     # =====================================================================
     if num_posiciones > 0:
+        pnl_neto_total = sum(pos.profit for pos in posiciones_activo)
         ultima_posicion = sorted(posiciones_activo, key=lambda p: p.time)[-1]
         volumen_anterior = ultima_posicion.volume
-        profit_actual = ultima_posicion.profit
+                
+        print(f"   📉 Posiciones Activas ({asset}): {num_posiciones} | PnL NETO GLOBAL del Activo: ${pnl_neto_total:.2f} USD")
         
-        print(f"   📉 Posiciones Activas ({asset}): {num_posiciones} | PnL Latente orden previa: ${profit_actual:.2f} USD")
-        
-        if profit_actual < 0:
-            # Escudo de Drawdown: Cortamos exposición al 50%
+        if pnl_neto_total < 0:
+            # Si el activo completo va perdiendo de forma agregada, activamos el escudo defensivo
             raw_lot_size = volumen_anterior * 0.5
-            print(f"   🔪 Estado: DRAWDOWN. Mitigando riesgo estricto (Anti-Martingala al 50%).")
+            print(f"   🔪 Estado: DRAWDOWN AGREGADO. Reduciendo exposición al 50% del lote previo.")
         else:
-            # Scaling-In Fraccional: Añadimos 75% del lote anterior para proteger Precio Promedio
+            # Si el activo completo está en positivo, permitimos scaling-in fraccional controlado
             raw_lot_size = volumen_anterior * 0.75 
-            print(f"   📈 Estado: PROFIT. Piramidación Fraccional de seguridad (75%).")
+            print(f"   📈 Estado: PROFIT AGREGADO. Aplicando Scaling-In Fraccional de seguridad (75%).")
             
     else:
-        # Primera Operación (Risk-based Allocation)
+        # Lógica para la primera operación base
         capital_en_riesgo_maximo = balance * MAX_GLOBAL_PORTFOLIO_RISK_PCT
         peso_activo = ASSET_VOLATILITY_WEIGHTS.get(asset, 0.15)
         riesgo_base_monetario = capital_en_riesgo_maximo * peso_activo
@@ -595,9 +600,7 @@ def risk_manager_agent(state: TradingState):
         print(f"   💰 Balance: ${balance:,.2f} | Margen Libre: ${margen_libre:,.2f}")
         print(f"   ⚖️ Nueva Operación | IA: {tier_text} | Riesgo Aut: ${riesgo_operacion_usd:.2f} USD")
 
-    # =====================================================================
-    # 4. NORMALIZACIÓN AL CONTRATO DEL BRÓKER
-    # =====================================================================
+    # Normalización contractual obligatoria para el bróker
     if raw_lot_size > 0:
         raw_lot_size = round(raw_lot_size / volume_step) * volume_step
         lot_size = max(min_volume, min(raw_lot_size, max_volume))
