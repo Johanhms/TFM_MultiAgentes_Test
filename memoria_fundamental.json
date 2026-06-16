@@ -12,34 +12,34 @@
     },
     "BTC-USD": {
         "sentiment": "NEUTRAL",
-        "last_updated": "2026-06-15 09:00:25"
+        "last_updated": "2026-06-16 14:10:16"
     },
     "EURUSD=X": {
-        "sentiment": "BEARISH",
-        "last_updated": "2026-06-15 09:01:25"
+        "sentiment": "NEUTRAL",
+        "last_updated": "2026-06-16 14:10:29"
     },
     "GBPUSD=X": {
         "sentiment": "BULLISH",
-        "last_updated": "2026-06-15 09:01:58"
+        "last_updated": "2026-06-16 14:10:46"
     },
     "GC=F": {
-        "sentiment": "NEUTRAL",
-        "last_updated": "2026-06-15 09:02:06"
+        "sentiment": "BULLISH",
+        "last_updated": "2026-06-16 14:10:59"
     },
     "CL=F": {
-        "sentiment": "BEARISH",
-        "last_updated": "2026-06-15 09:02:52"
+        "sentiment": "BULLISH",
+        "last_updated": "2026-06-16 14:11:37"
     },
     "^GSPC": {
         "sentiment": "BULLISH",
-        "last_updated": "2026-06-15 10:13:52"
+        "last_updated": "2026-06-16 14:11:09"
     },
     "^DJI": {
         "sentiment": "NEUTRAL",
-        "last_updated": "2026-06-15 10:14:09"
+        "last_updated": "2026-06-16 14:11:50"
     },
     "NVDA": {
-        "sentiment": "BULLISH",
-        "last_updated": "2026-06-15 10:14:25"
+        "sentiment": "NEUTRAL",
+        "last_updated": "2026-06-16 14:12:30"
     }
 }

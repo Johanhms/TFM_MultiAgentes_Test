@@ -204,6 +204,9 @@ def technical_analyst_agent(state: TradingState):
     # =====================================================================
     # Extraemos los valores exactos del momento presente (última vela cerrada)
     current_adx = float(adx_df['ADX_14'].iloc[-1]) if adx_df is not None else 0.0
+    current_plus_di = float(adx_df['DMP_14'].iloc[-1]) if adx_df is not None else 0.0
+    current_minus_di = float(adx_df['DMN_14'].iloc[-1]) if adx_df is not None else 0.0
+    
     current_ema20 = float(df['EMA_20'].iloc[-1])
     current_ema50 = float(df['EMA_50'].iloc[-1])
     macd_hist = float(macd.iloc[-1, 2]) # Histograma del MACD
@@ -233,7 +236,9 @@ def technical_analyst_agent(state: TradingState):
         "MACD": float(macd.iloc[-1, 0]),          
         "MACD_Signal": float(macd.iloc[-1, 1]),   
         "ATR_14": float(atr.iloc[-1]),
-        "ADX_14": current_adx, 
+        "ADX_14": current_adx,
+        "Plus_DI": current_plus_di,   # <--- Nueva variable de fuerza compradora
+        "Minus_DI": current_minus_di, # <--- Nueva variable de fuerza vendedora 
         "EMA_20": current_ema20,
         "EMA_50": current_ema50,
         "EMA_50_Slope": df['EMA_50_Slope'].iloc[-1],
@@ -413,6 +418,8 @@ def portfolio_manager_agent(state: TradingState):
     bb_upper = tech.get("BB_Upper", float('inf'))
     bb_lower = tech.get("BB_Lower", 0.0)
     adx = tech.get("ADX_14", 0.0)
+    plus_di = tech.get("Plus_DI", 0.0)   # Captura de presión compradora
+    minus_di = tech.get("Minus_DI", 0.0) # Captura de presión vendedora
     tech_signal = tech.get("Tech_Signal", "NEUTRAL") # La nueva opinión del Analista Técnico
     
     if ml_signal == "HOLD":
@@ -424,6 +431,21 @@ def portfolio_manager_agent(state: TradingState):
     if adx < 20:
         motivo = f"Régimen Lateral Detectado (ADX: {adx:.1f} < 20). Mercado sin tendencia."
         print(f"   🛑 VETO: {motivo}")
+        registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, tech.get("EMA_50", 0))
+        return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
+    
+    # =====================================================================
+    # 1.5. NUEVO: ESCUDO CINÉTICO DMI (Filtro de Fuerza Direccional)
+    # =====================================================================
+    if ml_signal == "BUY" and minus_di > plus_di:
+        motivo = f"Fuerza Vendedora Activa Dominante (-DI: {minus_di:.1f} > +DI: {plus_di:.1f})"
+        print(f"   🛑 VETO DMI: {motivo}. Bloqueando compra en medio de un colapso.")
+        registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, tech.get("EMA_50", 0))
+        return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
+        
+    elif ml_signal == "SELL" and plus_di > minus_di:
+        motivo = f"Fuerza Compradora Activa Dominante (+DI: {plus_di:.1f} > -DI: {minus_di:.1f})"
+        print(f"   🛑 VETO DMI: {motivo}. Bloqueando venta en medio de un rally alcista violento.")
         registrar_veto_csv(asset, ml_signal, motivo, current_price, rsi, tech.get("EMA_50", 0))
         return {"final_signal": "HOLD", "ml_confidence": ml_confidence}
 
@@ -520,7 +542,7 @@ def risk_manager_agent(state: TradingState):
     # =====================================================================
     # 1. ESCUDO DE LIQUIDEZ Y MARGEN INSTITUCIONAL
     # =====================================================================
-    limite_liquidez = balance * 0.10
+    limite_liquidez = balance * 0.03
     if margen_libre < limite_liquidez:
         print(f"   🛑 RIESGO SISTÉMICO: Margen libre crítico (${margen_libre:,.2f}). Bloqueando nuevas operaciones.")
         return {**vacio, "risk_params": vacio}

@@ -38,3 +38,17 @@ Fecha,Activo,Señal_ML_Bloqueada,Motivo_Veto,Precio_Evitado,Nivel_RSI,Nivel_EMA5
 2026-06-09 10:42:03,NVDA,BUY,Veto Técnico Alcista (RSI/BB/MACD),207.04,38.82,213.62611
 2026-06-09 10:46:59,BTC-USD,BUY,Veto Técnico Alcista (RSI/BB/MACD),61263.5,27.61,63003.59253
 2026-06-10 09:21:53,EURUSD=X,SELL,Veto Técnico Bajista (RSI/BB/MACD),1.15559,54.65,1.15498
+2026-06-16 09:26:02,CL=F,BUY,Fuerza Vendedora Activa Dominante (-DI: 44.5 > +DI: 8.0),78.283,24.98,82.24849
+2026-06-16 10:01:19,CL=F,BUY,Fuerza Vendedora Activa Dominante (-DI: 42.5 > +DI: 7.7),78.296,25.78,82.09661
+2026-06-16 10:02:18,^DJI,SELL,Fuerza Compradora Activa Dominante (+DI: 38.9 > -DI: 11.0),52005.1,72.98,51587.56171
+2026-06-16 10:02:32,NVDA,SELL,Fuerza Compradora Activa Dominante (+DI: 25.3 > -DI: 19.8),209.88,56.81,208.3588
+2026-06-16 11:00:04,CL=F,BUY,Fuerza Vendedora Activa Dominante (-DI: 42.6 > +DI: 6.9),77.723,23.78,81.9012
+2026-06-16 11:00:04,^DJI,SELL,Fuerza Compradora Activa Dominante (+DI: 35.1 > -DI: 9.9),52069.6,75.31,51609.06505
+2026-06-16 11:00:04,NVDA,SELL,Fuerza Compradora Activa Dominante (+DI: 24.3 > -DI: 20.0),209.3,55.1,208.37649
+2026-06-16 12:00:04,CL=F,BUY,Fuerza Vendedora Activa Dominante (-DI: 47.0 > +DI: 6.0),76.641,19.51,81.65298
+2026-06-16 12:00:05,NVDA,SELL,Fuerza Compradora Activa Dominante (+DI: 23.0 > -DI: 19.0),209.08,54.27,208.39504
+2026-06-16 14:11:50,CL=F,BUY,Fuerza Vendedora Activa Dominante (-DI: 42.3 > +DI: 5.2),76.515,20.26,81.24728
+2026-06-16 14:13:11,NVDA,SELL,Régimen Lateral Detectado (ADX: 19.7 < 20). Mercado sin tendencia.,209.54,55.78,208.4568
+2026-06-16 15:00:04,CL=F,BUY,Fuerza Vendedora Activa Dominante (-DI: 40.2 > +DI: 8.2),77.089,27.98,81.1047
+2026-06-16 15:00:04,^DJI,SELL,Fuerza Compradora Activa Dominante (+DI: 35.0 > -DI: 9.2),52214.1,75.03,51703.82363
+2026-06-16 16:00:04,CL=F,BUY,Fuerza Vendedora Activa Dominante (-DI: 37.2 > +DI: 14.3),77.566,33.72,80.98315
