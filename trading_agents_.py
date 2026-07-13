@@ -47,13 +47,13 @@ MAX_TRADES_PER_DAY_PER_ASSET = 3
 MAX_DAILY_DRAWDOWN_PCT = 0.02         
 BASE_DIR = Path(__file__).resolve().parent if '__file__' in globals() else Path.cwd()
 
-# --- MONITOREO DE DRIFT DE PROBABILIDADES (conecta con 'prob_baseline' guardado por train_model_OP2.py) ---
+# --- MONITOREO DE DRIFT DE PROBABILIDADES (conecta con 'prob_baseline' guardado por train_model_.py) ---
 PSI_WARNING_THRESHOLD = 0.10   # 0.10-0.25: drift moderado, se avisa pero se sigue operando
 PSI_VETO_THRESHOLD = 0.25      # >0.25: drift significativo, se vetea la señal por precaución
 PROB_HISTORY_MIN_SAMPLES = 30  # muestras mínimas en vivo antes de confiar en el PSI calculado
 PROB_HISTORY_MAX_SAMPLES = 150 # ventana rolling de probabilidades recientes conservadas en disco
 
-# --- RIESGO POR CORRELACIÓN ENTRE ACTIVOS (conecta con 'correlation_matrix_*.joblib' de train_model_OP2.py) ---
+# --- RIESGO POR CORRELACIÓN ENTRE ACTIVOS (conecta con 'correlation_matrix_*.joblib' de train_model_.py) ---
 MAX_PORTFOLIO_CORRELATED_RISK_PCT = 0.06  # tope de riesgo agregado correlacionado (~2x el riesgo por operación individual)
 # Reverse mapping para poder identificar el 'asset' lógico a partir del símbolo MT5 de una posición abierta
 REVERSE_ASSET_MAPPING = {v: k for k, v in ASSET_MAPPING.items()}
@@ -189,6 +189,7 @@ def is_market_open(asset: str) -> bool:
 # ==============================================================================
 class TradingState(TypedDict):
     asset: str
+    timeframe_suffix: str
     current_price: float
     historical_data: pd.DataFrame
     technical_indicators: dict
@@ -203,8 +204,11 @@ class TradingState(TypedDict):
 # 1. Agente 1: Market Data Agent
 def market_data_agent(state: TradingState):
     asset = state["asset"]
+    tf_suffix = state.get("timeframe_suffix", "1h")
     symbol_mt5 = ASSET_MAPPING.get(asset, asset)
-    velas_mt5 = mt5.copy_rates_from_pos(symbol_mt5, mt5.TIMEFRAME_H1, 0, 300)
+    
+    mt5_tf = mt5.TIMEFRAME_D1 if tf_suffix == "1d" else mt5.TIMEFRAME_H1
+    velas_mt5 = mt5.copy_rates_from_pos(symbol_mt5, mt5_tf, 0, 300)
     
     # CORRECCIÓN DE NUMPY: Se debe usar verificación de 'None' o evaluar la longitud
     if velas_mt5 is None or len(velas_mt5) == 0: 
@@ -248,7 +252,10 @@ def technical_analyst_agent(state: TradingState):
     df['ATR_14'] = atr['ATR_14'] if isinstance(atr, pd.DataFrame) else atr
     
     # CORRECCIÓN: Contexto HTF (Higher Timeframe - D1) para paridad exacta con XGBoost
-    velas_htf = mt5.copy_rates_from_pos(symbol_mt5, mt5.TIMEFRAME_D1, 0, 100)
+    tf_suffix = state.get("timeframe_suffix", "1h")
+    htf_tf = mt5.TIMEFRAME_W1 if tf_suffix == "1d" else mt5.TIMEFRAME_D1
+    velas_htf = mt5.copy_rates_from_pos(symbol_mt5, htf_tf, 0, 100)
+    
     if velas_htf is not None and len(velas_htf) > 10:
         htf = pd.DataFrame(velas_htf)
         htf['time'] = pd.to_datetime(htf['time'], unit='s')
@@ -261,8 +268,8 @@ def technical_analyst_agent(state: TradingState):
         merged.set_index('time', inplace=True)
         df = merged
     else:
-        df['HTF_Trend'] = 0.0
-        df['HTF_EMA_Slope'] = 0.0
+        print(f"   ❌ [Technical Analyst] ERROR: Datos HTF insuficientes. Abortando análisis para no inyectar sesgo.")
+        return state # Retorna sin actualizar technical_indicators, forzando HOLD en los siguientes nodos.
 
     LOOKBACK_ESTRUCTURAL = 15
     df['Max_Estructural'] = df['High'].rolling(window=LOOKBACK_ESTRUCTURAL).max()
@@ -292,15 +299,16 @@ def technical_analyst_agent(state: TradingState):
 
 # 3. Agente 3: Quant ML Agent (Actualizado a GMM + XGBoost Trinario)
 def quant_ml_agent(state: TradingState):
-    if "historical_data" not in state: 
+    if "historical_data" not in state or "technical_indicators" not in state: 
         return {"ml_prediction": "HOLD", "ml_confidence": 0.0}
         
     asset = state["asset"]
+    tf_suffix = state.get("timeframe_suffix", "1h")
     safe_name = asset.replace("=X", "").replace("=F", "").replace("^", "")
     
-    model_path = BASE_DIR / f'quant_model_1h_{safe_name}.joblib'
-    features_path = BASE_DIR / f'model_features_1h_{safe_name}.joblib'
-    gmm_path = BASE_DIR / f'gmm_regime_1h_{safe_name}.joblib'
+    model_path = BASE_DIR / f'quant_model_{tf_suffix}_{safe_name}.joblib'
+    features_path = BASE_DIR / f'model_features_{tf_suffix}_{safe_name}.joblib'
+    gmm_path = BASE_DIR / f'gmm_regime_{tf_suffix}_{safe_name}.joblib'
     
     prediction, confidence = "HOLD", 0.0
     drift_alert = False
@@ -351,7 +359,7 @@ def quant_ml_agent(state: TradingState):
                     # por train_model_.py. Si el bundle es antiguo (sin 'prob_baseline'), se omite
                     # silenciosamente sin afectar el resto del pipeline.
                     prob_baseline = gmm_data.get('prob_baseline')
-                    psi_score = check_probability_drift(safe_name, "1h", prob_buy, prob_sell, prob_baseline)
+                    psi_score = check_probability_drift(safe_name, tf_suffix, prob_buy, prob_sell, prob_baseline)
                     if psi_score is not None:
                         if psi_score > PSI_VETO_THRESHOLD:
                             drift_alert = True
@@ -430,6 +438,7 @@ def risk_manager_agent(state: TradingState):
     if final_signal == "HOLD": return {"risk_params": {}}
     
     asset = state["asset"]
+    tf_suffix = state.get("timeframe_suffix", "1h")
     symbol_mt5 = ASSET_MAPPING.get(asset, asset)
     tech = state.get("technical_indicators", {})
     atr = tech.get("ATR_14", 0.0)
@@ -455,12 +464,15 @@ def risk_manager_agent(state: TradingState):
     # la operación candidata, y resuelve el máximo tamaño permitido para que la RAÍZ de la
     # varianza combinada no supere MAX_PORTFOLIO_CORRELATED_RISK_PCT del balance.
     correlation_scale = 1.0
-    corr_matrix = get_correlation_matrix("1h")
+    corr_matrix = get_correlation_matrix(tf_suffix)
     if corr_matrix is not None and asset in corr_matrix.columns:
         existing_risks = {}
         positions = mt5.positions_get()
         if positions:
             for pos in positions:
+                if pos.magic != 202601:
+                    continue
+                
                 other_asset = REVERSE_ASSET_MAPPING.get(pos.symbol)
                 if other_asset is None or other_asset == asset or other_asset not in corr_matrix.columns:
                     continue
@@ -611,9 +623,11 @@ if __name__ == "__main__":
             print(f"\n--- INFERENCIA: {asset} ---")
             if is_market_open(asset):
                try: 
-                    # El invoke ahora dispara internamente todos los print detallados
-                    resultado = app.invoke({"asset": asset})
-                    print(resultado["final_execution"])
+                    # Invocación secuencial para aprovechar modelos 1D y 1H guardados ---
+                    for tf_eval in ["1d", "1h"]:
+                        print(f"\n   ⏱️ [Orquestador] Procesando ventana temporal: {tf_eval.upper()}")
+                        resultado = app.invoke({"asset": asset, "timeframe_suffix": tf_eval})
+                        print(resultado["final_execution"])
                except Exception as e: 
                     print(f"   ❌ Fallo crítico en {asset}: {e}")
         mt5.shutdown()
