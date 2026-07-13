@@ -583,7 +583,7 @@ def execution_agent(state: TradingState):
         "tp": float(tp),
         "deviation": 10,
         "magic": 202601,
-        "comment": "Alpha Agent",
+        "comment": f"Alpha Agent {state.get('timeframe_suffix', '').upper()}",
         "type_time": mt5.ORDER_TIME_GTC,
         "type_filling": mt5.ORDER_FILLING_IOC,
     }
