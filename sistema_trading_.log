@@ -192,3 +192,2740 @@
    ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
    🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
    ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 08:48:35 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 63682.0
+   📈 [Technical Analyst] RSI: 44.26 | ADX: 27.09 | ATR: 2305.7171 | Volatilidad (20): 0.0202
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 63682.0
+   📈 [Technical Analyst] RSI: 68.75 | ADX: 18.12 | ATR: 363.7283 | Volatilidad (20): 0.0042
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14539
+   📈 [Technical Analyst] RSI: 48.72 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0035
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 40.1% (Thresh: 50.0%) | SELL: 35.7% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14526
+   📈 [Technical Analyst] RSI: 72.72 | ADX: 18.72 | ATR: 0.0014 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34256
+   📈 [Technical Analyst] RSI: 58.00 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0040
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.3425799999999999
+   📈 [Technical Analyst] RSI: 73.49 | ADX: 21.57 | ATR: 0.0017 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4083.155
+   📈 [Technical Analyst] RSI: 44.02 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0156
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 37.6% (Thresh: 36.0%) | SELL: 24.8% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+      ↳ Riesgo cuadrático ya comprometido: $0.00 de $429.52 permitidos
+   🛡️ [Risk Manager] Diseño Estructural Completado:
+      - Capital Arriesgado: $137.95 (1.93% del balance)
+      - Exposición (Lotes): 0.008
+      - Niveles Estimados -> ENTRADA: 4083.15500 | SL: 3915.47936 | TP: 4334.66846
+❌ [Execution Agent] ERROR DE BROKER: Unsupported filling mode (10030)
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4083.865
+   📈 [Technical Analyst] RSI: 71.12 | ADX: 40.55 | ATR: 18.7773 | Volatilidad (20): 0.0034
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7547.3
+   📈 [Technical Analyst] RSI: 55.04 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7547.3
+   📈 [Technical Analyst] RSI: 58.83 | ADX: 22.28 | ATR: 19.2366 | Volatilidad (20): 0.0012
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 81.043
+   📈 [Technical Analyst] RSI: 55.52 | ADX: 32.56 | ATR: 3.7528 | Volatilidad (20): 0.0315
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 81.043
+   📈 [Technical Analyst] RSI: 66.98 | ADX: 52.91 | ATR: 1.0300 | Volatilidad (20): 0.0093
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52451.5
+   📈 [Technical Analyst] RSI: 55.90 | ADX: 30.03 | ATR: 602.0644 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52451.5
+   📈 [Technical Analyst] RSI: 48.39 | ADX: 14.14 | ATR: 149.2943 | Volatilidad (20): 0.0013
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 203.95
+   📈 [Technical Analyst] RSI: 50.33 | ADX: 16.51 | ATR: 6.8408 | Volatilidad (20): 0.0225
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 203.95
+   📈 [Technical Analyst] RSI: 48.87 | ADX: 23.10 | ATR: 2.0053 | Volatilidad (20): 0.0055
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 08:55:10 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 63805.0
+   📈 [Technical Analyst] RSI: 49.57 | ADX: 27.09 | ATR: 2425.1814 | Volatilidad (20): 0.0212
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 63805.0
+   📈 [Technical Analyst] RSI: 70.08 | ADX: 18.14 | ATR: 364.4069 | Volatilidad (20): 0.0045
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.1444
+   📈 [Technical Analyst] RSI: 47.41 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0035
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 43.5% (Thresh: 50.0%) | SELL: 37.0% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.1444
+   📈 [Technical Analyst] RSI: 70.63 | ADX: 18.72 | ATR: 0.0014 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.3406799999999999
+   📈 [Technical Analyst] RSI: 56.35 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0039
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34066
+   📈 [Technical Analyst] RSI: 68.31 | ADX: 21.57 | ATR: 0.0017 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4075.985
+   📈 [Technical Analyst] RSI: 43.50 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0154
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 37.4% (Thresh: 36.0%) | SELL: 25.1% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+      ↳ Riesgo cuadrático ya comprometido: $0.00 de $429.52 permitidos
+   🛡️ [Risk Manager] Diseño Estructural Completado:
+      - Capital Arriesgado: $139.16 (1.94% del balance)
+      - Exposición (Lotes): 0.008
+      - Niveles Estimados -> ENTRADA: 4075.98500 | SL: 3915.47936 | TP: 4316.74346
+✅ [Execution Agent] ÉXITO | Ticket: 39462005 | Activo: XAUUSD.sml | BUY a 4076.335 | Lotes: 0.008
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4076.275
+   📈 [Technical Analyst] RSI: 69.29 | ADX: 40.55 | ATR: 18.7773 | Volatilidad (20): 0.0030
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7545.8
+   📈 [Technical Analyst] RSI: 54.94 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7545.8
+   📈 [Technical Analyst] RSI: 58.24 | ADX: 22.28 | ATR: 19.2366 | Volatilidad (20): 0.0012
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 81.062
+   📈 [Technical Analyst] RSI: 55.55 | ADX: 32.56 | ATR: 3.7528 | Volatilidad (20): 0.0315
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 81.062
+   📈 [Technical Analyst] RSI: 67.06 | ADX: 52.91 | ATR: 1.0393 | Volatilidad (20): 0.0093
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52457.5
+   📈 [Technical Analyst] RSI: 55.99 | ADX: 30.03 | ATR: 602.0644 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52456.5
+   📈 [Technical Analyst] RSI: 48.71 | ADX: 14.14 | ATR: 149.2943 | Volatilidad (20): 0.0013
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 203.95
+   📈 [Technical Analyst] RSI: 50.33 | ADX: 16.51 | ATR: 6.8408 | Volatilidad (20): 0.0225
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 203.95
+   📈 [Technical Analyst] RSI: 48.87 | ADX: 23.10 | ATR: 2.0053 | Volatilidad (20): 0.0055
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 09:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 63791.0
+   📈 [Technical Analyst] RSI: 49.53 | ADX: 27.09 | ATR: 2431.8600 | Volatilidad (20): 0.0212
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 63791.0
+   📈 [Technical Analyst] RSI: 68.14 | ADX: 20.08 | ATR: 355.0130 | Volatilidad (20): 0.0045
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14501
+   📈 [Technical Analyst] RSI: 48.20 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0035
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 44.3% (Thresh: 50.0%) | SELL: 35.9% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14502
+   📈 [Technical Analyst] RSI: 72.23 | ADX: 21.38 | ATR: 0.0013 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34161
+   📈 [Technical Analyst] RSI: 57.19 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0039
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34161
+   📈 [Technical Analyst] RSI: 71.23 | ADX: 24.02 | ATR: 0.0016 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4078.085
+   📈 [Technical Analyst] RSI: 43.65 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0155
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 37.6% (Thresh: 36.0%) | SELL: 24.8% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+      ↳ Riesgo cuadrático ya comprometido: $0.00 de $429.52 permitidos
+   🛡️ [Risk Manager] Diseño Estructural Completado:
+      - Capital Arriesgado: $138.83 (1.94% del balance)
+      - Exposición (Lotes): 0.008
+      - Niveles Estimados -> ENTRADA: 4078.08500 | SL: 3915.47936 | TP: 4321.99346
+✅ [Execution Agent] ÉXITO | Ticket: 39462438 | Activo: XAUUSD.sml | BUY a 4078.835 | Lotes: 0.008
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4078.845
+   📈 [Technical Analyst] RSI: 69.92 | ADX: 40.53 | ATR: 17.9064 | Volatilidad (20): 0.0026
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7547.6
+   📈 [Technical Analyst] RSI: 55.06 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7547.8
+   📈 [Technical Analyst] RSI: 59.10 | ADX: 22.55 | ATR: 18.1268 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 81.223
+   📈 [Technical Analyst] RSI: 55.77 | ADX: 32.56 | ATR: 3.7528 | Volatilidad (20): 0.0316
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 81.223
+   📈 [Technical Analyst] RSI: 67.79 | ADX: 52.10 | ATR: 0.9919 | Volatilidad (20): 0.0091
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52458.5
+   📈 [Technical Analyst] RSI: 56.01 | ADX: 30.03 | ATR: 602.0644 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52458.5
+   📈 [Technical Analyst] RSI: 48.96 | ADX: 13.23 | ATR: 141.0590 | Volatilidad (20): 0.0012
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 203.95
+   📈 [Technical Analyst] RSI: 50.33 | ADX: 16.51 | ATR: 6.8408 | Volatilidad (20): 0.0225
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 203.95
+   📈 [Technical Analyst] RSI: 48.87 | ADX: 23.10 | ATR: 2.0053 | Volatilidad (20): 0.0055
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 09:23:58 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64070.0
+   📈 [Technical Analyst] RSI: 50.33 | ADX: 27.09 | ATR: 2446.6100 | Volatilidad (20): 0.0215
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64070.0
+   📈 [Technical Analyst] RSI: 72.68 | ADX: 20.39 | ATR: 374.7273 | Volatilidad (20): 0.0045
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14505
+   📈 [Technical Analyst] RSI: 48.27 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0035
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 43.3% (Thresh: 50.0%) | SELL: 36.4% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14508
+   📈 [Technical Analyst] RSI: 72.40 | ADX: 21.38 | ATR: 0.0014 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34049
+   📈 [Technical Analyst] RSI: 56.19 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0038
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34049
+   📈 [Technical Analyst] RSI: 65.76 | ADX: 24.02 | ATR: 0.0017 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4083.495
+   📈 [Technical Analyst] RSI: 44.04 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0156
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 37.6% (Thresh: 36.0%) | SELL: 24.8% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para GC=F. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4083.535
+   📈 [Technical Analyst] RSI: 71.12 | ADX: 40.53 | ATR: 18.5414 | Volatilidad (20): 0.0026
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7546.1
+   📈 [Technical Analyst] RSI: 54.96 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7546.1
+   📈 [Technical Analyst] RSI: 58.42 | ADX: 22.55 | ATR: 18.7268 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.299
+   📈 [Technical Analyst] RSI: 54.43 | ADX: 32.56 | ATR: 3.7528 | Volatilidad (20): 0.0311
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.299
+   📈 [Technical Analyst] RSI: 60.60 | ADX: 52.10 | ATR: 1.0357 | Volatilidad (20): 0.0095
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52508.5
+   📈 [Technical Analyst] RSI: 56.76 | ADX: 30.03 | ATR: 602.0644 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52508.5
+   📈 [Technical Analyst] RSI: 51.86 | ADX: 13.23 | ATR: 144.4519 | Volatilidad (20): 0.0012
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 203.95
+   📈 [Technical Analyst] RSI: 50.33 | ADX: 16.51 | ATR: 6.8408 | Volatilidad (20): 0.0225
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 203.95
+   📈 [Technical Analyst] RSI: 48.87 | ADX: 23.10 | ATR: 2.0053 | Volatilidad (20): 0.0055
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 10:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 63787.0
+   📈 [Technical Analyst] RSI: 49.52 | ADX: 27.09 | ATR: 2446.6100 | Volatilidad (20): 0.0212
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 63787.0
+   📈 [Technical Analyst] RSI: 68.02 | ADX: 22.35 | ATR: 357.1907 | Volatilidad (20): 0.0045
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14533
+   📈 [Technical Analyst] RSI: 48.64 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0035
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 40.7% (Thresh: 50.0%) | SELL: 34.1% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.1453
+   📈 [Technical Analyst] RSI: 72.97 | ADX: 23.85 | ATR: 0.0013 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34174
+   📈 [Technical Analyst] RSI: 57.29 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0039
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34174
+   📈 [Technical Analyst] RSI: 71.59 | ADX: 26.30 | ATR: 0.0016 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4076.405
+   📈 [Technical Analyst] RSI: 43.53 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0154
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 37.4% (Thresh: 36.0%) | SELL: 25.1% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para GC=F. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4076.885
+   📈 [Technical Analyst] RSI: 69.43 | ADX: 40.52 | ATR: 17.5893 | Volatilidad (20): 0.0026
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7544.8
+   📈 [Technical Analyst] RSI: 54.88 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7544.8
+   📈 [Technical Analyst] RSI: 57.06 | ADX: 22.79 | ATR: 18.5657 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.137
+   📈 [Technical Analyst] RSI: 54.19 | ADX: 32.56 | ATR: 3.7528 | Volatilidad (20): 0.0310
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.137
+   📈 [Technical Analyst] RSI: 59.28 | ADX: 51.34 | ATR: 1.0032 | Volatilidad (20): 0.0081
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52592.3
+   📈 [Technical Analyst] RSI: 57.79 | ADX: 30.03 | ATR: 602.0644 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52592.3
+   📈 [Technical Analyst] RSI: 55.62 | ADX: 12.39 | ATR: 152.2334 | Volatilidad (20): 0.0015
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 205.26
+   📈 [Technical Analyst] RSI: 51.59 | ADX: 15.70 | ATR: 6.5593 | Volatilidad (20): 0.0225
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 205.25
+   📈 [Technical Analyst] RSI: 53.71 | ADX: 21.46 | ATR: 2.0007 | Volatilidad (20): 0.0054
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 11:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64213.0
+   📈 [Technical Analyst] RSI: 50.73 | ADX: 27.09 | ATR: 2459.2528 | Volatilidad (20): 0.0217
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64213.0
+   📈 [Technical Analyst] RSI: 71.84 | ADX: 24.65 | ATR: 384.1822 | Volatilidad (20): 0.0047
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14441
+   📈 [Technical Analyst] RSI: 47.41 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0035
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 46.2% (Thresh: 50.0%) | SELL: 34.0% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14441
+   📈 [Technical Analyst] RSI: 67.44 | ADX: 26.38 | ATR: 0.0013 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.3403399999999999
+   📈 [Technical Analyst] RSI: 56.07 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0038
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.3403399999999999
+   📈 [Technical Analyst] RSI: 62.55 | ADX: 28.62 | ATR: 0.0017 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4081.795
+   📈 [Technical Analyst] RSI: 43.93 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0155
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 37.5% (Thresh: 36.0%) | SELL: 25.0% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para GC=F. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4081.215
+   📈 [Technical Analyst] RSI: 69.08 | ADX: 40.63 | ATR: 17.7981 | Volatilidad (20): 0.0027
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7552.3
+   📈 [Technical Analyst] RSI: 55.38 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7552.3
+   📈 [Technical Analyst] RSI: 61.15 | ADX: 24.29 | ATR: 20.2718 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 79.202
+   📈 [Technical Analyst] RSI: 52.73 | ADX: 32.56 | ATR: 3.7528 | Volatilidad (20): 0.0307
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 79.202
+   📈 [Technical Analyst] RSI: 52.56 | ADX: 46.08 | ATR: 1.0530 | Volatilidad (20): 0.0087
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52533.3
+   📈 [Technical Analyst] RSI: 57.12 | ADX: 30.03 | ATR: 607.8215 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52533.3
+   📈 [Technical Analyst] RSI: 52.27 | ADX: 12.57 | ATR: 157.8188 | Volatilidad (20): 0.0015
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 206.79
+   📈 [Technical Analyst] RSI: 52.99 | ADX: 15.70 | ATR: 6.6000 | Volatilidad (20): 0.0226
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 206.79
+   📈 [Technical Analyst] RSI: 58.53 | ADX: 21.23 | ATR: 2.0213 | Volatilidad (20): 0.0058
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 12:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64757.0
+   📈 [Technical Analyst] RSI: 52.20 | ADX: 26.80 | ATR: 2501.8957 | Volatilidad (20): 0.0225
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64757.0
+   📈 [Technical Analyst] RSI: 76.85 | ADX: 27.86 | ATR: 404.6768 | Volatilidad (20): 0.0048
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14264
+   📈 [Technical Analyst] RSI: 44.89 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0033
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 50.4% (Thresh: 50.0%) | SELL: 35.7% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚠️ VETO MACRO: Conflicto frontal entre algoritmo y macroeconomía.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14269
+   📈 [Technical Analyst] RSI: 57.75 | ADX: 25.66 | ATR: 0.0014 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.3382399999999999
+   📈 [Technical Analyst] RSI: 54.05 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0038
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.3382399999999999
+   📈 [Technical Analyst] RSI: 51.56 | ADX: 27.54 | ATR: 0.0018 | Volatilidad (20): 0.0007
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4064.905
+   📈 [Technical Analyst] RSI: 42.69 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0152
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 34.4% (Thresh: 36.0%) | SELL: 24.2% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4064.935
+   📈 [Technical Analyst] RSI: 60.08 | ADX: 41.17 | ATR: 18.8668 | Volatilidad (20): 0.0029
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7541.4
+   📈 [Technical Analyst] RSI: 54.65 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7541.4
+   📈 [Technical Analyst] RSI: 53.91 | ADX: 24.81 | ATR: 20.6386 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 79.882
+   📈 [Technical Analyst] RSI: 53.80 | ADX: 32.56 | ATR: 3.7592 | Volatilidad (20): 0.0309
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 79.882
+   📈 [Technical Analyst] RSI: 56.41 | ADX: 42.66 | ATR: 1.1099 | Volatilidad (20): 0.0089
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52447.8
+   📈 [Technical Analyst] RSI: 55.86 | ADX: 30.03 | ATR: 607.8215 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52447.8
+   📈 [Technical Analyst] RSI: 47.77 | ADX: 12.03 | ATR: 164.6225 | Volatilidad (20): 0.0015
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 208.98
+   📈 [Technical Analyst] RSI: 54.90 | ADX: 15.70 | ATR: 6.7436 | Volatilidad (20): 0.0231
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 209.0
+   📈 [Technical Analyst] RSI: 64.03 | ADX: 22.37 | ATR: 2.0774 | Volatilidad (20): 0.0063
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 14:38:36 ---
+Traceback (most recent call last):
+  File "C:\Escritorio\TFM_MultiAgentes_Multiactivos\trading_agents_.py", line 13, in <module>
+    from langgraph.graph import StateGraph, END
+ModuleNotFoundError: No module named 'langgraph'
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 14:39:02 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64656.0
+   📈 [Technical Analyst] RSI: 51.93 | ADX: 26.80 | ATR: 2501.8957 | Volatilidad (20): 0.0223
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64614.0
+   📈 [Technical Analyst] RSI: 75.00 | ADX: 27.86 | ATR: 421.2839 | Volatilidad (20): 0.0048
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14199
+   📈 [Technical Analyst] RSI: 45.26 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0033
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 50.5% (Thresh: 50.0%) | SELL: 35.6% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚠️ VETO MACRO: Conflicto frontal entre algoritmo y macroeconomía.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14201
+   📈 [Technical Analyst] RSI: 53.53 | ADX: 25.68 | ATR: 0.0014 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.33788
+   📈 [Technical Analyst] RSI: 53.69 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0038
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.33788
+   📈 [Technical Analyst] RSI: 49.67 | ADX: 26.32 | ATR: 0.0018 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4053.025
+   📈 [Technical Analyst] RSI: 41.80 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0151
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 34.3% (Thresh: 36.0%) | SELL: 24.2% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4053.025
+   📈 [Technical Analyst] RSI: 53.90 | ADX: 39.62 | ATR: 18.0688 | Volatilidad (20): 0.0030
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7558.9
+   📈 [Technical Analyst] RSI: 55.81 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7558.9
+   📈 [Technical Analyst] RSI: 62.52 | ADX: 25.67 | ATR: 19.8192 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 79.868
+   📈 [Technical Analyst] RSI: 53.76 | ADX: 32.56 | ATR: 3.7592 | Volatilidad (20): 0.0309
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 79.868
+   📈 [Technical Analyst] RSI: 55.66 | ADX: 37.17 | ATR: 1.1141 | Volatilidad (20): 0.0088
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52534.8
+   📈 [Technical Analyst] RSI: 57.14 | ADX: 30.03 | ATR: 607.8215 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52534.8
+   📈 [Technical Analyst] RSI: 52.64 | ADX: 10.63 | ATR: 158.0799 | Volatilidad (20): 0.0015
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 211.96
+   📈 [Technical Analyst] RSI: 57.23 | ADX: 15.97 | ATR: 6.9443 | Volatilidad (20): 0.0240
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 211.96
+   📈 [Technical Analyst] RSI: 70.60 | ADX: 24.89 | ATR: 2.1011 | Volatilidad (20): 0.0063
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 15:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64593.0
+   📈 [Technical Analyst] RSI: 51.76 | ADX: 26.80 | ATR: 2501.8957 | Volatilidad (20): 0.0222
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64593.0
+   📈 [Technical Analyst] RSI: 72.85 | ADX: 31.39 | ATR: 377.3097 | Volatilidad (20): 0.0046
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14246
+   📈 [Technical Analyst] RSI: 44.60 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0033
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 50.8% (Thresh: 50.0%) | SELL: 35.2% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚠️ VETO MACRO: Conflicto frontal entre algoritmo y macroeconomía.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14246
+   📈 [Technical Analyst] RSI: 55.77 | ADX: 25.22 | ATR: 0.0013 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.3384
+   📈 [Technical Analyst] RSI: 54.21 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0038
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.3384
+   📈 [Technical Analyst] RSI: 51.93 | ADX: 25.94 | ATR: 0.0017 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4054.485
+   📈 [Technical Analyst] RSI: 41.90 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0151
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 34.3% (Thresh: 36.0%) | SELL: 24.2% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4054.485
+   📈 [Technical Analyst] RSI: 54.54 | ADX: 37.64 | ATR: 17.4790 | Volatilidad (20): 0.0030
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7558.2
+   📈 [Technical Analyst] RSI: 55.76 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7558.2
+   📈 [Technical Analyst] RSI: 61.99 | ADX: 26.22 | ATR: 18.6698 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 79.978
+   📈 [Technical Analyst] RSI: 53.94 | ADX: 32.56 | ATR: 3.7592 | Volatilidad (20): 0.0309
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 79.968
+   📈 [Technical Analyst] RSI: 56.25 | ADX: 35.23 | ATR: 1.0540 | Volatilidad (20): 0.0089
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52557.8
+   📈 [Technical Analyst] RSI: 57.40 | ADX: 30.03 | ATR: 607.8215 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52557.8
+   📈 [Technical Analyst] RSI: 53.90 | ADX: 9.93 | ATR: 147.8242 | Volatilidad (20): 0.0015
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 212.07
+   📈 [Technical Analyst] RSI: 57.29 | ADX: 16.04 | ATR: 6.9750 | Volatilidad (20): 0.0240
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 212.07
+   📈 [Technical Analyst] RSI: 70.52 | ADX: 26.19 | ATR: 1.9931 | Volatilidad (20): 0.0064
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 16:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64546.0
+   📈 [Technical Analyst] RSI: 51.64 | ADX: 26.80 | ATR: 2501.8957 | Volatilidad (20): 0.0222
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64546.0
+   📈 [Technical Analyst] RSI: 72.03 | ADX: 32.58 | ATR: 366.2059 | Volatilidad (20): 0.0046
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14195
+   📈 [Technical Analyst] RSI: 43.83 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0033
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 51.7% (Thresh: 50.0%) | SELL: 35.8% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚠️ VETO MACRO: Conflicto frontal entre algoritmo y macroeconomía.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14193
+   📈 [Technical Analyst] RSI: 52.97 | ADX: 24.89 | ATR: 0.0013 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.33877
+   📈 [Technical Analyst] RSI: 54.58 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0038
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.33877
+   📈 [Technical Analyst] RSI: 53.41 | ADX: 26.34 | ATR: 0.0017 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4055.425
+   📈 [Technical Analyst] RSI: 41.97 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0151
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 36.1% (Thresh: 36.0%) | SELL: 26.0% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para GC=F. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4055.395
+   📈 [Technical Analyst] RSI: 54.86 | ADX: 36.47 | ATR: 16.9492 | Volatilidad (20): 0.0030
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7556.7
+   📈 [Technical Analyst] RSI: 55.66 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7556.7
+   📈 [Technical Analyst] RSI: 60.73 | ADX: 26.65 | ATR: 18.0133 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.146
+   📈 [Technical Analyst] RSI: 54.19 | ADX: 32.56 | ATR: 3.7592 | Volatilidad (20): 0.0310
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.146
+   📈 [Technical Analyst] RSI: 57.27 | ADX: 33.52 | ATR: 1.0212 | Volatilidad (20): 0.0085
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52597.0
+   📈 [Technical Analyst] RSI: 57.84 | ADX: 30.03 | ATR: 607.8215 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52597.0
+   📈 [Technical Analyst] RSI: 56.00 | ADX: 10.13 | ATR: 143.5154 | Volatilidad (20): 0.0015
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 211.84
+   📈 [Technical Analyst] RSI: 57.15 | ADX: 16.04 | ATR: 6.9750 | Volatilidad (20): 0.0240
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 211.84
+   📈 [Technical Analyst] RSI: 69.67 | ADX: 26.19 | ATR: 2.0795 | Volatilidad (20): 0.0064
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-14 17:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64562.9
+   📈 [Technical Analyst] RSI: 51.69 | ADX: 25.56 | ATR: 2324.7353 | Volatilidad (20): 0.0216
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64562.9
+   📈 [Technical Analyst] RSI: 72.26 | ADX: 33.07 | ATR: 351.2785 | Volatilidad (20): 0.0046
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14213
+   📈 [Technical Analyst] RSI: 44.11 | ADX: 30.18 | ATR: 0.0059 | Volatilidad (20): 0.0033
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 52.3% (Thresh: 50.0%) | SELL: 35.2% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚠️ VETO MACRO: Conflicto frontal entre algoritmo y macroeconomía.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14213
+   📈 [Technical Analyst] RSI: 54.03 | ADX: 24.85 | ATR: 0.0013 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.3391899999999999
+   📈 [Technical Analyst] RSI: 54.97 | ADX: 17.09 | ATR: 0.0075 | Volatilidad (20): 0.0038
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.3391899999999999
+   📈 [Technical Analyst] RSI: 55.22 | ADX: 26.39 | ATR: 0.0017 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4053.205
+   📈 [Technical Analyst] RSI: 41.80 | ADX: 37.78 | ATR: 106.5826 | Volatilidad (20): 0.0151
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 36.0% (Thresh: 36.0%) | SELL: 26.1% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para GC=F. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4053.205
+   📈 [Technical Analyst] RSI: 53.68 | ADX: 36.47 | ATR: 17.2974 | Volatilidad (20): 0.0030
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7557.5
+   📈 [Technical Analyst] RSI: 55.72 | ADX: 13.05 | ATR: 89.4807 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7557.5
+   📈 [Technical Analyst] RSI: 61.14 | ADX: 26.53 | ATR: 18.2847 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.205
+   📈 [Technical Analyst] RSI: 54.28 | ADX: 32.56 | ATR: 3.7592 | Volatilidad (20): 0.0310
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.205
+   📈 [Technical Analyst] RSI: 57.58 | ADX: 33.92 | ATR: 1.0469 | Volatilidad (20): 0.0085
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52613.0
+   📈 [Technical Analyst] RSI: 58.00 | ADX: 30.03 | ATR: 607.8215 | Volatilidad (20): 0.0053
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52613.0
+   📈 [Technical Analyst] RSI: 56.79 | ADX: 10.13 | ATR: 145.0154 | Volatilidad (20): 0.0015
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 211.84
+   📈 [Technical Analyst] RSI: 57.15 | ADX: 16.04 | ATR: 6.9750 | Volatilidad (20): 0.0240
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 211.84
+   📈 [Technical Analyst] RSI: 69.67 | ADX: 26.19 | ATR: 2.0795 | Volatilidad (20): 0.0064
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-15 09:07:08 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64602.0
+   📈 [Technical Analyst] RSI: 51.80 | ADX: 25.35 | ATR: 2380.1531 | Volatilidad (20): 0.0216
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 65362.0
+   📈 [Technical Analyst] RSI: 56.56 | ADX: 32.57 | ATR: 312.6770 | Volatilidad (20): 0.0024
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14325
+   📈 [Technical Analyst] RSI: 42.41 | ADX: 29.36 | ATR: 0.0057 | Volatilidad (20): 0.0026
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 42.7% (Thresh: 50.0%) | SELL: 43.4% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚖️ [Portfolio Manager] Señal 'SELL' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   ❌ Fallo crítico en EURUSD=X: cannot access local variable 'factor_reduccion_1h' where it is not associated with a value
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34326
+   📈 [Technical Analyst] RSI: 58.83 | ADX: 16.25 | ATR: 0.0074 | Volatilidad (20): 0.0031
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34326
+   📈 [Technical Analyst] RSI: 67.07 | ADX: 24.49 | ATR: 0.0015 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4073.035
+   📈 [Technical Analyst] RSI: 43.40 | ADX: 37.99 | ATR: 103.0195 | Volatilidad (20): 0.0148
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 31.0% (Thresh: 36.0%) | SELL: 25.2% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4073.095
+   📈 [Technical Analyst] RSI: 65.20 | ADX: 20.80 | ATR: 15.2207 | Volatilidad (20): 0.0024
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7580.5
+   📈 [Technical Analyst] RSI: 57.27 | ADX: 12.26 | ATR: 85.3964 | Volatilidad (20): 0.0067
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7580.5
+   📈 [Technical Analyst] RSI: 66.94 | ADX: 26.54 | ATR: 12.2092 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.126
+   📈 [Technical Analyst] RSI: 54.13 | ADX: 31.39 | ATR: 3.6084 | Volatilidad (20): 0.0309
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.126
+   📈 [Technical Analyst] RSI: 52.45 | ADX: 17.91 | ATR: 0.7436 | Volatilidad (20): 0.0056
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52728.0
+   📈 [Technical Analyst] RSI: 59.35 | ADX: 28.75 | ATR: 581.7629 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52728.0
+   📈 [Technical Analyst] RSI: 60.27 | ADX: 8.83 | ATR: 100.4265 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 211.84
+   📈 [Technical Analyst] RSI: 57.15 | ADX: 16.04 | ATR: 6.9750 | Volatilidad (20): 0.0240
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 211.84
+   📈 [Technical Analyst] RSI: 69.67 | ADX: 26.19 | ATR: 2.0795 | Volatilidad (20): 0.0064
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-15 09:13:31 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 65302.0
+   📈 [Technical Analyst] RSI: 53.73 | ADX: 25.26 | ATR: 2392.2960 | Volatilidad (20): 0.0218
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 65302.0
+   📈 [Technical Analyst] RSI: 68.67 | ADX: 34.60 | ATR: 348.1312 | Volatilidad (20): 0.0028
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14286
+   📈 [Technical Analyst] RSI: 45.30 | ADX: 29.36 | ATR: 0.0057 | Volatilidad (20): 0.0027
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 43.5% (Thresh: 50.0%) | SELL: 43.9% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚖️ [Portfolio Manager] Señal 'SELL' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+      ↳ Riesgo cuadrático ya comprometido: $258.45 de $429.52 permitidos
+   🛡️ [Risk Manager] Diseño Estructural Completado:
+      - Capital Arriesgado: $214.76 (3.00% del balance)
+      - Exposición (Lotes): 0.25
+      - Niveles Estimados -> ENTRADA: 1.14286 | SL: 1.15145 | TP: 1.12998
+✅ [Execution Agent] ÉXITO | Ticket: 39515480 | Activo: EURUSD.sml | SELL a 1.14279 | Lotes: 0.25
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14287
+   📈 [Technical Analyst] RSI: 53.85 | ADX: 20.37 | ATR: 0.0011 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34298
+   📈 [Technical Analyst] RSI: 58.58 | ADX: 16.25 | ATR: 0.0074 | Volatilidad (20): 0.0031
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34298
+   📈 [Technical Analyst] RSI: 66.10 | ADX: 24.49 | ATR: 0.0015 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4063.175
+   📈 [Technical Analyst] RSI: 42.62 | ADX: 37.99 | ATR: 103.0195 | Volatilidad (20): 0.0148
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 30.9% (Thresh: 36.0%) | SELL: 25.4% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4063.175
+   📈 [Technical Analyst] RSI: 60.44 | ADX: 20.80 | ATR: 15.3936 | Volatilidad (20): 0.0024
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7573.2
+   📈 [Technical Analyst] RSI: 56.79 | ADX: 12.26 | ATR: 85.3964 | Volatilidad (20): 0.0066
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7573.2
+   📈 [Technical Analyst] RSI: 60.46 | ADX: 26.54 | ATR: 12.4592 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.508
+   📈 [Technical Analyst] RSI: 54.78 | ADX: 31.39 | ATR: 3.6084 | Volatilidad (20): 0.0308
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.508
+   📈 [Technical Analyst] RSI: 55.66 | ADX: 17.96 | ATR: 0.7662 | Volatilidad (20): 0.0057
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52674.0
+   📈 [Technical Analyst] RSI: 58.73 | ADX: 28.75 | ATR: 581.7629 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52674.0
+   📈 [Technical Analyst] RSI: 55.88 | ADX: 8.83 | ATR: 101.8907 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 211.84
+   📈 [Technical Analyst] RSI: 57.15 | ADX: 16.04 | ATR: 6.9750 | Volatilidad (20): 0.0240
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 211.84
+   📈 [Technical Analyst] RSI: 69.67 | ADX: 26.19 | ATR: 2.0795 | Volatilidad (20): 0.0064
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-15 10:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 65114.0
+   📈 [Technical Analyst] RSI: 53.22 | ADX: 25.19 | ATR: 2400.1174 | Volatilidad (20): 0.0217
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 65114.0
+   📈 [Technical Analyst] RSI: 65.54 | ADX: 35.73 | ATR: 353.5504 | Volatilidad (20): 0.0028
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14318
+   📈 [Technical Analyst] RSI: 45.81 | ADX: 29.36 | ATR: 0.0057 | Volatilidad (20): 0.0027
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 44.3% (Thresh: 50.0%) | SELL: 42.8% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚖️ [Portfolio Manager] Señal 'SELL' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para EURUSD=X. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14318
+   📈 [Technical Analyst] RSI: 55.80 | ADX: 20.37 | ATR: 0.0010 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.3440699999999999
+   📈 [Technical Analyst] RSI: 59.50 | ADX: 16.36 | ATR: 0.0075 | Volatilidad (20): 0.0031
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34405
+   📈 [Technical Analyst] RSI: 68.83 | ADX: 26.13 | ATR: 0.0015 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4061.025
+   📈 [Technical Analyst] RSI: 42.44 | ADX: 37.99 | ATR: 103.0195 | Volatilidad (20): 0.0147
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 30.9% (Thresh: 36.0%) | SELL: 25.4% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4061.025
+   📈 [Technical Analyst] RSI: 59.24 | ADX: 21.78 | ATR: 15.0707 | Volatilidad (20): 0.0024
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7585.9
+   📈 [Technical Analyst] RSI: 57.62 | ADX: 12.16 | ATR: 86.1749 | Volatilidad (20): 0.0067
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7585.9
+   📈 [Technical Analyst] RSI: 69.98 | ADX: 27.89 | ATR: 13.1402 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.065
+   📈 [Technical Analyst] RSI: 54.02 | ADX: 31.39 | ATR: 3.6084 | Volatilidad (20): 0.0309
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.055
+   📈 [Technical Analyst] RSI: 51.79 | ADX: 17.63 | ATR: 0.7502 | Volatilidad (20): 0.0054
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52808.8
+   📈 [Technical Analyst] RSI: 60.24 | ADX: 29.00 | ATR: 592.1271 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52808.8
+   📈 [Technical Analyst] RSI: 65.11 | ADX: 10.90 | ATR: 116.1843 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 211.68
+   📈 [Technical Analyst] RSI: 56.91 | ADX: 15.81 | ATR: 6.6583 | Volatilidad (20): 0.0226
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 211.68
+   📈 [Technical Analyst] RSI: 67.99 | ADX: 29.06 | ATR: 1.9930 | Volatilidad (20): 0.0059
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-15 11:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 65308.0
+   📈 [Technical Analyst] RSI: 53.74 | ADX: 25.19 | ATR: 2400.1174 | Volatilidad (20): 0.0218
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 65308.0
+   📈 [Technical Analyst] RSI: 67.50 | ADX: 36.61 | ATR: 359.6897 | Volatilidad (20): 0.0029
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14389
+   📈 [Technical Analyst] RSI: 46.87 | ADX: 29.36 | ATR: 0.0057 | Volatilidad (20): 0.0027
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 44.4% (Thresh: 50.0%) | SELL: 42.6% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚖️ [Portfolio Manager] Señal 'SELL' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para EURUSD=X. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14385
+   📈 [Technical Analyst] RSI: 59.49 | ADX: 21.20 | ATR: 0.0010 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34785
+   📈 [Technical Analyst] RSI: 62.44 | ADX: 16.88 | ATR: 0.0077 | Volatilidad (20): 0.0033
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34785
+   📈 [Technical Analyst] RSI: 77.51 | ADX: 29.10 | ATR: 0.0017 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4060.265
+   📈 [Technical Analyst] RSI: 42.39 | ADX: 37.99 | ATR: 103.0195 | Volatilidad (20): 0.0147
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 30.9% (Thresh: 36.0%) | SELL: 25.4% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4060.265
+   📈 [Technical Analyst] RSI: 58.75 | ADX: 22.52 | ATR: 14.8380 | Volatilidad (20): 0.0023
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7569.7
+   📈 [Technical Analyst] RSI: 56.55 | ADX: 12.16 | ATR: 86.1749 | Volatilidad (20): 0.0066
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7569.7
+   📈 [Technical Analyst] RSI: 55.64 | ADX: 27.48 | ATR: 13.9465 | Volatilidad (20): 0.0007
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 79.12
+   📈 [Technical Analyst] RSI: 52.28 | ADX: 31.39 | ATR: 3.6622 | Volatilidad (20): 0.0311
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 79.12
+   📈 [Technical Analyst] RSI: 44.15 | ADX: 17.14 | ATR: 0.7929 | Volatilidad (20): 0.0058
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52779.8
+   📈 [Technical Analyst] RSI: 59.93 | ADX: 29.00 | ATR: 592.1271 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52779.8
+   📈 [Technical Analyst] RSI: 63.53 | ADX: 11.78 | ATR: 117.6685 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 209.82
+   📈 [Technical Analyst] RSI: 55.01 | ADX: 15.81 | ATR: 6.7925 | Volatilidad (20): 0.0227
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 209.82
+   📈 [Technical Analyst] RSI: 59.72 | ADX: 27.81 | ATR: 2.0270 | Volatilidad (20): 0.0060
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-15 12:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 65376.0
+   📈 [Technical Analyst] RSI: 53.92 | ADX: 25.17 | ATR: 2402.6531 | Volatilidad (20): 0.0218
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 65376.0
+   📈 [Technical Analyst] RSI: 68.81 | ADX: 37.71 | ATR: 357.7654 | Volatilidad (20): 0.0029
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14364
+   📈 [Technical Analyst] RSI: 46.52 | ADX: 29.36 | ATR: 0.0057 | Volatilidad (20): 0.0027
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 43.6% (Thresh: 50.0%) | SELL: 43.4% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚖️ [Portfolio Manager] Señal 'SELL' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para EURUSD=X. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.1436600000000001
+   📈 [Technical Analyst] RSI: 58.08 | ADX: 21.52 | ATR: 0.0010 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34977
+   📈 [Technical Analyst] RSI: 63.77 | ADX: 17.10 | ATR: 0.0079 | Volatilidad (20): 0.0035
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34977
+   📈 [Technical Analyst] RSI: 80.59 | ADX: 31.59 | ATR: 0.0017 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4046.485
+   📈 [Technical Analyst] RSI: 41.41 | ADX: 37.99 | ATR: 103.0195 | Volatilidad (20): 0.0147
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 34.3% (Thresh: 36.0%) | SELL: 27.8% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4046.485
+   📈 [Technical Analyst] RSI: 51.09 | ADX: 20.52 | ATR: 15.2580 | Volatilidad (20): 0.0025
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7559.9
+   📈 [Technical Analyst] RSI: 55.88 | ADX: 12.16 | ATR: 86.1749 | Volatilidad (20): 0.0066
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7559.9
+   📈 [Technical Analyst] RSI: 47.62 | ADX: 26.26 | ATR: 14.3080 | Volatilidad (20): 0.0007
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 79.188
+   📈 [Technical Analyst] RSI: 52.40 | ADX: 31.39 | ATR: 3.6880 | Volatilidad (20): 0.0310
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 79.198
+   📈 [Technical Analyst] RSI: 44.87 | ADX: 17.56 | ATR: 0.7780 | Volatilidad (20): 0.0058
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52692.8
+   📈 [Technical Analyst] RSI: 58.98 | ADX: 29.00 | ATR: 592.1271 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52692.8
+   📈 [Technical Analyst] RSI: 55.35 | ADX: 12.06 | ATR: 117.2203 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 208.67
+   📈 [Technical Analyst] RSI: 53.91 | ADX: 15.81 | ATR: 6.8618 | Volatilidad (20): 0.0228
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 208.67
+   📈 [Technical Analyst] RSI: 55.22 | ADX: 26.71 | ATR: 2.0290 | Volatilidad (20): 0.0061
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-15 13:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 65129.0
+   📈 [Technical Analyst] RSI: 53.26 | ADX: 25.17 | ATR: 2402.6531 | Volatilidad (20): 0.0217
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 65124.0
+   📈 [Technical Analyst] RSI: 61.37 | ADX: 34.68 | ATR: 376.6316 | Volatilidad (20): 0.0031
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14466
+   📈 [Technical Analyst] RSI: 48.01 | ADX: 29.36 | ATR: 0.0057 | Volatilidad (20): 0.0027
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 46.1% (Thresh: 50.0%) | SELL: 40.6% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14468
+   📈 [Technical Analyst] RSI: 63.49 | ADX: 21.78 | ATR: 0.0011 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.35366
+   📈 [Technical Analyst] RSI: 66.19 | ADX: 17.59 | ATR: 0.0081 | Volatilidad (20): 0.0038
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.35367
+   📈 [Technical Analyst] RSI: 84.91 | ADX: 34.74 | ATR: 0.0019 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 4037.375
+   📈 [Technical Analyst] RSI: 40.88 | ADX: 37.99 | ATR: 103.0195 | Volatilidad (20): 0.0147
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 33.9% (Thresh: 36.0%) | SELL: 29.4% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 4037.475
+   📈 [Technical Analyst] RSI: 47.13 | ADX: 18.39 | ATR: 15.7862 | Volatilidad (20): 0.0026
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7556.6
+   📈 [Technical Analyst] RSI: 55.64 | ADX: 12.16 | ATR: 86.9107 | Volatilidad (20): 0.0066
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7556.6
+   📈 [Technical Analyst] RSI: 45.89 | ADX: 24.07 | ATR: 14.9778 | Volatilidad (20): 0.0008
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 79.558
+   📈 [Technical Analyst] RSI: 53.08 | ADX: 31.39 | ATR: 3.6880 | Volatilidad (20): 0.0309
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 79.558
+   📈 [Technical Analyst] RSI: 48.29 | ADX: 15.22 | ATR: 0.7898 | Volatilidad (20): 0.0061
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52623.8
+   📈 [Technical Analyst] RSI: 58.15 | ADX: 29.00 | ATR: 592.9771 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52624.8
+   📈 [Technical Analyst] RSI: 49.83 | ADX: 10.85 | ATR: 123.3423 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 206.64
+   📈 [Technical Analyst] RSI: 52.05 | ADX: 15.81 | ATR: 7.0283 | Volatilidad (20): 0.0233
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 206.64
+   📈 [Technical Analyst] RSI: 48.28 | ADX: 23.86 | ATR: 2.0714 | Volatilidad (20): 0.0064
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-16 09:10:05 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 63995.0
+   📈 [Technical Analyst] RSI: 49.80 | ADX: 24.00 | ATR: 2315.7350 | Volatilidad (20): 0.0214
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 63995.0
+   📈 [Technical Analyst] RSI: 37.92 | ADX: 23.57 | ATR: 313.1570 | Volatilidad (20): 0.0028
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14506
+   📈 [Technical Analyst] RSI: 48.55 | ADX: 27.49 | ATR: 0.0058 | Volatilidad (20): 0.0027
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 41.7% (Thresh: 50.0%) | SELL: 44.1% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚖️ [Portfolio Manager] Señal 'SELL' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para EURUSD=X. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14509
+   📈 [Technical Analyst] RSI: 46.41 | ADX: 31.28 | ATR: 0.0010 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.35059
+   📈 [Technical Analyst] RSI: 62.47 | ADX: 18.51 | ATR: 0.0081 | Volatilidad (20): 0.0035
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.35059
+   📈 [Technical Analyst] RSI: 52.49 | ADX: 34.27 | ATR: 0.0014 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 3984.415
+   📈 [Technical Analyst] RSI: 38.03 | ADX: 38.53 | ATR: 102.6102 | Volatilidad (20): 0.0151
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 37.3% (Thresh: 36.0%) | SELL: 33.6% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para GC=F. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 3984.705
+   📈 [Technical Analyst] RSI: 28.48 | ADX: 17.95 | ATR: 16.6503 | Volatilidad (20): 0.0033
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7559.9
+   📈 [Technical Analyst] RSI: 55.35 | ADX: 11.45 | ATR: 84.3670 | Volatilidad (20): 0.0065
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7559.9
+   📈 [Technical Analyst] RSI: 42.49 | ADX: 19.67 | ATR: 13.7933 | Volatilidad (20): 0.0012
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.726
+   📈 [Technical Analyst] RSI: 55.15 | ADX: 30.30 | ATR: 3.5645 | Volatilidad (20): 0.0308
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.726
+   📈 [Technical Analyst] RSI: 60.61 | ADX: 12.03 | ATR: 0.6493 | Volatilidad (20): 0.0043
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52765.0
+   📈 [Technical Analyst] RSI: 59.80 | ADX: 28.04 | ATR: 566.5859 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52765.0
+   📈 [Technical Analyst] RSI: 53.57 | ADX: 7.19 | ATR: 101.6999 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 211.81
+   📈 [Technical Analyst] RSI: 57.09 | ADX: 15.81 | ATR: 7.0283 | Volatilidad (20): 0.0226
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 211.81
+   📈 [Technical Analyst] RSI: 62.22 | ADX: 23.12 | ATR: 2.2195 | Volatilidad (20): 0.0070
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-16 10:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64421.0
+   📈 [Technical Analyst] RSI: 51.08 | ADX: 24.00 | ATR: 2315.7350 | Volatilidad (20): 0.0212
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64421.0
+   📈 [Technical Analyst] RSI: 48.75 | ADX: 22.17 | ATR: 327.4876 | Volatilidad (20): 0.0032
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.1451500000000001
+   📈 [Technical Analyst] RSI: 48.65 | ADX: 27.49 | ATR: 0.0058 | Volatilidad (20): 0.0027
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 41.6% (Thresh: 50.0%) | SELL: 44.3% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚖️ [Portfolio Manager] Señal 'SELL' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para EURUSD=X. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14519
+   📈 [Technical Analyst] RSI: 47.19 | ADX: 29.18 | ATR: 0.0010 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.3510499999999999
+   📈 [Technical Analyst] RSI: 62.99 | ADX: 18.51 | ATR: 0.0081 | Volatilidad (20): 0.0035
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.3510499999999999
+   📈 [Technical Analyst] RSI: 54.60 | ADX: 32.88 | ATR: 0.0014 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 3997.155
+   📈 [Technical Analyst] RSI: 38.69 | ADX: 38.53 | ATR: 102.6102 | Volatilidad (20): 0.0149
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 38.0% (Thresh: 36.0%) | SELL: 32.5% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Error en conexión LLM. Asumiendo NEUTRAL.
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para GC=F. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 3997.035
+   📈 [Technical Analyst] RSI: 33.89 | ADX: 19.63 | ATR: 16.7928 | Volatilidad (20): 0.0028
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7560.1
+   📈 [Technical Analyst] RSI: 55.37 | ADX: 11.45 | ATR: 84.7385 | Volatilidad (20): 0.0065
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7560.4
+   📈 [Technical Analyst] RSI: 43.14 | ADX: 20.66 | ATR: 14.7933 | Volatilidad (20): 0.0009
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 80.203
+   📈 [Technical Analyst] RSI: 54.15 | ADX: 30.30 | ATR: 3.5645 | Volatilidad (20): 0.0309
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 80.203
+   📈 [Technical Analyst] RSI: 52.86 | ADX: 12.72 | ATR: 0.6485 | Volatilidad (20): 0.0042
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52727.8
+   📈 [Technical Analyst] RSI: 59.36 | ADX: 28.05 | ATR: 568.7002 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52727.8
+   📈 [Technical Analyst] RSI: 50.89 | ADX: 7.45 | ATR: 110.3080 | Volatilidad (20): 0.0010
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 207.52
+   📈 [Technical Analyst] RSI: 52.50 | ADX: 15.60 | ATR: 6.8555 | Volatilidad (20): 0.0228
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 207.52
+   📈 [Technical Analyst] RSI: 49.10 | ADX: 20.34 | ATR: 2.2540 | Volatilidad (20): 0.0083
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INICIO DE CICLO OPERATIVO: 2026-07-16 11:01:00 ---
+
+🚀 INICIANDO ECOSISTEMA DE AGENTES AUTÓNOMOS
+
+--- INFERENCIA: BTC-USD ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 64492.0
+   📈 [Technical Analyst] RSI: 51.30 | ADX: 24.00 | ATR: 2315.7350 | Volatilidad (20): 0.0211
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 64492.0
+   📈 [Technical Analyst] RSI: 50.24 | ADX: 19.56 | ATR: 340.5982 | Volatilidad (20): 0.0032
+   ⚠️ ML Agent: Modelos no disponibles para BTC-USD. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: EURUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.14422
+   📈 [Technical Analyst] RSI: 47.47 | ADX: 27.49 | ATR: 0.0058 | Volatilidad (20): 0.0027
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 42.2% (Thresh: 50.0%) | SELL: 43.1% (Thresh: 42.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BEARISH
+   ⚖️ [Portfolio Manager] Señal 'SELL' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para EURUSD=X. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.14422
+   📈 [Technical Analyst] RSI: 41.18 | ADX: 28.28 | ATR: 0.0010 | Volatilidad (20): 0.0005
+   ⚠️ ML Agent: Modelos no disponibles para EURUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GBPUSD=X ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 1.34889
+   📈 [Technical Analyst] RSI: 60.68 | ADX: 18.51 | ATR: 0.0081 | Volatilidad (20): 0.0036
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 1.34889
+   📈 [Technical Analyst] RSI: 44.91 | ADX: 30.02 | ATR: 0.0014 | Volatilidad (20): 0.0006
+   ⚠️ ML Agent: Modelos no disponibles para GBPUSD=X. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: GC=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 3997.515
+   📈 [Technical Analyst] RSI: 38.71 | ADX: 38.53 | ATR: 102.6102 | Volatilidad (20): 0.0149
+   🧠 [Quant ML] Régimen GMM detectado: Óptimo/Tendencial
+   🧠 [Quant ML] Probabilidades XGBoost -> BUY: 38.0% (Thresh: 36.0%) | SELL: 32.5% (Thresh: 50.0%)
+   🌍 [Fundamental Analyst] Contexto macroeconómico procesado: BULLISH
+   ⚖️ [Portfolio Manager] Señal 'BUY' auditada y APROBADA. Transfiriendo a Gestión de Riesgos.
+   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para GC=F. Límite diario alcanzado.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 3997.795
+   📈 [Technical Analyst] RSI: 34.47 | ADX: 21.18 | ATR: 16.5130 | Volatilidad (20): 0.0028
+   ⚠️ ML Agent: Modelos no disponibles para GC=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^GSPC ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 7576.9
+   📈 [Technical Analyst] RSI: 56.87 | ADX: 11.45 | ATR: 84.7385 | Volatilidad (20): 0.0064
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 7576.9
+   📈 [Technical Analyst] RSI: 52.96 | ADX: 19.10 | ATR: 15.2448 | Volatilidad (20): 0.0011
+   ⚠️ ML Agent: Modelos no disponibles para ^GSPC. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: CL=F ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 79.86
+   📈 [Technical Analyst] RSI: 53.47 | ADX: 30.30 | ATR: 3.5645 | Volatilidad (20): 0.0309
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 79.86
+   📈 [Technical Analyst] RSI: 48.67 | ADX: 11.51 | ATR: 0.6561 | Volatilidad (20): 0.0039
+   ⚠️ ML Agent: Modelos no disponibles para CL=F. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: ^DJI ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 52859.8
+   📈 [Technical Analyst] RSI: 60.90 | ADX: 28.05 | ATR: 568.7002 | Volatilidad (20): 0.0050
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 52859.8
+   📈 [Technical Analyst] RSI: 59.08 | ADX: 7.51 | ATR: 113.9697 | Volatilidad (20): 0.0012
+   ⚠️ ML Agent: Modelos no disponibles para ^DJI. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+--- INFERENCIA: NVDA ---
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1D
+   📊 [Market Data] Cotización actual extraída: 207.9
+   📈 [Technical Analyst] RSI: 52.91 | ADX: 15.60 | ATR: 6.8555 | Volatilidad (20): 0.0227
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).
+
+   ⏱️ [Orquestador] Procesando ventana temporal: 1H
+   📊 [Market Data] Cotización actual extraída: 207.9
+   📈 [Technical Analyst] RSI: 50.20 | ADX: 19.02 | ATR: 2.1935 | Volatilidad (20): 0.0080
+   ⚠️ ML Agent: Modelos no disponibles para NVDA. Modo HOLD.
+   🌍 [Fundamental Analyst] Omitido. No hay señal direccional del Agente Quant.
+   ⏸️ [Execution Agent] Pipeline cerrado sin apertura de posiciones (HOLD).

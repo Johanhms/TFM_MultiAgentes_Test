@@ -454,10 +454,53 @@ def risk_manager_agent(state: TradingState):
         print("   ❌ [Risk Manager] Error de conexión con terminal MT5 para extraer balance.")
         return {"risk_params": {}}
     
+    # --- NUEVO: Escudo Anti-Sobreexposición y Gestión Escalonada (Anti-Martingala) ---
+    
+    factor_reduccion_1h = 1.0 # Multiplicador de riesgo por defecto
+    posiciones_abiertas = mt5.positions_get(symbol=symbol_mt5)
+    
+    if posiciones_abiertas:
+        # Filtramos solo las operaciones abiertas por este ecosistema
+        mis_posiciones = [p for p in posiciones_abiertas if p.magic == 202601]
+        
+        # 1. Regla Global Estricta
+        if len(mis_posiciones) >= MAX_TRADES_PER_DAY_PER_ASSET:
+            print(f"   🛑 [Risk Manager] VETO: Se alcanzó el límite máximo global de operaciones ({MAX_TRADES_PER_DAY_PER_ASSET}) permitidas para {asset}.")
+            return {"risk_params": {}}
+            
+        # Segmentamos por timeframe leyendo el comentario
+        pos_1d = [p for p in mis_posiciones if "1D" in p.comment]
+        pos_1h = [p for p in mis_posiciones if "1H" in p.comment]
+
+        # 2. Regla para Macro (1D): Estrictamente 1 sola operación permitida
+        if tf_suffix.upper() == "1D":
+            if len(pos_1d) >= 1:
+                print(f"   🛑 [Risk Manager] VETO: Ya existe 1 operación macro (1D) gestionándose para {asset}. Límite diario alcanzado.")
+                return {"risk_params": {}}
+                
+        # 3. Regla para Micro (1H): Hasta 3 operaciones con evaluación Anti-Martingala
+        elif tf_suffix.upper() == "1H":
+            if len(pos_1h) >= MAX_TRADES_PER_DAY_PER_ASSET:
+                print(f"   🛑 [Risk Manager] VETO: Límite intradiario ({MAX_TRADES_PER_DAY_PER_ASSET}) alcanzado para {asset} en 1H.")
+                return {"risk_params": {}}
+                
+            # Evaluación del rendimiento abierto actual (Anti-Martingala Direccional)
+            for p in pos_1h:
+                # Determinamos la dirección de la operación antigua (0 = BUY, 1 = SELL en MT5)
+                direccion_antigua = "BUY" if p.type == mt5.POSITION_TYPE_BUY else "SELL"
+                
+                # Si la operación antigua está perdiendo Y la nueva señal va en la MISMA dirección
+                if p.profit < 0 and final_signal == direccion_antigua:
+                    factor_reduccion_1h = 0.5
+                    print(f"   ⚠️ [Risk Manager] Operación 1H anterior ({direccion_antigua}) en *drawdown* (Profit: {p.profit:.2f}). "
+                          f"Activando Anti-Martingala: Riesgo reducido al 50% para el nuevo {final_signal}.")
+                    break # Se activa el freno y salimos del bucle
+    # ---------------------------------------------------------------------------------
+    
     balance = account_info.balance 
     
     vol_scalar = 0.01 / max(volatility, 0.001) 
-    riesgo_operacion_tentativo = (balance * MAX_GLOBAL_PORTFOLIO_RISK_PCT) * min(vol_scalar, 1.0)
+    riesgo_operacion_tentativo = (balance * MAX_GLOBAL_PORTFOLIO_RISK_PCT) * min(vol_scalar, 1.0) * factor_reduccion_1h
 
     # --- Riesgo cuadrático de portafolio (Var = w' · Corr · w) ---
     # Agrega el riesgo en USD de cada posición abierta (signado por dirección) junto con el de
@@ -585,7 +628,7 @@ def execution_agent(state: TradingState):
         "magic": 202601,
         "comment": f"Alpha Agent {state.get('timeframe_suffix', '').upper()}",
         "type_time": mt5.ORDER_TIME_GTC,
-        "type_filling": mt5.ORDER_FILLING_IOC,
+        "type_filling": mt5.ORDER_FILLING_FOK,
     }
 
     result = mt5.order_send(request)
@@ -598,14 +641,117 @@ def execution_agent(state: TradingState):
         
     return {"final_execution": msg}
 
+# 8. Agente 8: Monitoring Agent (Gestión Activa de Posiciones Abiertas)
+def monitoring_agent(state: TradingState):
+    asset = state["asset"]
+    tf_suffix = state.get("timeframe_suffix", "1h")
+    symbol_mt5 = ASSET_MAPPING.get(asset, asset)
+    
+    posiciones_abiertas = mt5.positions_get(symbol=symbol_mt5)
+    if not posiciones_abiertas:
+        return state # Nada que monitorear
+        
+    # Parámetros para Time Stop (Límites de costo de oportunidad)
+    # Se estima un máximo de 10 velas para 1H y 15 velas para 1D (en horas)
+    horas_maximas = 10 if tf_suffix == "1h" else 24 * 15 
+    segundos_maximos = horas_maximas * 3600
+
+    # Extraemos variables de estado y GMM para validación en vivo
+    tech = state.get("technical_indicators", {})
+    atr = tech.get("ATR_14", 0.0)
+    current_price = state.get("current_price", 0.0)
+    
+    safe_name = asset.replace("=X", "").replace("=F", "").replace("^", "")
+    gmm_path = BASE_DIR / f'gmm_regime_{tf_suffix}_{safe_name}.joblib'
+    
+    gmm_valido = False
+    active_regime = None
+    current_regime = None
+    
+    if gmm_path.exists() and "historical_data" in state:
+        try:
+            gmm_data = joblib.load(gmm_path)
+            gmm_model = gmm_data['gmm']
+            active_regime = gmm_data['active_regime']
+            gmm_features = gmm_data['gmm_features']
+            latest_gmm = state["historical_data"][gmm_features].iloc[-1:]
+            if not latest_gmm.isnull().values.any():
+                current_regime = gmm_model.predict(latest_gmm)[0]
+                gmm_valido = True
+        except:
+            pass # Fallo silencioso, se omite el chequeo de régimen
+
+    for pos in posiciones_abiertas:
+        if pos.magic != 202601 or tf_suffix.upper() not in pos.comment:
+            continue
+            
+        tick = mt5.symbol_info_tick(symbol_mt5)
+        if not tick: continue
+
+        tiempo_abierto = time.time() - pos.time
+        
+        # A) INVALIDACIÓN DE RÉGIMEN (Cierre de Emergencia)
+        if gmm_valido and current_regime != active_regime:
+            print(f"   🚨 [Monitoring Agent] Cambio de régimen GMM detectado. Liquidando ticket {pos.ticket} a mercado para proteger capital.")
+            close_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
+            close_price = tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
+            request_close = {
+                "action": mt5.TRADE_ACTION_DEAL, "symbol": symbol_mt5, "volume": pos.volume,
+                "type": close_type, "position": pos.ticket, "price": close_price,
+                "deviation": 10, "magic": 202601, "comment": f"Regime Exit {tf_suffix.upper()}",
+                "type_time": mt5.ORDER_TIME_GTC, "type_filling": mt5.ORDER_FILLING_FOK,
+            }
+            mt5.order_send(request_close)
+            continue
+
+        # B) TIME STOP (Cierre por Estancamiento / Costo de Oportunidad)
+        if tiempo_abierto > segundos_maximos:
+            print(f"   ⏳ [Monitoring Agent] Time Stop superado ({tiempo_abierto/3600:.1f} hrs). Capital estancado. Cerrando ticket {pos.ticket}.")
+            close_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
+            close_price = tick.bid if pos.type == mt5.POSITION_TYPE_BUY else tick.ask
+            request_time_stop = {
+                "action": mt5.TRADE_ACTION_DEAL, "symbol": symbol_mt5, "volume": pos.volume,
+                "type": close_type, "position": pos.ticket, "price": close_price,
+                "deviation": 10, "magic": 202601, "comment": f"Time Stop {tf_suffix.upper()}",
+                "type_time": mt5.ORDER_TIME_GTC, "type_filling": mt5.ORDER_FILLING_FOK,
+            }
+            mt5.order_send(request_time_stop)
+            continue
+
+        # C) TRAILING STOP BASADO EN ATR (Asegurar Breakeven)
+        if atr > 0:
+            distancia_ganancia = abs(current_price - pos.price_open)
+            en_ganancia = (pos.type == mt5.POSITION_TYPE_BUY and current_price > pos.price_open) or \
+                          (pos.type == mt5.POSITION_TYPE_SELL and current_price < pos.price_open)
+                          
+            # Si aseguramos 1.5 veces el ATR a favor, movemos SL a precio de entrada (Breakeven)
+            if en_ganancia and distancia_ganancia > (atr * 1.5):
+                # Añadimos un micro-margen (0.1 ATR) para cubrir comisiones al salir
+                nuevo_sl = pos.price_open + (atr * 0.1) if pos.type == mt5.POSITION_TYPE_BUY else pos.price_open - (atr * 0.1)
+                
+                mover_sl = False
+                if pos.type == mt5.POSITION_TYPE_BUY and (pos.sl == 0 or nuevo_sl > pos.sl): mover_sl = True
+                if pos.type == mt5.POSITION_TYPE_SELL and (pos.sl == 0 or nuevo_sl < pos.sl): mover_sl = True
+                
+                if mover_sl:
+                    print(f"   🛡️ [Monitoring Agent] Operación {pos.ticket} consolidada en beneficio. Ajustando Stop Loss a Breakeven ({nuevo_sl:.5f}).")
+                    request_sl = {
+                        "action": mt5.TRADE_ACTION_SLTP, "symbol": symbol_mt5,
+                        "sl": float(nuevo_sl), "tp": float(pos.tp), "position": pos.ticket
+                    }
+                    mt5.order_send(request_sl)
+
+    return state
+
 # Ensamblaje 
 workflow = StateGraph(TradingState)
-for node in [("market_data", market_data_agent), ("technical_analyst", technical_analyst_agent), 
+for node in [("market_data", market_data_agent), ("monitoring", monitoring_agent),("technical_analyst", technical_analyst_agent), 
              ("quant_ml", quant_ml_agent), ("fundamental_analyst", fundamental_analyst_agent), 
              ("portfolio_manager", portfolio_manager_agent), ("risk_manager", risk_manager_agent), 
              ("execution", execution_agent)]: workflow.add_node(node[0], node[1])
 
-workflow.add_edge("market_data", "technical_analyst")
+workflow.add_edge("market_data", "monitoring")
+workflow.add_edge("monitoring", "technical_analyst")
 workflow.add_edge("technical_analyst", "quant_ml")
 workflow.add_edge("quant_ml", "fundamental_analyst")
 workflow.add_edge("fundamental_analyst", "portfolio_manager")
